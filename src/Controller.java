@@ -4,7 +4,6 @@ import javafx.scene.input.MouseEvent;
 
 public class Controller {
     public TextField id_txtLogin;
-
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
     }

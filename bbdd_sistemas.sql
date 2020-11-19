@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 19:09:46
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.33
+-- Tiempo de generación: 19-11-2020 a las 19:42:37
+-- Versión del servidor: 10.4.16-MariaDB
+-- Versión de PHP: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bbdd_sistemas`
 --
-CREATE DATABASE IF NOT EXISTS `bbdd_sistemas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `bbdd_sistemas`;
 
 -- --------------------------------------------------------
 
@@ -65,8 +63,16 @@ CREATE TABLE `personal` (
   `NumSegSocial` bigint(20) NOT NULL,
   `Sueldo` int(11) NOT NULL,
   `FechaEntrada` date NOT NULL,
-  `IdProducto` int(11) NOT NULL
+  `IdProducto` int(11) DEFAULT NULL,
+  `DNI` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `FechaEntrada`, `IdProducto`, `DNI`) VALUES
+(2, 'Paco ', 'Perez', 121222, 1200, '2020-11-16', NULL, '48208786G');
 
 -- --------------------------------------------------------
 
@@ -169,7 +175,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
