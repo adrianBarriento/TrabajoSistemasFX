@@ -37,33 +37,35 @@
                <children>
                   <ImageView fx:id="id_icUsuarios" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/usuario.png" />
+                        <Image url="@../../images/icons8-miembro-tipo-de-piel-7-48.png" />
                      </image>
                      <HBox.margin>
-                        <Insets bottom="11.0" left="50.0" right="60.0" top="11.0" />
+                        <Insets bottom="11.0" left="70.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
                   <ImageView fx:id="id_icGestion" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/usuario.png" />
+                        <Image url="@../../images/icons8-solicitar-servicio-48.png" />
                      </image>
                      <HBox.margin>
-                        <Insets bottom="11.0" left="11.0" right="60.0" top="11.0" />
+                        <Insets bottom="11.0" left="60.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
                   <ImageView fx:id="id_icOperaciones" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/usuario.png" />
+                        <Image url="@../../images/icons8-agregar-a-carrito-de-compras-48.png" />
                      </image>
                      <HBox.margin>
-                        <Insets bottom="11.0" left="11.0" right="60.0" top="11.0" />
-                        <Insets bottom="11.0" left="70.0" top="11.0" />
+                        <Insets bottom="11.0" left="60.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
                   <ImageView fx:id="id_icSalir" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
-                        <Insets bottom="11.0" left="160.0" top="11.0" />
+                        <Insets bottom="11.0" left="200.0" top="11.0" />
                      </HBox.margin>
+                     <image>
+                        <Image url="@../../images/icons8-cerrar-ventana-48.png" />
+                     </image>
                   </ImageView>
                </children>
             </HBox>
