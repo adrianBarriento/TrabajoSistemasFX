@@ -18,6 +18,11 @@ public class Controller {
     public TextField id_crearEmpleadoFecha;
     public TextField id_crearEmpleadoDNI;
 
+    //AnchorPanes
+    public AnchorPane id_crearEmpleado;
+    public AnchorPane id_cmbSeleccion;
+    public AnchorPane id_Footer;
+    public AnchorPane id_tablaGestion;
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
