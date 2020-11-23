@@ -1,10 +1,14 @@
+import bbdd_manager.Usuarios;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class Controller {
     //TextField del login
     public TextField id_txtLogin;
+    public AnchorPane id_paneLogin;
+    public AnchorPane id_base;
 
     //Textfield de crear empleados
     public TextField id_crearEmpleadoNombre;
@@ -19,7 +23,7 @@ public class Controller {
         Platform.exit();
     }
 
-    public void comprobarEmpleado(MouseEvent mouseEvent){
-        String dni = id_txtLogin.getText();
+    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin, id_base);
     }
+
 }
