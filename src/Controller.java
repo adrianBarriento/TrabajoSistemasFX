@@ -39,10 +39,12 @@ public class Controller {
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
-        id_Footer.setVisible(true);
-        id_base.setVisible(false);
-        id_cmbSeleccion.setVisible(false);
-        id_tablaGestion.setVisible(false);
+    }
+
+    //No funciona, pone que es null
+    public void ventanaGestion(MouseEvent mouseEvent){
+        id_crearEmpleado.setVisible(false);
+        id_cmbSeleccion.setVisible(true);
     }
 
 }

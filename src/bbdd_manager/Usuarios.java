@@ -1,8 +1,10 @@
 package bbdd_manager;
 
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,15 +16,15 @@ public class Usuarios {
         Connection conexion=null;
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
-                    "root",
-                    "root");
+                    "sistemas",
+                    "sistemas");
 
         } catch (SQLException throwables) {
             //AQUI SALTA UN MENSAJE DE ERROR SI NO SE CONECTA
         }
         return conexion;
     }
-    public void login(TextField txtDni, AnchorPane pane1, AnchorPane pane2){
+    public void login(TextField txtDni, AnchorPane id_paneLogin, AnchorPane id_base){
         Connection conexion=getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -30,15 +32,25 @@ public class Usuarios {
             query = conexion.prepareStatement("SELECT DNI FROM personal");
             datos = query.executeQuery();
             while(datos.next()){
-                if(datos.getString("DNI")==txtDni.getText()){
-                    pane1.setVisible(false);
-                    pane2.setVisible(false);
+                if(datos.getString("DNI").compareToIgnoreCase(txtDni.getText()) == 0){
+                    id_paneLogin.setVisible(false);
+                    id_base.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(null, "DNI incorrecto", "ERROR",JOptionPane.WARNING_MESSAGE);
+                    Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+                    dialogoAlerta.setTitle("DNI no reconocido");
+                    dialogoAlerta.setHeaderText(null);
+                    dialogoAlerta.setContentText("El DNI no ha sido introducido correctamente. Empleado no identificado");
+                    dialogoAlerta.initStyle(StageStyle.UTILITY);
+                    dialogoAlerta.showAndWait();
                 }
             }
         } catch (SQLException e) {
-            System.out.println("No es posible acceder a los datos");
+            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+            dialogoAlerta.setTitle("ERROR");
+            dialogoAlerta.setHeaderText(null);
+            dialogoAlerta.setContentText("No se ha podido acceder ya que la base de datos no ha sido lanzada.");
+            dialogoAlerta.initStyle(StageStyle.UTILITY);
+            dialogoAlerta.showAndWait();
         }
 
     }
