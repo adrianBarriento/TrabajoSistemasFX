@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
+import models.Employe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +54,26 @@ public class Usuarios {
         }
     }
 
-    public void newEmploye(){
+    public void newEmploye(TextField nombre,TextField apellido,TextField numSegSocial,TextField sueldo,TextField dni){
+        Connection conexion=getConexion();
+        PreparedStatement query;
+        ResultSet datos = null;
+        try {
+            query = conexion.prepareStatement("INSERT INTO personal(Nombre, Apellido, NumSegSocial, Sueldo, DNI) VALUES (?,?,?,?,?,)");
 
+            query.setString(1, nombre.getText());
+            query.setString(2, apellido.getText());
+            query.setInt(3, Integer.getInteger(numSegSocial.getText()));
+            query.setInt(4, Integer.getInteger(sueldo.getText()));
+            query.setString(5, dni.getText());
+
+        } catch (SQLException e) {
+            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+            dialogoAlerta.setTitle("ERROR");
+            dialogoAlerta.setHeaderText(null);
+            dialogoAlerta.setContentText("No se ha podido acceder ya que la base de datos no ha sido lanzada.");
+            dialogoAlerta.initStyle(StageStyle.UTILITY);
+            dialogoAlerta.showAndWait();
+        }
     }
 }

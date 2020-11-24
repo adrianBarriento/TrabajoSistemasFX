@@ -40,6 +40,7 @@ public class Controller {
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
     }
+    public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     //No funciona, pone que es null
     public void ventanaGestion(MouseEvent mouseEvent){
