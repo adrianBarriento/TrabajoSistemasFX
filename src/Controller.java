@@ -21,7 +21,7 @@ public class Controller {
 
     //AnchorPanes
     public AnchorPane id_crearEmpleado;
-    public AnchorPane id_cmbSeleccion;
+    public AnchorPane id_Gestion;
     public AnchorPane id_Footer;
     public AnchorPane id_tablaGestion;
 
@@ -30,6 +30,9 @@ public class Controller {
     public ImageView id_icGestion;
     public ImageView id_icOperaciones;
     public ImageView id_icSalir;
+
+    //ComboBox
+    public AnchorPane id_cmbSeleccion;
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -45,7 +48,7 @@ public class Controller {
     //No funciona, pone que es null
     public void ventanaGestion(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(false);
-        id_cmbSeleccion.setVisible(true);
+        id_Gestion.setVisible(true);
     }
 
 }

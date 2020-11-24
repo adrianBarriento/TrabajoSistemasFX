@@ -132,7 +132,7 @@
             <Button layoutX="248.0" layoutY="401.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="CREAR" textOverrun="WORD_ELLIPSIS" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="150.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
+      <AnchorPane fx:id="id_Gestion" layoutX="20.0" layoutY="150.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
          <children>
             <Label layoutX="21.0" layoutY="113.0" text="Seleccione la categoría:">
                <font>
