@@ -31,11 +31,11 @@
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_base" disable="true" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;">
+      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;">
          <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
-                  <ImageView fx:id="id_icUsuarios" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="id_icUsuarios" fitHeight="42.0" fitWidth="45.0" onMouseClicked="#ventanaCrearEmpleado" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/icons8-miembro-tipo-de-piel-7-48.png" />
                      </image>
@@ -43,7 +43,7 @@
                         <Insets bottom="11.0" left="70.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="id_icGestion" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="id_icGestion" fitHeight="42.0" fitWidth="45.0" onMouseClicked="#ventanaGestion" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/icons8-solicitar-servicio-48.png" />
                      </image>
@@ -59,7 +59,7 @@
                         <Insets bottom="11.0" left="60.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="id_icSalir" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="id_icSalir" fitHeight="42.0" fitWidth="45.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets bottom="11.0" left="200.0" top="11.0" />
                      </HBox.margin>
