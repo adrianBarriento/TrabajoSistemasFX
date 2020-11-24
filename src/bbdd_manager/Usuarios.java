@@ -1,8 +1,10 @@
 package bbdd_manager;
 
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,11 +36,21 @@ public class Usuarios {
                     id_paneLogin.setVisible(false);
                     id_base.setVisible(true);
                 }else{
-                    JOptionPane.showMessageDialog(null, "DNI incorrecto", "ERROR",JOptionPane.WARNING_MESSAGE);
+                    Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+                    dialogoAlerta.setTitle("DNI no reconocido");
+                    dialogoAlerta.setHeaderText(null);
+                    dialogoAlerta.setContentText("El DNI no ha sido introducido correctamente. Empleado no identificado");
+                    dialogoAlerta.initStyle(StageStyle.UTILITY);
+                    dialogoAlerta.showAndWait();
                 }
             }
         } catch (SQLException e) {
-            System.out.println("No es posible acceder a los datos");
+            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+            dialogoAlerta.setTitle("ERROR");
+            dialogoAlerta.setHeaderText(null);
+            dialogoAlerta.setContentText("No se ha podido acceder ya que la base de datos no ha sido lanzada.");
+            dialogoAlerta.initStyle(StageStyle.UTILITY);
+            dialogoAlerta.showAndWait();
         }
 
     }
