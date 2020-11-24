@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 19:42:37
+-- Tiempo de generación: 23-11-2020 a las 19:31:19
 -- Versión del servidor: 10.4.16-MariaDB
 -- Versión de PHP: 7.4.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bbdd_sistemas`
 --
+CREATE DATABASE IF NOT EXISTS `bbdd_sistemas` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bbdd_sistemas`;
 
 -- --------------------------------------------------------
 
