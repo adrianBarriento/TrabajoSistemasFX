@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2020 a las 19:31:19
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 24-11-2020 a las 17:14:12
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `clientes` (
   `Direccion` varchar(100) NOT NULL,
   `Poblacion` varchar(50) NOT NULL,
   `Email` varchar(70) NOT NULL,
-  `Id_Producto` int(11) NOT NULL
+  `Id_Producto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -48,7 +48,7 @@ CREATE TABLE `clientes` (
 CREATE TABLE `encargos` (
   `id_cliente` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `id_personal` int(11) NOT NULL,
+  `id_personal` int(11) DEFAULT NULL,
   `cantadidad_encargada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,7 +64,6 @@ CREATE TABLE `personal` (
   `Apellidos` varchar(150) NOT NULL,
   `NumSegSocial` bigint(20) NOT NULL,
   `Sueldo` int(11) NOT NULL,
-  `FechaEntrada` date NOT NULL,
   `IdProducto` int(11) DEFAULT NULL,
   `DNI` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,8 +72,8 @@ CREATE TABLE `personal` (
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `FechaEntrada`, `IdProducto`, `DNI`) VALUES
-(2, 'Paco ', 'Perez', 121222, 1200, '2020-11-16', NULL, '48208786G');
+INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `IdProducto`, `DNI`) VALUES
+(2, 'Paco ', 'Perez', 121222, 1200, NULL, '48208786G');
 
 -- --------------------------------------------------------
 
@@ -115,7 +114,7 @@ CREATE TABLE `proovedores` (
   `Id_Proveedor` int(11) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
   `Articulo` varchar(60) NOT NULL,
-  `Id_Producto` int(11) NOT NULL
+  `Id_Producto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
