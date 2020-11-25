@@ -25,7 +25,7 @@ public class Usuarios {
         }
         return conexion;
     }
-    public void login(TextField txtDni, AnchorPane id_paneLogin){
+    public void login(TextField txtDni, AnchorPane id_paneLogin, AnchorPane id_base){
         Connection conexion=getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -35,6 +35,7 @@ public class Usuarios {
             while(datos.next()){
                 if(datos.getString("DNI").compareToIgnoreCase(txtDni.getText()) == 0){
                     id_paneLogin.setVisible(false);
+                    id_base.setVisible(true);
                 }else{
                     Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
                     dialogoAlerta.setTitle("DNI no reconocido");

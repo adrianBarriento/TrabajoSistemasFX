@@ -1,5 +1,9 @@
+import bbdd_manager.RellenarTablas;
 import bbdd_manager.Usuarios;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +28,7 @@ public class Controller {
     public AnchorPane id_Gestion;
     public AnchorPane id_Footer;
     public AnchorPane id_tablaGestion;
+    public AnchorPane id_cmbSeleccion;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -31,14 +36,17 @@ public class Controller {
     public ImageView id_icOperaciones;
     public ImageView id_icSalir;
 
+
     //ComboBox
-    public AnchorPane id_cmbSeleccion;
+    public ComboBox id_cmbCat_gestiion;
+
+    private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
     }
 
-    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin);}
+    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin, id_base);}
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
@@ -49,6 +57,10 @@ public class Controller {
     public void ventanaGestion(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
+        if (null != id_cmbCat_gestiion){
+            id_cmbCat_gestiion.setItems(rellenarComboBox);
+        }
     }
+    public void seleccionarOpcionCombox(MouseEvent mouseEvent){ new RellenarTablas().seleccionarCategoria(id_cmbCat_gestiion); }
 
 }
