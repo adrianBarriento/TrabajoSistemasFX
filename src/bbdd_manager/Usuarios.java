@@ -12,19 +12,9 @@ import java.sql.*;
 
 public class Usuarios {
 
-    private Connection getConexion(){
-        Connection conexion=null;
-        try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
-                    "sistemas",
-                    "sistemas");
-        } catch (SQLException throwables) {
-            new Common().vtnAlertaError();
-        }
-        return conexion;
-    }
+
     public void login(TextField txtDni, AnchorPane id_paneLogin, AnchorPane id_base){
-        Connection conexion=getConexion();
+        Connection conexion=new Common().getConexion();
         PreparedStatement query;
         ResultSet datos = null;
         try {
@@ -42,7 +32,7 @@ public class Usuarios {
     }
 
     public void newEmploye(TextField nombre,TextField apellido,TextField numSegSocial,TextField sueldo,TextField dni){
-        Connection conexion=getConexion();
+        Connection conexion=new Common().getConexion();
         PreparedStatement query;
         ResultSet datos = null;
         try {
