@@ -1,18 +1,22 @@
-package bbdd_manager;
+package table_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import models.Common;
 import models.Employe;
 
 public class RellenarTablas {
+    private ObservableList<Employe> empleados = FXCollections.observableArrayList();
     public String seleccionarCategoria(ComboBox id_cmbCat_gestiion){
         return (String) id_cmbCat_gestiion.getValue();
     }
 
-    public void tablaUsuarios(){
-        ObservableList<Employe> empleados = FXCollections.observableArrayList();
-
+    public ObservableList<Employe> getEmpleados(){
+        for(Employe e:new Common().obtenerEmpleados()){
+            empleados.add(e);
+        }
+        return empleados;
     }
 
 }
