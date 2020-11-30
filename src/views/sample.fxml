@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
+      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;">
          <children>
             <Label layoutX="210.0" layoutY="26.0" text="ACCESO USUARIO">
                <font>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane layoutY="521.0" prefHeight="39.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" />
 
-      <AnchorPane id="crearEmpleado" fx:id="id_crearEmpleado" layoutY="73.0" prefHeight="450.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;">
+      <AnchorPane id="crearEmpleado" fx:id="id_crearEmpleado" layoutY="73.0" prefHeight="450.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;" visible="false">
          <children>
             <Label layoutX="71.0" layoutY="82.0" text="Nombre:">
                <padding>
