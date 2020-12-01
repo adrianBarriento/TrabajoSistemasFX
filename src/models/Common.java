@@ -38,6 +38,7 @@ public class Common {
                     "sistemas");
         } catch (SQLException throwables) {
             new Common().vtnAlertaError();
+            System.out.println("Error en conexion");
         }
         return conexion;
     }
@@ -57,11 +58,13 @@ public class Common {
                 int sueldo = datos.getInt(5);
                 String dni = datos.getString(7);
 
+
                 Employe empleado = new Employe(nombre, apellidos, numSS, sueldo, dni);
                 listaEmpleados.add(empleado);
             }
         } catch (SQLException e) {
             vtnAlertaError();
+            System.out.println("Error no en conexion");
         }
         return listaEmpleados;
     }

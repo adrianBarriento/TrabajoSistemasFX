@@ -1,7 +1,5 @@
 package models;
 
-import com.mysql.cj.conf.StringProperty;
-
 public class Employe {
     private String nombre;
     private String apellido;
