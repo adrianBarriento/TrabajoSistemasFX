@@ -5,27 +5,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
+import models.Common;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.naming.NamingEnumeration;
 import java.sql.*;
 
 public class Usuarios {
 
-    private Connection getConexion(){
-        Connection conexion=null;
-        try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
-                    "sistemas",
-                    "sistemas");
 
-        } catch (SQLException throwables) {
-            //AQUI SALTA UN MENSAJE DE ERROR SI NO SE CONECTA
-        }
-        return conexion;
-    }
-    public void login(TextField txtDni, AnchorPane id_paneLogin){
-        Connection conexion=getConexion();
+    public void login(TextField txtDni, AnchorPane id_paneLogin, AnchorPane id_base){
+        Connection conexion=new Common().getConexion();
         PreparedStatement query;
         ResultSet datos = null;
         try {
@@ -34,26 +23,31 @@ public class Usuarios {
             while(datos.next()){
                 if(datos.getString("DNI").compareToIgnoreCase(txtDni.getText()) == 0){
                     id_paneLogin.setVisible(false);
-                }else{
-                    Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
-                    dialogoAlerta.setTitle("DNI no reconocido");
-                    dialogoAlerta.setHeaderText(null);
-                    dialogoAlerta.setContentText("El DNI no ha sido introducido correctamente. Empleado no identificado");
-                    dialogoAlerta.initStyle(StageStyle.UTILITY);
-                    dialogoAlerta.showAndWait();
+                    id_base.setVisible(true);
                 }
             }
         } catch (SQLException e) {
-            Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
-            dialogoAlerta.setTitle("ERROR");
-            dialogoAlerta.setHeaderText(null);
-            dialogoAlerta.setContentText("No se ha podido acceder ya que la base de datos no ha sido lanzada.");
-            dialogoAlerta.initStyle(StageStyle.UTILITY);
-            dialogoAlerta.showAndWait();
+            new Common().vtnAlertaError();
         }
     }
 
-    public void newEmploye(){
+    public void newEmploye(TextField nombre,TextField apellido,TextField numSegSocial,TextField sueldo,TextField dni){
+        Connection conexion=new Common().getConexion();
+        PreparedStatement query;
+        ResultSet datos = null;
+        try {
+            query = conexion.prepareStatement("INSERT INTO personal(Nombre, Apellidos, NumSegSocial, Sueldo, DNI) VALUES (?,?,?,?,?)");
 
+            query.setString(1, nombre.getText());
+            query.setString(2, apellido.getText());
+            query.setInt(3, Integer.parseInt(numSegSocial.getText()));
+            query.setInt(4, Integer.parseInt(sueldo.getText()));
+            query.setString(5, dni.getText());
+            query.execute();
+            new Common().vtnMensajeExitoInsercion();
+
+        } catch (SQLException e) {
+            new Common().vtnAlertaError();
+        }
     }
 }
