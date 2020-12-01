@@ -1,9 +1,9 @@
+<<<<<<< HEAD
 import javafx.scene.control.TableView;
+=======
+>>>>>>> 0e9758ce37e961f3f8a62cbd4a4aba2e468bfebc
 import bbdd_manager.Usuarios;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,10 +26,9 @@ public class Controller {
 
     //AnchorPanes
     public AnchorPane id_crearEmpleado;
-    public AnchorPane id_Gestion;
+    public AnchorPane id_cmbSeleccion;
     public AnchorPane id_Footer;
     public AnchorPane id_tablaGestion;
-    public AnchorPane id_cmbSeleccion;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -37,6 +36,7 @@ public class Controller {
     public ImageView id_icOperaciones;
     public ImageView id_icSalir;
 
+<<<<<<< HEAD
 
     //ComboBox
     public ComboBox id_cmbCat_gestiion;
@@ -46,25 +46,23 @@ public class Controller {
 
     private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes");
 
+=======
+>>>>>>> 0e9758ce37e961f3f8a62cbd4a4aba2e468bfebc
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
     }
 
-    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin, id_base);}
+    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin);}
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
-        id_Gestion.setVisible(false);
     }
-    public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     public void ventanaGestion(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(false);
-        id_Gestion.setVisible(true);
-        if (null != id_cmbCat_gestiion){
-            id_cmbCat_gestiion.setItems(rellenarComboBox);
-        }
+        id_cmbSeleccion.setVisible(true);
     }
+<<<<<<< HEAD
 
     public void ventanaTabla(MouseEvent mouseEvent){
         id_tablaGestion.setVisible(true);
@@ -82,5 +80,7 @@ public class Controller {
         }
 
     }
+=======
+>>>>>>> 0e9758ce37e961f3f8a62cbd4a4aba2e468bfebc
 
 }
