@@ -1,4 +1,4 @@
-import table_manager.RellenarTablas;
+import javafx.scene.control.TableView;
 import bbdd_manager.Usuarios;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import views.ModeloTablaEmpleados;
 
 public class Controller {
     //TextField del login
@@ -40,6 +41,9 @@ public class Controller {
     //ComboBox
     public ComboBox id_cmbCat_gestiion;
 
+    //Tabla
+    public TableView id_tabla;
+
     private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
@@ -54,7 +58,6 @@ public class Controller {
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
-    //No funciona, pone que es null
     public void ventanaGestion(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
@@ -62,6 +65,22 @@ public class Controller {
             id_cmbCat_gestiion.setItems(rellenarComboBox);
         }
     }
-    public void seleccionarOpcionCombox(MouseEvent mouseEvent){ new RellenarTablas().seleccionarCategoria(id_cmbCat_gestiion); }
+
+    public void ventanaTabla(MouseEvent mouseEvent){
+        id_tablaGestion.setVisible(true);
+        id_Gestion.setVisible(false);
+        id_crearEmpleado.setVisible(false);
+
+        switch (String.valueOf(id_cmbCat_gestiion.getValue())){
+            case "Usuarios":
+                new ModeloTablaEmpleados().crearTabla(id_tabla);
+                break;
+            case "Proveedores":
+                break;
+            case "Clientes":
+                break;
+        }
+
+    }
 
 }
