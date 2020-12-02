@@ -15,7 +15,7 @@ public class ModeloTablaEmpleados {
     @FXML
     private TableColumn<Employe, String> columnaApellido= new TableColumn<>("Apellido");
     @FXML
-    private TableColumn<Employe, Integer> columnaNumSS = new TableColumn<>("Número de la seg.Social");
+    private TableColumn<Employe, Integer> columnaNumSS = new TableColumn<>("NumSegSocial");
     @FXML
     private TableColumn<Employe, Integer> columnaSueldo = new TableColumn<>("Sueldo");
     @FXML
@@ -33,17 +33,22 @@ public class ModeloTablaEmpleados {
 
     public void crearTabla(TableView id_tabla){
 
-        ObservableList<Employe> data = FXCollections.observableArrayList();
-        data.addAll(new Common().obtenerEmpleados());
 
-            columnaNombre.setCellValueFactory(new PropertyValueFactory<Employe, String>("Nombre"));
-            columnaApellido.setCellValueFactory(new PropertyValueFactory<Employe, String>("Apellido"));
-            columnaNumSS.setCellValueFactory(new PropertyValueFactory<Employe, Integer>("Número de la seg.Social"));
-            columnaSueldo.setCellValueFactory(new PropertyValueFactory<Employe, Integer>("Sueldo"));
-            columnaDni.setCellValueFactory(new PropertyValueFactory<Employe, String>("DNI"));
 
-            id_tabla.setItems(data);
-            id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
+        //ObservableList<Employe> data = FXCollections.observableArrayList();
+        //data.addAll(new Common().obtenerEmpleados());
+
+        this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        this.columnaApellido.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+        this.columnaNumSS.setCellValueFactory(new PropertyValueFactory<>("NumSegSocial"));
+        this.columnaSueldo.setCellValueFactory(new PropertyValueFactory<>("Sueldo"));
+        this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("DNI"));
+
+        Common c =new Common();
+        ObservableList<Employe> data = c.obtenerEmpleados();
+
+        id_tabla.setItems(data);
+        id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
 
 
     }

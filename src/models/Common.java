@@ -1,5 +1,7 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
 
@@ -43,8 +45,8 @@ public class Common {
         return conexion;
     }
     //metodo para sacar datos de un empleado de una tabla de la base de datos
-    public ArrayList<Employe> obtenerEmpleados(){
-        ArrayList<Employe> listaEmpleados = new ArrayList<>();
+    public ObservableList<Employe> obtenerEmpleados(){
+        ObservableList<Employe> listaEmpleados = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -58,8 +60,8 @@ public class Common {
                 int sueldo = datos.getInt(5);
                 String dni = datos.getString(7);
 
-
                 Employe empleado = new Employe(nombre, apellidos, numSS, sueldo, dni);
+
                 listaEmpleados.add(empleado);
             }
         } catch (SQLException e) {
