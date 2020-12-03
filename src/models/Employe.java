@@ -3,12 +3,12 @@ package models;
 public class Employe {
     private String nombre;
     private String apellido;
-    private int numSegSocial;
+    private String numSegSocial;
     private int sueldo;
     private String dni;
 
 
-    public Employe(String nombre, String apellido, int numSegSocial, int sueldo, String dni) {
+    public Employe(String nombre, String apellido, String numSegSocial, int sueldo, String dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numSegSocial = numSegSocial;
@@ -16,13 +16,7 @@ public class Employe {
         this.dni = dni;
     }
 
-    public Employe() {
-        this.nombre = null;
-        this.apellido = null;
-        this.numSegSocial = 0;
-        this.sueldo = 0;
-        this.dni = null;
-    }
+    public Employe() {}
 
     public String getNombre() {
         return nombre;
@@ -40,11 +34,11 @@ public class Employe {
         this.apellido = apellido;
     }
 
-    public int getNumSegSocial() {
+    public String getNumSegSocial() {
         return numSegSocial;
     }
 
-    public void setNumSegSocial(int numSegSocial) {
+    public void setNumSegSocial(String numSegSocial) {
         this.numSegSocial = numSegSocial;
     }
 

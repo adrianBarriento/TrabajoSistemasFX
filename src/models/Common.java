@@ -56,9 +56,9 @@ public class Common {
             while(datos.next()){
                 String nombre = datos.getString(2);
                 String apellidos = datos.getString(3);
-                int numSS = datos.getInt(4);
+                String numSS = datos.getString(4);
                 int sueldo = datos.getInt(5);
-                String dni = datos.getString(7);
+                String dni = datos.getString(6);
 
                 Employe empleado = new Employe(nombre, apellidos, numSS, sueldo, dni);
 

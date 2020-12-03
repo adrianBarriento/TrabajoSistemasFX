@@ -40,7 +40,7 @@ public class Usuarios {
 
             query.setString(1, nombre.getText());
             query.setString(2, apellido.getText());
-            query.setInt(3, Integer.parseInt(numSegSocial.getText()));
+            query.setString(3, numSegSocial.getText());
             query.setInt(4, Integer.parseInt(sueldo.getText()));
             query.setString(5, dni.getText());
             query.execute();

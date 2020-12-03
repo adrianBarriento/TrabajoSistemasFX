@@ -19,7 +19,7 @@ public class ModeloTablaEmpleados {
     @FXML
     private TableColumn<Employe, Integer> columnaSueldo = new TableColumn<>("Sueldo");
     @FXML
-    private TableColumn<Employe, String> columnaDni = new TableColumn<>("DNI");
+    private TableColumn<Employe, String> columnaDni = new TableColumn<>("dni");
 
 
 
@@ -33,16 +33,11 @@ public class ModeloTablaEmpleados {
 
     public void crearTabla(TableView id_tabla){
 
-
-
-        //ObservableList<Employe> data = FXCollections.observableArrayList();
-        //data.addAll(new Common().obtenerEmpleados());
-
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         this.columnaApellido.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
         this.columnaNumSS.setCellValueFactory(new PropertyValueFactory<>("NumSegSocial"));
         this.columnaSueldo.setCellValueFactory(new PropertyValueFactory<>("Sueldo"));
-        this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("DNI"));
+        this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
 
         Common c =new Common();
         ObservableList<Employe> data = c.obtenerEmpleados();
@@ -50,7 +45,11 @@ public class ModeloTablaEmpleados {
         id_tabla.setItems(data);
         id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
 
+    }
 
+    public void seleccionar (TableView<Employe> id_tabla){
+        Employe empleadoBorrar = id_tabla.getSelectionModel().getSelectedItem();
+        id_tabla.getItems().remove(empleadoBorrar);
     }
 
 
