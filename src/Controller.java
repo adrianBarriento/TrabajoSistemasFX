@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import models.Employe;
 import views.ModeloTablaEmpleados;
 
 public class Controller {
@@ -42,7 +43,7 @@ public class Controller {
     public ComboBox id_cmbCat_gestiion;
 
     //Tabla
-    public TableView id_tabla;
+    public TableView<Employe> id_tabla;
 
     private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes");
 
@@ -55,12 +56,14 @@ public class Controller {
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
         id_Gestion.setVisible(false);
+        id_tablaGestion.setVisible(false);
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     public void ventanaGestion(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
+        id_tablaGestion.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBox);
         }
@@ -81,6 +84,10 @@ public class Controller {
                 break;
         }
 
+    }
+
+    public void seleccionarRow(MouseEvent mouseEvent){
+        new ModeloTablaEmpleados().seleccionar(id_tabla);
     }
 
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2020 a las 17:14:12
+-- Tiempo de generación: 03-12-2020 a las 19:43:03
 -- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.10
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `clientes` (
   `Direccion` varchar(100) NOT NULL,
   `Poblacion` varchar(50) NOT NULL,
   `Email` varchar(70) NOT NULL,
-  `Id_Producto` int(11) DEFAULT NULL
+  `Id_Producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -48,7 +48,7 @@ CREATE TABLE `clientes` (
 CREATE TABLE `encargos` (
   `id_cliente` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `id_personal` int(11) DEFAULT NULL,
+  `id_personal` int(11) NOT NULL,
   `cantadidad_encargada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,18 +62,21 @@ CREATE TABLE `personal` (
   `Id_Personal` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellidos` varchar(150) NOT NULL,
-  `NumSegSocial` bigint(20) NOT NULL,
+  `NumSegSocial` varchar(20) NOT NULL,
   `Sueldo` int(11) NOT NULL,
-  `IdProducto` int(11) DEFAULT NULL,
-  `DNI` varchar(9) NOT NULL
+  `DNI` varchar(9) NOT NULL,
+  `IdProducto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `IdProducto`, `DNI`) VALUES
-(2, 'Paco ', 'Perez', 121222, 1200, NULL, '48208786G');
+INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `DNI`, `IdProducto`) VALUES
+(2, 'Paco ', 'Perez', '121222', 1200, '48208786G', NULL),
+(3, 'perico', 'per', '1202', 1022, '09138804f', NULL),
+(4, 'ElPipas', 'RicoSuave', '20202020202020202020', 1900, '12345678g', NULL),
+(5, 'Oscar', 'Francsco', '1234567891012', 1200, '09138804F', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,7 +117,7 @@ CREATE TABLE `proovedores` (
   `Id_Proveedor` int(11) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
   `Articulo` varchar(60) NOT NULL,
-  `Id_Producto` int(11) DEFAULT NULL
+  `Id_Producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -176,7 +179,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
