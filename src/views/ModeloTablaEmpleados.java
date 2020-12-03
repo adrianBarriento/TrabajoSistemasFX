@@ -19,7 +19,7 @@ public class ModeloTablaEmpleados {
     @FXML
     private TableColumn<Employe, Integer> columnaSueldo = new TableColumn<>("Sueldo");
     @FXML
-    private TableColumn<Employe, String> columnaDni = new TableColumn<>("DNI");
+    private TableColumn<Employe, String> columnaDni = new TableColumn<>("dni");
 
 
 
@@ -42,7 +42,7 @@ public class ModeloTablaEmpleados {
         this.columnaApellido.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
         this.columnaNumSS.setCellValueFactory(new PropertyValueFactory<>("NumSegSocial"));
         this.columnaSueldo.setCellValueFactory(new PropertyValueFactory<>("Sueldo"));
-        this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("DNI"));
+        this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
 
         Common c =new Common();
         ObservableList<Employe> data = c.obtenerEmpleados();
