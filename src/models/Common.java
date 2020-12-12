@@ -72,8 +72,8 @@ public class Common {
     }
 
     //metodo para sacar datos de un cliente de una tabla de la base de datos
-    public ArrayList<Clientes> obtenerClientes(){
-        ArrayList<Clientes> listaClientes = new ArrayList<>();
+    public ObservableList<Clientes> obtenerClientes(){
+        ObservableList<Clientes> listaClientes = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos = null;
