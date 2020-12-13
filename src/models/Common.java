@@ -66,14 +66,13 @@ public class Common {
             }
         } catch (SQLException e) {
             vtnAlertaError();
-            System.out.println("Error no en conexion");
         }
         return listaEmpleados;
     }
 
     //metodo para sacar datos de un cliente de una tabla de la base de datos
-    public ArrayList<Clientes> obtenerClientes(){
-        ArrayList<Clientes> listaClientes = new ArrayList<>();
+    public ObservableList<Clientes> obtenerClientes(){
+        ObservableList<Clientes> listaClientes = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -116,5 +115,29 @@ public class Common {
             vtnAlertaError();
         }
         return listaProveedores;
+    }
+
+    //Metodo para recorrer ventas
+    public ObservableList<Ventas> obtenerVentas(){
+        ObservableList<Ventas> listaVentas = FXCollections.observableArrayList();
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos = null;
+        try {
+            query = connection.prepareStatement("SELECT * FROM encargos");
+            datos = query.executeQuery();
+            while(datos.next()){
+                int id_cliente = datos.getInt(1);
+                int id_producto = datos.getInt(2);
+                int id_personal = datos.getInt(3);
+                int cantidad = datos.getInt(4);
+
+                Ventas ventas = new Ventas(id_producto, id_cliente, id_personal, cantidad);
+                listaVentas.add(ventas);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaVentas;
     }
 }

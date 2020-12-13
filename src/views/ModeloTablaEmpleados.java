@@ -2,12 +2,15 @@ package views;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Common;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Employe;
+
+import java.sql.*;
 
 public class ModeloTablaEmpleados {
     @FXML
@@ -20,16 +23,6 @@ public class ModeloTablaEmpleados {
     private TableColumn<Employe, Integer> columnaSueldo = new TableColumn<>("Sueldo");
     @FXML
     private TableColumn<Employe, String> columnaDni = new TableColumn<>("dni");
-
-
-
-    private ObservableList<Employe> empleados = FXCollections.observableArrayList();
-    private ObservableList<Employe> conseguirEmpleados(){
-        for(Employe e:new Common().obtenerEmpleados()){
-            empleados.add(e);
-        }
-        return empleados;
-    }
 
     public void crearTabla(TableView id_tabla){
 
@@ -47,12 +40,50 @@ public class ModeloTablaEmpleados {
 
     }
 
-    public void seleccionar (TableView<Employe> id_tabla){
+    public void borrar (TableView<Employe> id_tabla){
         Employe empleadoBorrar = id_tabla.getSelectionModel().getSelectedItem();
         id_tabla.getItems().remove(empleadoBorrar);
+
+        Common commmon = new Common();
+        Connection conex = commmon.getConexion();
+        try {
+            Statement consulta = conex.createStatement();
+            int valor = consulta.executeUpdate("DELETE FROM personal WHERE DNI='" + empleadoBorrar.getDni() + "'");
+            if(valor == 1){
+                commmon.vtnMensajeExitoInsercion();
+            } else {
+                commmon.vtnAlertaError();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
+    public void modificar(TableView<Employe> id_tabla, TextField nombre, TextField apellido, TextField numSegSocial, TextField sueldo, TextField dni){
+        Employe empleadoModificar = id_tabla.getSelectionModel().getSelectedItem();
 
+        if(empleadoModificar != null){
+            Connection conexion=new Common().getConexion();
+            PreparedStatement query;
+            try {
+                query = conexion.prepareStatement("UPDATE personal SET Nombre = ?, Apellidos = ?, NumSegSocial = ?, Sueldo = ?, DNI = ? WHERE DNI ='" + empleadoModificar.getDni() + "'");
+
+                query.setString(1, nombre.getText());
+                query.setString(2, apellido.getText());
+                query.setString(3, numSegSocial.getText());
+                query.setInt(4, Integer.parseInt(sueldo.getText()));
+                query.setString(5, dni.getText());
+                query.execute();
+                new Common().vtnMensajeExitoInsercion();
+
+            } catch (SQLException e) {
+                new Common().vtnAlertaError();
+            }
+        } else {
+            new Common().vtnAlertaError();
+        }
+
+    }
 
 
 }
