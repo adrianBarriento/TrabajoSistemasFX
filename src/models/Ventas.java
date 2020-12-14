@@ -12,8 +12,8 @@ public class Ventas {
     private String productoString, clienteString, vendedorString;
 
     public Ventas(int producto, int cliente, int vendedor, int cantidad) {
-        clienteString = obtenerCliente(cliente);
         productoString = obtenerProducto(producto);
+        clienteString = obtenerCliente(cliente);
         vendedorString = obtenerVendedor(vendedor);
         this.cantidad = cantidad;
         precio = obtenerPrecio(producto);

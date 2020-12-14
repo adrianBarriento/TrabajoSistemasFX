@@ -65,7 +65,7 @@ public class Controller {
     public TableView<Employe> id_tabla;
     public TableView<Proveedores> id_tablaProveedores;
     public TableView<Clientes> id_tablaClientes;
-    public TableView id_TablaVentas;
+    public TableView<Ventas> id_TablaVentas;
 
 
 

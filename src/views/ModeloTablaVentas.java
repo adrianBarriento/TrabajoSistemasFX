@@ -17,9 +17,9 @@ import java.sql.Statement;
 
 public class ModeloTablaVentas {
     @FXML
-    private TableColumn<Ventas, String> columnaCliente = new TableColumn<>("Cliente");
-    @FXML
     private TableColumn<Ventas, String> columnaProducto= new TableColumn<>("Producto");
+    @FXML
+    private TableColumn<Ventas, String> columnaCliente = new TableColumn<>("Cliente");
     @FXML
     private TableColumn<Ventas, String> columnaVendedor = new TableColumn<>("Vendedor");
     @FXML
@@ -28,10 +28,9 @@ public class ModeloTablaVentas {
     private TableColumn<Ventas, Float> columnaPrecio = new TableColumn<>("Precio");
 
     public void crearTablaClientes(TableView id_tablaVentas){
-
-        this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("Cliente"));
-        this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("Producto"));
-        this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("Vendedor"));
+        this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
+        this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
+        this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
 
@@ -39,7 +38,7 @@ public class ModeloTablaVentas {
         ObservableList<Ventas> data = c.obtenerVentas();
 
         id_tablaVentas.setItems(data);
-        id_tablaVentas.getColumns().addAll(columnaProducto, columnaCliente, columnaVendedor, columnaPrecio);
+        id_tablaVentas.getColumns().addAll(columnaProducto, columnaCliente, columnaVendedor,  columnaCantidad, columnaPrecio);
 
     }
 
