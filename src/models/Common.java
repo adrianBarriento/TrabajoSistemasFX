@@ -82,11 +82,10 @@ public class Common {
             while(datos.next()){
                 String nombre = datos.getString(2);
                 String apellidos = datos.getString(3);
-                String direccion = datos.getString(4);
-                String poblacion = datos.getString(5);
-                String email = datos.getString(6);
+                String email = datos.getString(4);
+                int poblacion = datos.getInt(5);
 
-                Clientes clientes = new Clientes(nombre, apellidos, direccion, poblacion, email);
+                Clientes clientes = new Clientes(nombre, apellidos, poblacion, email);
                 listaClientes.add(clientes);
             }
         } catch (SQLException e) {
@@ -139,5 +138,28 @@ public class Common {
             vtnAlertaError();
         }
         return listaVentas;
+    }
+
+    public ObservableList<Poblacion> obtenerPoblaciones() {
+        ObservableList<Poblacion> listaPoblaciones = FXCollections.observableArrayList();
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos = null;
+        try {
+            query = connection.prepareStatement("SELECT * FROM poblaciones");
+            datos = query.executeQuery();
+            while(datos.next()){
+                int cod_postal = datos.getInt(1);
+                String poblacion = datos.getString(2);
+                String provincia = datos.getString(3);
+
+                Poblacion newPoblacion = new Poblacion(cod_postal, poblacion,provincia);
+
+                listaPoblaciones.add(newPoblacion);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaPoblaciones;
     }
 }

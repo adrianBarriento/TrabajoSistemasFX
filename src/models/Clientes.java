@@ -3,15 +3,13 @@ package models;
 public class Clientes {
     private String nombre;
     private String apellidos;
-    private String direccion;
-    private String poblacion;
+    private int cod_postal;
     private String email;
 
-    public Clientes(String nombre, String apellidos, String direccion, String poblacion, String email) {
+    public Clientes(String nombre, String apellidos, int cod_postal, String email) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.direccion = direccion;
-        this.poblacion = poblacion;
+        this.cod_postal = cod_postal;
         this.email = email;
     }
 
@@ -33,20 +31,12 @@ public class Clientes {
         this.apellidos = apellidos;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public int getCod_postal() {
+        return cod_postal;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getPoblacion() {
-        return poblacion;
-    }
-
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
+    public void setCod_postal(int cod_postal) {
+        this.cod_postal = cod_postal;
     }
 
     public String getEmail() {

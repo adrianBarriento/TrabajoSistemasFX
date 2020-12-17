@@ -1,15 +1,20 @@
 package views;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Clientes;
 import models.Common;
+import models.Poblacion;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ModeloTablaClientes {
     @FXML
@@ -17,25 +22,23 @@ public class ModeloTablaClientes {
     @FXML
     private TableColumn<Clientes, String> columnaApellidos= new TableColumn<>("Apellidos");
     @FXML
-    private TableColumn<Clientes, String> columnaDireccion = new TableColumn<>("Direccion");
-    @FXML
-    private TableColumn<Clientes, String> columnaPoblacion = new TableColumn<>("Poblacion");
-    @FXML
     private TableColumn<Clientes, String> columnaEmail = new TableColumn<>("Email");
+    @FXML
+    private TableColumn<Clientes, Integer> columnaPoblacion = new TableColumn<>("Codigo Postal");
 
     public void crearTablaClientes(TableView id_tablaClientes){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         this.columnaApellidos.setCellValueFactory(new PropertyValueFactory<>("Apellidos"));
-        this.columnaDireccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
-        this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("Poblacion"));
         this.columnaEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("cod_postal"));
+
 
         Common c =new Common();
         ObservableList<Clientes> data = c.obtenerClientes();
 
         id_tablaClientes.setItems(data);
-        id_tablaClientes.getColumns().addAll(columnaNombre, columnaApellidos, columnaDireccion, columnaPoblacion, columnaEmail);
+        id_tablaClientes.getColumns().addAll(columnaNombre, columnaApellidos, columnaEmail, columnaPoblacion);
 
     }
 
@@ -58,19 +61,18 @@ public class ModeloTablaClientes {
         }
     }
 
-    public void modificarCliente(TableView<Clientes> id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, TextField direccionCliente, TextField poblacionCliente, TextField emailCliente){
+    public void modificarCliente(TableView<Clientes> id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
         Clientes clienteModificar = id_tablaClientes.getSelectionModel().getSelectedItem();
 
         if(clienteModificar != null){
             Connection conexion=new Common().getConexion();
             PreparedStatement query;
             try {
-                query = conexion.prepareStatement("UPDATE cliente SET Nombre = ?, Apellidos = ?, Direccion = ?, Poblacion = ?, Email = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
+                query = conexion.prepareStatement("UPDATE cliente SET Nombre = ?, Apellidos = ?, Email = ? Poblacion = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
 
                 query.setString(1, nombreCliente.getText());
                 query.setString(2, apellidoCliente.getText());
-                query.setString(3, direccionCliente.getText());
-                query.setString(4, poblacionCliente.getText());
+                query.setInt(4, (Integer) poblacionCliente.getValue());
                 query.setString(5, emailCliente.getText());
                 query.execute();
                 new Common().vtnMensajeExitoInsercion();
@@ -82,19 +84,27 @@ public class ModeloTablaClientes {
             new Common().vtnAlertaError();
         }
     }
-    public void newCliente(TextField nombreCliente, TextField apellidoCliente, TextField direccionCliente, TextField poblacionCliente, TextField emailCliente){
+    public void newCliente(TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
+
+        String poblacion = String.valueOf(poblacionCliente.getValue());
+        int codigoPostal=0;
+        ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
+        for(Poblacion p:poblaciones){
+            if(poblacion.equalsIgnoreCase(p.getPoblacion())){
+                codigoPostal=p.getCod_postal();
+            }
+        }
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO clientes(Nombre, Apellidos, Direccion, Poblacion, Email) VALUES (?,?,?,?,?)");
+            query = conexion.prepareStatement("INSERT INTO clientes(Nombre, Apellidos, Email, cod_postal) VALUES (?,?,?,?)");
 
             query.setString(1, nombreCliente.getText());
             query.setString(2, apellidoCliente.getText());
-            query.setString(3, direccionCliente.getText());
-            query.setString(4, poblacionCliente.getText());
-            query.setString(5, emailCliente.getText());
+            query.setString(3, emailCliente.getText());
+            query.setInt(4, codigoPostal);
 
-            System.out.println(nombreCliente.getText() + " " + apellidoCliente.getText() + " " + direccionCliente.getText() + " " + poblacionCliente.getText() + " " + emailCliente.getText());
+
             query.execute();
             new Common().vtnMensajeExitoInsercion();
 

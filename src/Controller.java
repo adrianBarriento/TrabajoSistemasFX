@@ -8,12 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import models.Clientes;
-import models.Employe;
-import models.Proveedores;
-import models.Ventas;
+import models.*;
 import views.ModeloTablaClientes;
 import views.ModeloTablaEmpleados;
+import views.ModeloTablaPoblaciones;
 import views.ModeloTablaVentas;
 
 public class Controller {
@@ -42,6 +40,11 @@ public class Controller {
     public TextField id_VendedorVentas;
     public TextField id_CantidadVentas;
 
+    //Textfields de poblaciones
+    public TextField id_añadirCodPostal;
+    public TextField id_añadirPoblacion;
+    public TextField id_añadirProvincia;
+
     //AnchorPanes
     public AnchorPane id_crearEmpleado;
     public AnchorPane id_Gestion;
@@ -50,6 +53,7 @@ public class Controller {
     public AnchorPane id_cmbSeleccion;
     public AnchorPane id_TablaClientes;
     public AnchorPane id_tablaVentas;
+    public AnchorPane id_poblaciones;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -60,16 +64,18 @@ public class Controller {
 
     //ComboBox
     public ComboBox id_cmbCat_gestiion;
+    public ComboBox id_cmbCodigosPostales;
 
     //Tabla
     public TableView<Employe> id_tabla;
     public TableView<Proveedores> id_tablaProveedores;
     public TableView<Clientes> id_tablaClientes;
     public TableView<Ventas> id_TablaVentas;
+    public TableView<Poblacion> id_TablaPoblaciones;
 
 
 
-    private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas");
+    private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -85,6 +91,8 @@ public class Controller {
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     public void ventanaGestion(MouseEvent mouseEvent){
+        id_poblaciones.setVisible(false);
+        id_TablaClientes.setVisible(false);
         id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
         id_tablaGestion.setVisible(false);
@@ -108,10 +116,23 @@ public class Controller {
             case "Clientes":
                 id_TablaClientes.setVisible(true);
                 new ModeloTablaClientes().crearTablaClientes(id_tablaClientes);
+                ObservableList<String> codigosPostales = FXCollections.observableArrayList();
+                ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
+                for(Poblacion p:poblaciones){
+                    codigosPostales.add(p.getPoblacion());
+                }
+
+                id_cmbCodigosPostales.setItems(codigosPostales);
+
                 break;
             case "Ventas":
                 id_tablaVentas.setVisible(true);
                 new ModeloTablaVentas().crearTablaClientes(id_TablaVentas);
+                break;
+            case "Poblaciones":
+                id_poblaciones.setVisible(true);
+                new ModeloTablaPoblaciones().crearTablaPoblaciones(id_TablaPoblaciones);
+
         }
 
     }
@@ -129,10 +150,20 @@ public class Controller {
     }
 
     public void modificarCliente(MouseEvent mouseEvent){
-        new ModeloTablaClientes().modificarCliente(id_tablaClientes, id_crearClienteNombre, id_crearClienteApellido, id_crearClienteDireccion, id_crearClientePoblacion, id_crearClienteEmail);
+        new ModeloTablaClientes().modificarCliente(id_tablaClientes, id_crearClienteNombre, id_crearClienteApellido, id_cmbCodigosPostales, id_crearClienteEmail);
     }
 
     public void crearCliente(MouseEvent mouseEvent){
-        new ModeloTablaClientes().newCliente(id_crearClienteNombre, id_crearClienteApellido, id_crearClienteDireccion, id_crearClientePoblacion, id_crearClienteEmail);
+        new ModeloTablaClientes().newCliente(id_crearClienteNombre, id_crearClienteApellido, id_cmbCodigosPostales, id_crearClienteEmail);
+    }
+
+    public void crearPoblacion(MouseEvent mouseEvent){
+        new ModeloTablaPoblaciones().newPoblacion(id_TablaPoblaciones, id_añadirCodPostal, id_añadirPoblacion, id_añadirProvincia);
+    }
+    public void borrarPoblacion(MouseEvent mouseEvent){
+        new ModeloTablaPoblaciones().borrarPoblacion(id_TablaPoblaciones);
+    }
+    public void modificarPoblacion(MouseEvent mouseEvent){
+        new ModeloTablaPoblaciones().modificarPoblacion(id_TablaPoblaciones, id_añadirCodPostal, id_añadirPoblacion, id_añadirProvincia);
     }
 }

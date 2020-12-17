@@ -16,7 +16,13 @@ public class Employe {
         this.dni = dni;
     }
 
-    public Employe() {}
+    public Employe() {
+        this.nombre = null;
+        this.apellido = null;
+        this.numSegSocial = null;
+        this.sueldo = 0;
+        this.dni = null;
+    }
 
     public String getNombre() {
         return nombre;
