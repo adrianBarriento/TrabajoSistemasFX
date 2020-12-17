@@ -26,6 +26,8 @@ public class ModeloTablaClientes {
     @FXML
     private TableColumn<Clientes, Integer> columnaPoblacion = new TableColumn<>("Codigo Postal");
 
+    Common c =new Common();
+
     public void crearTablaClientes(TableView id_tablaClientes){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -33,13 +35,13 @@ public class ModeloTablaClientes {
         this.columnaEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
         this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("cod_postal"));
 
-
-        Common c =new Common();
-        ObservableList<Clientes> data = c.obtenerClientes();
-
-        id_tablaClientes.setItems(data);
         id_tablaClientes.getColumns().addAll(columnaNombre, columnaApellidos, columnaEmail, columnaPoblacion);
 
+    }
+
+    public void llenarTabla(TableView id_tablaClientes){
+        ObservableList<Clientes> data = c.obtenerClientes();
+        id_tablaClientes.setItems(data);
     }
 
     public void borrarCliente (TableView<Clientes> id_tablaClientes){
@@ -63,28 +65,39 @@ public class ModeloTablaClientes {
 
     public void modificarCliente(TableView<Clientes> id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
         Clientes clienteModificar = id_tablaClientes.getSelectionModel().getSelectedItem();
-
+        int codigoPostal =0;
+        String poblacion = String.valueOf(poblacionCliente.getValue());
+        ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
+        for(Poblacion p:poblaciones){
+            if(poblacion.equalsIgnoreCase(p.getPoblacion())){
+                codigoPostal=p.getCod_postal();
+            }
+        }
         if(clienteModificar != null){
             Connection conexion=new Common().getConexion();
             PreparedStatement query;
             try {
-                query = conexion.prepareStatement("UPDATE cliente SET Nombre = ?, Apellidos = ?, Email = ? Poblacion = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
+                query = conexion.prepareStatement("UPDATE clientes SET Nombre = ?, Apellidos = ?, Email = ? cod_postal = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
 
                 query.setString(1, nombreCliente.getText());
                 query.setString(2, apellidoCliente.getText());
-                query.setInt(4, (Integer) poblacionCliente.getValue());
-                query.setString(5, emailCliente.getText());
+                query.setString(3, emailCliente.getText());
+                query.setInt(4, codigoPostal);
+
                 query.execute();
+                ObservableList<Clientes> data = c.obtenerClientes();
+                id_tablaClientes.setItems(data);
                 new Common().vtnMensajeExitoInsercion();
 
             } catch (SQLException e) {
                 new Common().vtnAlertaError();
+                e.printStackTrace();
             }
         } else {
             new Common().vtnAlertaError();
         }
     }
-    public void newCliente(TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
+    public void newCliente(TableView id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
 
         String poblacion = String.valueOf(poblacionCliente.getValue());
         int codigoPostal=0;
@@ -106,6 +119,9 @@ public class ModeloTablaClientes {
 
 
             query.execute();
+
+            ObservableList<Clientes> data = c.obtenerClientes();
+            id_tablaClientes.setItems(data);
             new Common().vtnMensajeExitoInsercion();
 
         } catch (SQLException e) {

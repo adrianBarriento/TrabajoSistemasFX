@@ -27,6 +27,7 @@ public class ModeloTablaVentas {
     @FXML
     private TableColumn<Ventas, Float> columnaPrecio = new TableColumn<>("Precio");
 
+    Common c =new Common();
 
     public void crearTablaVentas(TableView id_tablaVentas){
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
@@ -35,14 +36,16 @@ public class ModeloTablaVentas {
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
 
-        Common c =new Common();
-        ObservableList<Ventas> data = c.obtenerVentas();
 
-        id_tablaVentas.setItems(data);
+
         id_tablaVentas.getColumns().addAll(columnaProducto, columnaCliente, columnaVendedor,  columnaCantidad, columnaPrecio);
 
     }
 
+    public void llenarTabla(TableView id_tablaVentas){
+        ObservableList<Ventas> data = c.obtenerVentas();
+        id_tablaVentas.setItems(data);
+    }
     public void newVenta(TableView id_tablaVentas, TextField idCliente, TextField idProducto, TextField idVendedor, TextField cantidad){
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
@@ -55,7 +58,6 @@ public class ModeloTablaVentas {
             query.setInt(4, Integer.parseInt(cantidad.getText()));
 
             query.execute();
-            Common c =new Common();
             ObservableList<Ventas> data = c.obtenerVentas();
 
             id_tablaVentas.setItems(data);

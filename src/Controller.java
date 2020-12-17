@@ -74,6 +74,7 @@ public class Controller {
     public TableView<Poblacion> id_TablaPoblaciones;
 
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
+    ModeloTablaClientes modeloTablaClientes = new ModeloTablaClientes();
 
     private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
 
@@ -81,7 +82,13 @@ public class Controller {
         Platform.exit();
     }
 
-    public void comprobarEmpleado(MouseEvent mouseEvent){new Usuarios().login(id_txtLogin, id_paneLogin, id_base);}
+    public void comprobarEmpleado(MouseEvent mouseEvent){
+        new Usuarios().login(id_txtLogin, id_paneLogin, id_base);
+
+        //llenar toddas las tablas (no estan los metodos hechos)
+        modeloTablaVentas.crearTablaVentas(id_TablaVentas);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes);
+    }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         id_crearEmpleado.setVisible(true);
@@ -108,10 +115,8 @@ public class Controller {
     }
 
     public void ventanaTabla(MouseEvent mouseEvent){
-
         id_Gestion.setVisible(false);
         id_crearEmpleado.setVisible(false);
-
         switch (String.valueOf(id_cmbCat_gestiion.getValue())){
             case "Usuarios":
                 id_tablaGestion.setVisible(true);
@@ -121,19 +126,18 @@ public class Controller {
                 break;
             case "Clientes":
                 id_TablaClientes.setVisible(true);
-                new ModeloTablaClientes().crearTablaClientes(id_tablaClientes);
+
+                modeloTablaClientes.llenarTabla(id_tablaClientes);
                 ObservableList<String> codigosPostales = FXCollections.observableArrayList();
                 ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
                 for(Poblacion p:poblaciones){
                     codigosPostales.add(p.getPoblacion());
                 }
-
                 id_cmbCodigosPostales.setItems(codigosPostales);
-
                 break;
             case "Ventas":
                 id_tablaVentas.setVisible(true);
-                modeloTablaVentas.crearTablaVentas(id_TablaVentas);
+                modeloTablaVentas.llenarTabla(id_TablaVentas);
                 break;
             case "Poblaciones":
                 id_poblaciones.setVisible(true);
@@ -160,7 +164,7 @@ public class Controller {
     }
 
     public void crearCliente(MouseEvent mouseEvent){
-        new ModeloTablaClientes().newCliente(id_crearClienteNombre, id_crearClienteApellido, id_cmbCodigosPostales, id_crearClienteEmail);
+        new ModeloTablaClientes().newCliente(id_tablaClientes ,id_crearClienteNombre, id_crearClienteApellido, id_cmbCodigosPostales, id_crearClienteEmail);
     }
 
     public void crearPoblacion(MouseEvent mouseEvent){

@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 import models.Common;
+import views.ModeloTablaVentas;
 
 import javax.naming.NamingEnumeration;
 import java.sql.*;
