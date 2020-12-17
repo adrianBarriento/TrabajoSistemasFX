@@ -73,9 +73,9 @@ public class Controller {
     public TableView<Ventas> id_TablaVentas;
     public TableView<Poblacion> id_TablaPoblaciones;
 
+    ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
 
-
-    private ObservableList<String> rellenarComboBox = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
+    private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -87,6 +87,10 @@ public class Controller {
         id_crearEmpleado.setVisible(true);
         id_Gestion.setVisible(false);
         id_tablaGestion.setVisible(false);
+        id_poblaciones.setVisible(false);
+        id_TablaClientes.setVisible(false);
+        id_Gestion.setVisible(false);
+        id_tablaVentas.setVisible(false);
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
@@ -95,10 +99,12 @@ public class Controller {
         id_TablaClientes.setVisible(false);
         id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
+        id_tablaVentas.setVisible(false);
         id_tablaGestion.setVisible(false);
         if (null != id_cmbCat_gestiion){
-            id_cmbCat_gestiion.setItems(rellenarComboBox);
+            id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
+
     }
 
     public void ventanaTabla(MouseEvent mouseEvent){
@@ -127,7 +133,7 @@ public class Controller {
                 break;
             case "Ventas":
                 id_tablaVentas.setVisible(true);
-                new ModeloTablaVentas().crearTablaClientes(id_TablaVentas);
+                modeloTablaVentas.crearTablaVentas(id_TablaVentas);
                 break;
             case "Poblaciones":
                 id_poblaciones.setVisible(true);
@@ -165,5 +171,8 @@ public class Controller {
     }
     public void modificarPoblacion(MouseEvent mouseEvent){
         new ModeloTablaPoblaciones().modificarPoblacion(id_TablaPoblaciones, id_añadirCodPostal, id_añadirPoblacion, id_añadirProvincia);
+    }
+    public void crearVenta(MouseEvent mouseEvent){
+        new ModeloTablaVentas().newVenta(id_TablaVentas ,id_ClienteVentas, id_ProductoVentas, id_VendedorVentas, id_CantidadVentas);
     }
 }

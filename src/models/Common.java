@@ -121,15 +121,15 @@ public class Common {
         ObservableList<Ventas> listaVentas = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
-        ResultSet datos = null;
+        ResultSet datos;
         try {
             query = connection.prepareStatement("SELECT * FROM encargos");
             datos = query.executeQuery();
             while(datos.next()){
-                int id_cliente = datos.getInt(1);
-                int id_producto = datos.getInt(2);
-                int id_personal = datos.getInt(3);
-                int cantidad = datos.getInt(4);
+                int id_cliente = datos.getInt(2);
+                int id_producto = datos.getInt(3);
+                int id_personal = datos.getInt(4);
+                int cantidad = datos.getInt(5);
 
                 Ventas ventas = new Ventas(id_producto, id_cliente, id_personal, cantidad);
                 listaVentas.add(ventas);

@@ -27,7 +27,8 @@ public class ModeloTablaVentas {
     @FXML
     private TableColumn<Ventas, Float> columnaPrecio = new TableColumn<>("Precio");
 
-    public void crearTablaClientes(TableView id_tablaVentas){
+
+    public void crearTablaVentas(TableView id_tablaVentas){
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
         this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));
@@ -42,65 +43,23 @@ public class ModeloTablaVentas {
 
     }
 
-    public void borrarCliente (TableView<Clientes> id_tablaClientes){
-        Clientes clienteBorrar = id_tablaClientes.getSelectionModel().getSelectedItem();
-        id_tablaClientes.getItems().remove(clienteBorrar);
-
-        Common commmon = new Common();
-        Connection conex = commmon.getConexion();
-        try {
-            Statement consulta = conex.createStatement();
-            int valor = consulta.executeUpdate("DELETE FROM clientes WHERE Email='" + clienteBorrar.getEmail() + "'");
-            if(valor == 1){
-                commmon.vtnMensajeExitoInsercion();
-            } else {
-                commmon.vtnAlertaError();
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void modificarCliente(TableView<Clientes> id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, TextField direccionCliente, TextField poblacionCliente, TextField emailCliente){
-        Clientes clienteModificar = id_tablaClientes.getSelectionModel().getSelectedItem();
-
-        if(clienteModificar != null){
-            Connection conexion=new Common().getConexion();
-            PreparedStatement query;
-            try {
-                query = conexion.prepareStatement("UPDATE cliente SET Nombre = ?, Apellidos = ?, Direccion = ?, Poblacion = ?, Email = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
-
-                query.setString(1, nombreCliente.getText());
-                query.setString(2, apellidoCliente.getText());
-                query.setString(3, direccionCliente.getText());
-                query.setString(4, poblacionCliente.getText());
-                query.setString(5, emailCliente.getText());
-                query.execute();
-                new Common().vtnMensajeExitoInsercion();
-
-            } catch (SQLException e) {
-                new Common().vtnAlertaError();
-            }
-        } else {
-            new Common().vtnAlertaError();
-        }
-    }
-    public void newCliente(TextField nombreCliente, TextField apellidoCliente, TextField direccionCliente, TextField poblacionCliente, TextField emailCliente){
+    public void newVenta(TableView id_tablaVentas, TextField idCliente, TextField idProducto, TextField idVendedor, TextField cantidad){
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO clientes(Nombre, Apellidos, Direccion, Poblacion, Email) VALUES (?,?,?,?,?)");
+            query = conexion.prepareStatement("INSERT INTO encargos(id_cliente, id_producto, id_personal, cantidad) VALUES (?,?,?,?)");
 
-            query.setString(1, nombreCliente.getText());
-            query.setString(2, apellidoCliente.getText());
-            query.setString(3, direccionCliente.getText());
-            query.setString(4, poblacionCliente.getText());
-            query.setString(5, emailCliente.getText());
+            query.setInt(1, Integer.parseInt(idCliente.getText()));
+            query.setInt(2, Integer.parseInt(idProducto.getText()));
+            query.setInt(3, Integer.parseInt(idVendedor.getText()));
+            query.setInt(4, Integer.parseInt(cantidad.getText()));
 
-            System.out.println(nombreCliente.getText() + " " + apellidoCliente.getText() + " " + direccionCliente.getText() + " " + poblacionCliente.getText() + " " + emailCliente.getText());
             query.execute();
-            new Common().vtnMensajeExitoInsercion();
+            Common c =new Common();
+            ObservableList<Ventas> data = c.obtenerVentas();
 
+            id_tablaVentas.setItems(data);
+            c.vtnMensajeExitoInsercion();
         } catch (SQLException e) {
             new Common().vtnAlertaError();
             e.printStackTrace();

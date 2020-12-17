@@ -16,7 +16,7 @@ public class Ventas {
         clienteString = obtenerCliente(cliente);
         vendedorString = obtenerVendedor(vendedor);
         this.cantidad = cantidad;
-        precio = obtenerPrecio(producto);
+        precio = obtenerPrecio(producto, cantidad);
     }
 
     public Ventas(){}
@@ -61,7 +61,7 @@ public class Ventas {
         this.vendedorString = vendedorString;
     }
 
-    public float obtenerPrecio(int producto){
+    public float obtenerPrecio(int producto, int cantidad){
         Common common = new Common();
         Connection connection = common.getConexion();
         Statement statement;
@@ -77,7 +77,7 @@ public class Ventas {
             throwables.printStackTrace();
         }
 
-        return precio;
+        return precio*cantidad;
     }
 
     public String obtenerCliente(int cliente){
