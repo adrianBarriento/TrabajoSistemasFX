@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
+      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;">
          <children>
             <Label layoutX="210.0" layoutY="26.0" text="ACCESO USUARIO">
                <font>
@@ -31,7 +31,7 @@
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;">
+      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" visible="false">
          <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
@@ -185,7 +185,7 @@
             <Button layoutX="409.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#modificarPoblacion" text="Modificar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_segundoCombo" layoutX="21.0" layoutY="152.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane fx:id="id_segundoCombo" layoutX="21.0" layoutY="152.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
          <children>
             <ComboBox fx:id="id_cmbComercio" layoutX="214.0" layoutY="105.0" prefHeight="25.0" prefWidth="236.0" />
             <Label layoutX="36.0" layoutY="109.0" text="Seleccione una categoria" />
