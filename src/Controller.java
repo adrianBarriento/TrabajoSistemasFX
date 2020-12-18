@@ -46,14 +46,13 @@ public class Controller {
     public TextField id_añadirProvincia;
 
     //AnchorPanes
-    public AnchorPane id_crearEmpleado;
+
     public AnchorPane id_Gestion;
-    public AnchorPane id_Footer;
     public AnchorPane id_tablaGestion;
-    public AnchorPane id_cmbSeleccion;
     public AnchorPane id_TablaClientes;
     public AnchorPane id_tablaVentas;
     public AnchorPane id_poblaciones;
+    public AnchorPane id_segundoCombo;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -64,6 +63,7 @@ public class Controller {
 
     //ComboBox
     public ComboBox id_cmbCat_gestiion;
+    public ComboBox id_cmbComercio;
     public ComboBox id_cmbCodigosPostales;
 
     //Tabla
@@ -78,7 +78,9 @@ public class Controller {
     ModeloTablaPoblaciones modeloTablaPoblaciones = new ModeloTablaPoblaciones();
     ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
 
-    private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
+    private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList( "Proveedores", "Clientes","Productos", "Poblaciones");
+
+    private ObservableList<String> rellenarComboBoxComercio = FXCollections.observableArrayList("Ventas", "Compras");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -95,9 +97,9 @@ public class Controller {
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
-        id_crearEmpleado.setVisible(true);
+
         id_Gestion.setVisible(false);
-        id_tablaGestion.setVisible(false);
+        id_tablaGestion.setVisible(true);
         id_poblaciones.setVisible(false);
         id_TablaClientes.setVisible(false);
         id_Gestion.setVisible(false);
@@ -108,29 +110,35 @@ public class Controller {
     public void ventanaGestion(MouseEvent mouseEvent){
         id_poblaciones.setVisible(false);
         id_TablaClientes.setVisible(false);
-        id_crearEmpleado.setVisible(false);
         id_Gestion.setVisible(true);
         id_tablaVentas.setVisible(false);
         id_tablaGestion.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
+    }
+
+    public void ventanaComercio(MouseEvent mouseEvent){
+        id_poblaciones.setVisible(false);
+        id_TablaClientes.setVisible(false);
+        id_Gestion.setVisible(false);
+        id_segundoCombo.setVisible(true);
+        id_tablaVentas.setVisible(false);
+        id_tablaGestion.setVisible(false);
+        if (null != id_cmbCat_gestiion){
+            id_cmbCat_gestiion.setItems(rellenarComboBoxComercio);
+        }
 
     }
 
     public void ventanaTabla(MouseEvent mouseEvent){
         id_Gestion.setVisible(false);
-        id_crearEmpleado.setVisible(false);
         switch (String.valueOf(id_cmbCat_gestiion.getValue())){
-            case "Usuarios":
-                id_tablaGestion.setVisible(true);
-                modeloTablaEmpleados.llenarTabla(id_tabla);
-                break;
             case "Proveedores":
+
                 break;
             case "Clientes":
                 id_TablaClientes.setVisible(true);
-
                 modeloTablaClientes.llenarTabla(id_tablaClientes);
                 ObservableList<String> codigosPostales = FXCollections.observableArrayList();
                 ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
@@ -139,13 +147,23 @@ public class Controller {
                 }
                 id_cmbCodigosPostales.setItems(codigosPostales);
                 break;
+            case "Poblaciones":
+                id_poblaciones.setVisible(true);
+                modeloTablaPoblaciones.llenarTabla(id_TablaPoblaciones);
+                break;
+        }
+
+    }
+
+    public void ventanaTablaComercio(MouseEvent mouseEvent){
+        id_segundoCombo.setVisible(false);
+        switch (String.valueOf(id_cmbComercio.getValue())){
             case "Ventas":
                 id_tablaVentas.setVisible(true);
                 modeloTablaVentas.llenarTabla(id_TablaVentas);
                 break;
-            case "Poblaciones":
-                id_poblaciones.setVisible(true);
-                modeloTablaPoblaciones.llenarTabla(id_TablaPoblaciones);
+            case "Compras":
+
                 break;
         }
 

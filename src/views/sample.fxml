@@ -32,7 +32,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" visible="false">
-         <children>
+          <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
                   <ImageView fx:id="id_icUsuarios" fitHeight="42.0" fitWidth="45.0" onMouseClicked="#ventanaCrearEmpleado" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +51,7 @@
                         <Insets bottom="11.0" left="60.0" top="11.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="id_icOperaciones" fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="id_icOperaciones" fitHeight="42.0" fitWidth="45.0" onMouseClicked="#ventanaComercio" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/icons8-agregar-a-carrito-de-compras-48.png" />
                      </image>
@@ -72,7 +72,7 @@
          </children>
       </AnchorPane>
       <AnchorPane layoutY="521.0" prefHeight="39.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" />
-      <AnchorPane fx:id="id_Gestion" layoutX="20.0" layoutY="150.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #;" visible="false">
+      <AnchorPane fx:id="id_Gestion" layoutX="20.0" layoutY="150.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
          <children>
             <Label layoutX="21.0" layoutY="113.0" text="Seleccione la categoría:">
                <font>
@@ -185,11 +185,11 @@
             <Button layoutX="409.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#modificarPoblacion" text="Modificar" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_segundoCombo" layoutX="21.0" layoutY="152.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
+      <AnchorPane fx:id="id_segundoCombo" disable="true" layoutX="21.0" layoutY="152.0" prefHeight="258.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
          <children>
             <ComboBox fx:id="id_cmbComercio" layoutX="214.0" layoutY="105.0" prefHeight="25.0" prefWidth="236.0" />
             <Label layoutX="36.0" layoutY="109.0" text="Seleccione una categoria" />
-            <Button layoutX="251.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="SIGUIENTE" />
+            <Button layoutX="251.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#ventanaTablaComercio" prefHeight="25.0" prefWidth="80.0" text="SIGUIENTE" />
          </children>
       </AnchorPane>
    </children>
