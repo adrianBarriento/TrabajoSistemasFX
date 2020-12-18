@@ -77,8 +77,7 @@ public class ModeloTablaClientes {
             Connection conexion=new Common().getConexion();
             PreparedStatement query;
             try {
-                query = conexion.prepareStatement("UPDATE clientes SET Nombre = ?, Apellidos = ?, Email = ? cod_postal = ? WHERE Email ='" + clienteModificar.getEmail() + "'");
-
+                query = conexion.prepareStatement("UPDATE `clientes` SET `Nombre` = ?, `Apellidos` = ?, `Email` = ?, `cod_postal` = ? WHERE `clientes`.`Email` = '" + clienteModificar.getEmail() + "'");
                 query.setString(1, nombreCliente.getText());
                 query.setString(2, apellidoCliente.getText());
                 query.setString(3, emailCliente.getText());

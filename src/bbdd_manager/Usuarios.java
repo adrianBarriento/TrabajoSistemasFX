@@ -1,11 +1,14 @@
 package bbdd_manager;
 
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 import models.Common;
+import models.Employe;
 import views.ModeloTablaVentas;
 
 import javax.naming.NamingEnumeration;
@@ -32,7 +35,7 @@ public class Usuarios {
         }
     }
 
-    public void newEmploye(TextField nombre,TextField apellido,TextField numSegSocial,TextField sueldo,TextField dni){
+    public void newEmploye(TableView<Employe> tableView, TextField nombre, TextField apellido, TextField numSegSocial, TextField sueldo, TextField dni){
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -41,10 +44,14 @@ public class Usuarios {
 
             query.setString(1, nombre.getText());
             query.setString(2, apellido.getText());
-            query.setString(3, numSegSocial.getText());
+            query.setLong(3, Long.parseLong(numSegSocial.getText()));
             query.setInt(4, Integer.parseInt(sueldo.getText()));
             query.setString(5, dni.getText());
             query.execute();
+
+            ObservableList<Employe> data = new Common().obtenerEmpleados();
+
+            tableView.setItems(data);
             new Common().vtnMensajeExitoInsercion();
 
         } catch (SQLException e) {

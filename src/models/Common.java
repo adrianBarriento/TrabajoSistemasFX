@@ -56,7 +56,7 @@ public class Common {
             while(datos.next()){
                 String nombre = datos.getString(2);
                 String apellidos = datos.getString(3);
-                String numSS = datos.getString(4);
+                long numSS = datos.getLong(4);
                 int sueldo = datos.getInt(5);
                 String dni = datos.getString(6);
 
@@ -75,7 +75,7 @@ public class Common {
         ObservableList<Clientes> listaClientes = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
-        ResultSet datos = null;
+        ResultSet datos;
         try {
             query = connection.prepareStatement("SELECT * FROM clientes");
             datos = query.executeQuery();

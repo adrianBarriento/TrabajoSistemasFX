@@ -20,23 +20,23 @@ public class ModeloTablaPoblaciones {
     private TableColumn<Poblacion, String> columnaPoblacion = new TableColumn<>("Poblacion");
     @FXML
     private TableColumn<Poblacion, String> columnaProvincia = new TableColumn<>("Provincia");
-
+    Common c =new Common();
 
     public void crearTablaPoblaciones(TableView id_tablaPoblaciones){
         this.columnaCodPostal.setCellValueFactory(new PropertyValueFactory<>("cod_postal"));
         this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("poblacion"));
         this.columnaProvincia.setCellValueFactory(new PropertyValueFactory<>("provincia"));
 
+        id_tablaPoblaciones.getColumns().addAll(columnaCodPostal, columnaPoblacion, columnaProvincia);
+    }
 
-        Common c =new Common();
+    public void llenarTabla(TableView id_tablaPoblaciones){
         ObservableList<Poblacion> data = c.obtenerPoblaciones();
         for(Poblacion p:data){
             System.out.println(p.getCod_postal());
         }
 
         id_tablaPoblaciones.setItems(data);
-        id_tablaPoblaciones.getColumns().addAll(columnaCodPostal, columnaPoblacion, columnaProvincia);
-
     }
 
     public void borrarPoblacion (TableView<Poblacion> id_TablaPoblaciones){
@@ -72,6 +72,10 @@ public class ModeloTablaPoblaciones {
                 query.setString(3, txtprovincia.getText());
 
                 query.execute();
+
+                ObservableList<Poblacion> data = c.obtenerPoblaciones();
+
+                id_TablaPoblacion.setItems(data);
                 new Common().vtnMensajeExitoInsercion();
 
             } catch (SQLException e) {
@@ -95,6 +99,8 @@ public class ModeloTablaPoblaciones {
             query.execute();
             id_TablaPoblaciones.refresh();
 
+            ObservableList<Poblacion> data = c.obtenerPoblaciones();
+            id_TablaPoblaciones.setItems(data);
             new Common().vtnMensajeExitoInsercion();
 
         } catch (SQLException e) {

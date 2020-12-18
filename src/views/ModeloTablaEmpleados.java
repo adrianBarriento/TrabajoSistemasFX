@@ -24,6 +24,7 @@ public class ModeloTablaEmpleados {
     @FXML
     private TableColumn<Employe, String> columnaDni = new TableColumn<>("dni");
 
+    Common c =new Common();
     public void crearTabla(TableView id_tabla){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -32,12 +33,14 @@ public class ModeloTablaEmpleados {
         this.columnaSueldo.setCellValueFactory(new PropertyValueFactory<>("Sueldo"));
         this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
 
-        Common c =new Common();
+        id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
+
+    }
+
+    public void llenarTabla(TableView id_tabla){
         ObservableList<Employe> data = c.obtenerEmpleados();
 
         id_tabla.setItems(data);
-        id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
-
     }
 
     public void borrar (TableView<Employe> id_tabla){
@@ -70,10 +73,12 @@ public class ModeloTablaEmpleados {
 
                 query.setString(1, nombre.getText());
                 query.setString(2, apellido.getText());
-                query.setString(3, numSegSocial.getText());
+                query.setLong(3, Long.parseLong(numSegSocial.getText()));
                 query.setInt(4, Integer.parseInt(sueldo.getText()));
                 query.setString(5, dni.getText());
                 query.execute();
+                ObservableList<Employe> data = c.obtenerEmpleados();
+                id_tabla.setItems(data);
                 new Common().vtnMensajeExitoInsercion();
 
             } catch (SQLException e) {

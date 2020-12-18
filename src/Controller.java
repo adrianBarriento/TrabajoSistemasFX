@@ -75,6 +75,8 @@ public class Controller {
 
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
     ModeloTablaClientes modeloTablaClientes = new ModeloTablaClientes();
+    ModeloTablaPoblaciones modeloTablaPoblaciones = new ModeloTablaPoblaciones();
+    ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
 
     private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList("Usuarios", "Proveedores", "Clientes", "Ventas", "Poblaciones");
 
@@ -88,6 +90,8 @@ public class Controller {
         //llenar toddas las tablas (no estan los metodos hechos)
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
         modeloTablaClientes.crearTablaClientes(id_tablaClientes);
+        modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
+        modeloTablaEmpleados.crearTabla(id_tabla);
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -99,7 +103,7 @@ public class Controller {
         id_Gestion.setVisible(false);
         id_tablaVentas.setVisible(false);
     }
-    public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye(id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
+    public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     public void ventanaGestion(MouseEvent mouseEvent){
         id_poblaciones.setVisible(false);
@@ -120,7 +124,7 @@ public class Controller {
         switch (String.valueOf(id_cmbCat_gestiion.getValue())){
             case "Usuarios":
                 id_tablaGestion.setVisible(true);
-                new ModeloTablaEmpleados().crearTabla(id_tabla);
+                modeloTablaEmpleados.llenarTabla(id_tabla);
                 break;
             case "Proveedores":
                 break;
@@ -141,8 +145,8 @@ public class Controller {
                 break;
             case "Poblaciones":
                 id_poblaciones.setVisible(true);
-                new ModeloTablaPoblaciones().crearTablaPoblaciones(id_TablaPoblaciones);
-
+                modeloTablaPoblaciones.llenarTabla(id_TablaPoblaciones);
+                break;
         }
 
     }
