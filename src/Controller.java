@@ -125,8 +125,8 @@ public class Controller {
         id_segundoCombo.setVisible(true);
         id_tablaVentas.setVisible(false);
         id_tablaGestion.setVisible(false);
-        if (null != id_cmbCat_gestiion){
-            id_cmbCat_gestiion.setItems(rellenarComboBoxComercio);
+        if (null != id_cmbComercio){
+            id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
 
     }

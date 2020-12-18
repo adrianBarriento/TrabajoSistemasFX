@@ -29,7 +29,7 @@ public class ModeloTablaVentas {
 
     Common c =new Common();
 
-    public void crearTablaVentas(TableView id_tablaVentas){
+    public void crearTablaVentas(TableView<Ventas> id_tablaVentas){
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
         this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));

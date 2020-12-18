@@ -28,7 +28,7 @@ public class ModeloTablaClientes {
 
     Common c =new Common();
 
-    public void crearTablaClientes(TableView id_tablaClientes){
+    public void crearTablaClientes(TableView<Clientes> id_tablaClientes){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         this.columnaApellidos.setCellValueFactory(new PropertyValueFactory<>("Apellidos"));
