@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
          <children>
             <Label layoutX="210.0" layoutY="26.0" text="ACCESO USUARIO">
                <font>
@@ -31,7 +32,7 @@
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" visible="false">
+      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;">
           <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
@@ -190,6 +191,32 @@
             <ComboBox fx:id="id_cmbComercio" layoutX="214.0" layoutY="105.0" prefHeight="25.0" prefWidth="236.0" />
             <Label layoutX="36.0" layoutY="109.0" text="Seleccione una categoria" />
             <Button layoutX="251.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#ventanaTablaComercio" prefHeight="25.0" prefWidth="80.0" text="SIGUIENTE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="d_tablaProductos" layoutX="13.0" layoutY="88.0" prefHeight="429.0" prefWidth="566.0">
+         <children>
+            <ScrollPane prefHeight="318.0" prefWidth="469.0">
+               <content>
+                  <TableView fx:id="id_tablaProducto" prefHeight="322.0" prefWidth="471.0" />
+               </content>
+            </ScrollPane>
+            <Button layoutX="489.0" layoutY="390.0" mnemonicParsing="false" text="Modificar" />
+            <Button layoutX="493.0" layoutY="40.0" mnemonicParsing="false" text="Eliminar" />
+            <Button layoutX="424.0" layoutY="390.0" mnemonicParsing="false" text="Crear" />
+            <Label layoutX="489.0" layoutY="337.0" text="Nuevo" />
+            <RadioButton layoutX="530.0" layoutY="337.0" mnemonicParsing="false" />
+            <Label layoutX="10.0" layoutY="337.0" text="Tipo" />
+            <Label layoutX="8.0" layoutY="365.0" text="Stock" />
+            <Label layoutX="6.0" layoutY="394.0" text="Marca" />
+            <Label layoutX="221.0" layoutY="337.0" text="Modelo" />
+            <Label layoutX="220.0" layoutY="365.0" text="Precio compra" />
+            <Label layoutX="221.0" layoutY="394.0" text="Precio venta" />
+            <ComboBox fx:id="id_cmbProductoTipo" layoutX="49.0" layoutY="333.0" prefWidth="150.0" />
+            <TextField layoutX="50.0" layoutY="390.0" />
+            <TextField layoutX="314.0" layoutY="333.0" />
+            <TextField layoutX="50.0" layoutY="361.0" />
+            <TextField layoutX="314.0" layoutY="361.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField layoutX="314.0" layoutY="390.0" prefHeight="25.0" prefWidth="80.0" />
          </children>
       </AnchorPane>
    </children>

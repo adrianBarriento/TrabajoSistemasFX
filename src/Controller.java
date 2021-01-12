@@ -46,13 +46,13 @@ public class Controller {
     public TextField id_añadirProvincia;
 
     //AnchorPanes
-
     public AnchorPane id_Gestion;
     public AnchorPane id_tablaGestion;
     public AnchorPane id_TablaClientes;
     public AnchorPane id_tablaVentas;
     public AnchorPane id_poblaciones;
     public AnchorPane id_segundoCombo;
+    public AnchorPane d_tablaProductos;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -65,6 +65,7 @@ public class Controller {
     public ComboBox id_cmbCat_gestiion;
     public ComboBox id_cmbComercio;
     public ComboBox id_cmbCodigosPostales;
+    public ComboBox id_cmbProductoTipo;
 
     //Tabla
     public TableView<Employe> id_tabla;
@@ -72,6 +73,9 @@ public class Controller {
     public TableView<Clientes> id_tablaClientes;
     public TableView<Ventas> id_TablaVentas;
     public TableView<Poblacion> id_TablaPoblaciones;
+    public TableView<Productos> id_tablaProducto;
+
+
 
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
     ModeloTablaClientes modeloTablaClientes = new ModeloTablaClientes();
