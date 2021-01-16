@@ -94,6 +94,7 @@ public class Controller {
         new Usuarios().login(id_txtLogin, id_paneLogin, id_base);
 
         //llenar toddas las tablas (no estan los metodos hechos)
+
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
         modeloTablaClientes.crearTablaClientes(id_tablaClientes);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
@@ -101,7 +102,7 @@ public class Controller {
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
-
+        modeloTablaEmpleados.llenarTabla(id_tabla);
         id_Gestion.setVisible(false);
         id_tablaGestion.setVisible(true);
         id_poblaciones.setVisible(false);
