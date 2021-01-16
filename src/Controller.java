@@ -9,10 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import models.*;
-import views.ModeloTablaClientes;
-import views.ModeloTablaEmpleados;
-import views.ModeloTablaPoblaciones;
-import views.ModeloTablaVentas;
+import views.*;
 
 public class Controller {
     //TextField del login
@@ -76,7 +73,7 @@ public class Controller {
     public TableView<Productos> id_tablaProducto;
 
 
-
+    ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
     ModeloTablaClientes modeloTablaClientes = new ModeloTablaClientes();
     ModeloTablaPoblaciones modeloTablaPoblaciones = new ModeloTablaPoblaciones();
@@ -99,6 +96,7 @@ public class Controller {
         modeloTablaClientes.crearTablaClientes(id_tablaClientes);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
+        modeloTablaProductos.crearTablaProductos(id_tablaProducto);
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -155,6 +153,11 @@ public class Controller {
             case "Poblaciones":
                 id_poblaciones.setVisible(true);
                 modeloTablaPoblaciones.llenarTabla(id_TablaPoblaciones);
+                break;
+
+            case "Productos":
+                d_tablaProductos.setVisible(true);
+                modeloTablaProductos.llenarTabla(id_tablaProducto);
                 break;
         }
 

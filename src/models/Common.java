@@ -168,18 +168,25 @@ public class Common {
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos = null;
+        String nuevo=null;
         try {
             query = connection.prepareStatement("SELECT * FROM productos");
             datos = query.executeQuery();
             while(datos.next()){
                 int id = datos.getInt(1);
-                Boolean nuevo = datos.getBoolean(2);
+                Boolean isNuevo = datos.getBoolean(2);
                 String tipoProducto = datos.getString(3);
                 int stock = datos.getInt(4);
                 String marca = datos.getString(5);
                 String modelo = datos.getString(6);
-                int precioCompra = datos.getInt(7);
-                int precioVenta = datos.getInt(8);
+                float precioCompra = datos.getInt(7);
+                float precioVenta = datos.getInt(8);
+
+                if(isNuevo){
+                    nuevo="Sí";
+                }else{
+                    nuevo="No";
+                }
 
                 Productos newProducto = new Productos(id, nuevo, tipoProducto, stock, marca, modelo, precioCompra, precioVenta);
 
