@@ -68,7 +68,7 @@ public class ModeloTablaProductos {
         }
     }
 
-    public void modificarProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, TextField tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void modificarProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
 
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
@@ -76,7 +76,7 @@ public class ModeloTablaProductos {
             query = conexion.prepareStatement("INSERT INTO productos(Nuevo, TipoProducto, Stock, Marca, Modelo, PrecioCompra, PrecioVenta) VALUES (?, ?, ?, ?, ?, ?, ?)" );
 
             query.setBoolean(1, nuevo);
-            query.setString(2, tipoProducto.getText());
+            query.setString(2, String.valueOf(tipoProducto.getValue()));
             query.setInt(3, Integer.parseInt(stock.getText()));
             query.setString(4, marca.getText());
             query.setString(5, modelo.getText());
@@ -91,7 +91,7 @@ public class ModeloTablaProductos {
             new Common().vtnAlertaError();
         }
     }
-    public void newProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, TextField tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void newProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
 
         Productos productosModificar = id_tablaProductos.getSelectionModel().getSelectedItem();
         int id =0;
@@ -102,7 +102,7 @@ public class ModeloTablaProductos {
                 query = conexion.prepareStatement("UPDATE productos SET Nuevo = ?, TipoProducto = ?, Stock = ?, Marca = ?, Modelo = ?, PrecioCompra = ?, PrecioVenta = ? WHERE Id_Producto = " + productosModificar.getIdProducto());
 
                 query.setBoolean(1, nuevo);
-                query.setString(2, tipoProducto.getText());
+                query.setString(2, String.valueOf(tipoProducto.getValue()));
                 query.setInt(3, Integer.parseInt(stock.getText()));
                 query.setString(4, marca.getText());
                 query.setString(5, modelo.getText());

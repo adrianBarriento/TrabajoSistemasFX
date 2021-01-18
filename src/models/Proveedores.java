@@ -1,12 +1,13 @@
 package models;
 
 public class Proveedores {
+    private int id;
     private String nombre;
-    private String articulo;
 
-    public Proveedores(String nombre, String articulo) {
-        this.nombre = nombre;
-        this.articulo = articulo;
+
+    public Proveedores(int id, String nombre) {
+        this.id=id;
+        this.nombre=nombre;
     }
 
     public Proveedores(){}
@@ -19,11 +20,11 @@ public class Proveedores {
         this.nombre = nombre;
     }
 
-    public String getArticulo() {
-        return articulo;
+    public int getId() {
+        return id;
     }
 
-    public void setArticulo(String articulo) {
-        this.articulo = articulo;
+    public void setId(int id) {
+        this.id = id;
     }
 }

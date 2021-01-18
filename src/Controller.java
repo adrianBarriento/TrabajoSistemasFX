@@ -1,3 +1,4 @@
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import bbdd_manager.Usuarios;
 import javafx.application.Platform;
@@ -42,6 +43,7 @@ public class Controller {
     public TextField id_añadirPoblacion;
     public TextField id_añadirProvincia;
 
+
     //AnchorPanes
     public AnchorPane id_Gestion;
     public AnchorPane id_tablaGestion;
@@ -71,6 +73,10 @@ public class Controller {
     public TableView<Ventas> id_TablaVentas;
     public TableView<Poblacion> id_TablaPoblaciones;
     public TableView<Productos> id_tablaProducto;
+    public TextField id_nombreProveedor;
+    public AnchorPane id_TablaProveedores;
+
+    public RadioButton idRdioNuevo;
 
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
@@ -78,10 +84,13 @@ public class Controller {
     ModeloTablaClientes modeloTablaClientes = new ModeloTablaClientes();
     ModeloTablaPoblaciones modeloTablaPoblaciones = new ModeloTablaPoblaciones();
     ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
+    ModeloTablaProveedores modeloTablaProveedores = new ModeloTablaProveedores();
 
     private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList( "Proveedores", "Clientes","Productos", "Poblaciones");
 
     private ObservableList<String> rellenarComboBoxComercio = FXCollections.observableArrayList("Ventas", "Compras");
+
+    private ObservableList<String> getRellenarComboBoxProductoTipo = FXCollections.observableArrayList("Movil", "Ordenador", "Componente");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -97,6 +106,7 @@ public class Controller {
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
+        modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -107,6 +117,8 @@ public class Controller {
         id_TablaClientes.setVisible(false);
         id_Gestion.setVisible(false);
         id_tablaVentas.setVisible(false);
+        id_TablaProveedores.setVisible(false);
+        d_tablaProductos.setVisible(false);
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
@@ -116,9 +128,12 @@ public class Controller {
         id_Gestion.setVisible(true);
         id_tablaVentas.setVisible(false);
         id_tablaGestion.setVisible(false);
+        id_TablaProveedores.setVisible(false);
+        d_tablaProductos.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
+
     }
 
     public void ventanaComercio(MouseEvent mouseEvent){
@@ -128,6 +143,8 @@ public class Controller {
         id_segundoCombo.setVisible(true);
         id_tablaVentas.setVisible(false);
         id_tablaGestion.setVisible(false);
+        id_TablaProveedores.setVisible(false);
+        d_tablaProductos.setVisible(false);
         if (null != id_cmbComercio){
             id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
@@ -138,7 +155,8 @@ public class Controller {
         id_Gestion.setVisible(false);
         switch (String.valueOf(id_cmbCat_gestiion.getValue())){
             case "Proveedores":
-
+                id_TablaProveedores.setVisible(true);
+                modeloTablaProveedores.llenarTabla(id_tablaProveedores);
                 break;
             case "Clientes":
                 id_TablaClientes.setVisible(true);
@@ -208,5 +226,25 @@ public class Controller {
     }
     public void crearVenta(MouseEvent mouseEvent){
         new ModeloTablaVentas().newVenta(id_TablaVentas ,id_ClienteVentas, id_ProductoVentas, id_VendedorVentas, id_CantidadVentas);
+    }
+
+    public void borrarProveedor(MouseEvent mouseEvent){
+        new ModeloTablaProveedores().borrarProveedores(id_tablaProveedores);
+    }
+
+    public void modificarProveedor(MouseEvent mouseEvent){
+        new ModeloTablaProveedores().modificarProveedores(id_tablaProveedores, id_nombreProveedor);
+    }
+
+    public void crearProveedor(MouseEvent mouseEvent){
+        new ModeloTablaProveedores().newProveedor(id_tablaProveedores, id_nombreProveedor);
+    }
+
+    public void crearEmpleado(MouseEvent mouseEvent){
+        if(idRdioNuevo.isSelected()){
+            new ModeloTablaProductos().newProducto(id_tablaProducto, true, id_cmbProductoTipo, );
+        }
+
+
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Common {
     //constantes
     static final String MENSAJE_ERROR="Algo no ha funcionado de manera esperada";
-    static final String MENSAJE_EXITO_INSERCION="Se ha insertado correctamente";
+    static final String MENSAJE_EXITO_INSERCION="Exito en la operación!!!";
 
     //Ventanas informativas.
     public void vtnAlertaError(){
@@ -95,8 +95,8 @@ public class Common {
     }
 
     //metodo para sacar datos de un empleado de una tabla de la base ded atos
-    public ArrayList<Proveedores> obtenerProveedores(){
-        ArrayList<Proveedores> listaProveedores = new ArrayList<>();
+    public ObservableList<Proveedores> obtenerProveedores(){
+        ObservableList<Proveedores> listaProveedores = FXCollections.observableArrayList();
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos = null;
@@ -104,14 +104,16 @@ public class Common {
             query = connection.prepareStatement("SELECT * FROM proveedores");
             datos = query.executeQuery();
             while(datos.next()){
+                int id = datos.getInt(1);
                 String nombre = datos.getString(2);
-                String articulo = datos.getString(3);
 
-                Proveedores proveedores = new Proveedores(nombre, articulo);
+
+                Proveedores proveedores = new Proveedores(id, nombre);
                 listaProveedores.add(proveedores);
             }
         } catch (SQLException e) {
             vtnAlertaError();
+            e.printStackTrace();
         }
         return listaProveedores;
     }
