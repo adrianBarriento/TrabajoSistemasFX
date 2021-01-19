@@ -12,9 +12,9 @@ public class Ventas {
     private String productoString, clienteString, vendedorString;
 
     public Ventas(String productoString, String clienteString, String vendedorString, int producto, int cliente, int vendedor, int cantidad) {
-        productoString = productoString;
-        clienteString = clienteString;
-        vendedorString = vendedorString;
+        this.productoString = productoString;
+        this.clienteString = clienteString;
+        this.vendedorString = vendedorString;
         this.cantidad = cantidad;
         precio = obtenerPrecio(producto, cantidad);
     }
