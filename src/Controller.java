@@ -72,6 +72,9 @@ public class Controller {
     public ComboBox id_cmbComercio;
     public ComboBox id_cmbCodigosPostales;
     public ComboBox id_cmbProductoTipo;
+    public ComboBox cmb_VentasProducto;
+    public ComboBox cmb_VentasCliente;
+    public ComboBox cmb_VentasVendedor;
 
     //Tabla
     public TableView<Employe> id_tabla;
@@ -84,7 +87,6 @@ public class Controller {
     public AnchorPane id_TablaProveedores;
 
     public RadioButton idRdioNuevo;
-
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
