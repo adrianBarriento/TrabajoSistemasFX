@@ -1,6 +1,8 @@
 package models;
 
 public class Clientes {
+
+
     private int idCliente;
     private String nombre;
     private String apellidos;
@@ -17,13 +19,6 @@ public class Clientes {
 
     public Clientes(){}
 
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
     public String getNombre() {
         return nombre;
     }
