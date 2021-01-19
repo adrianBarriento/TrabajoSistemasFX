@@ -1,12 +1,14 @@
 package models;
 
 public class Clientes {
+    private int idCliente;
     private String nombre;
     private String apellidos;
     private int cod_postal;
     private String email;
 
-    public Clientes(String nombre, String apellidos, int cod_postal, String email) {
+    public Clientes(int idCliente, String nombre, String apellidos, int cod_postal, String email) {
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.cod_postal = cod_postal;
@@ -15,6 +17,13 @@ public class Clientes {
 
     public Clientes(){}
 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
     public String getNombre() {
         return nombre;
     }

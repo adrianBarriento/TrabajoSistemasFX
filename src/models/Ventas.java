@@ -11,10 +11,10 @@ public class Ventas {
     private float precio;
     private String productoString, clienteString, vendedorString;
 
-    public Ventas(int producto, int cliente, int vendedor, int cantidad) {
-        productoString = obtenerProducto(producto);
-        clienteString = obtenerCliente(cliente);
-        vendedorString = obtenerVendedor(vendedor);
+    public Ventas(String productoString, String clienteString, String vendedorString, int producto, int cliente, int vendedor, int cantidad) {
+        productoString = productoString;
+        clienteString = clienteString;
+        vendedorString = vendedorString;
         this.cantidad = cantidad;
         precio = obtenerPrecio(producto, cantidad);
     }
@@ -68,9 +68,9 @@ public class Ventas {
         ResultSet resultSet;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT Precio FROM productos WHERE Id_Producto = '" + producto + "'");
+            resultSet = statement.executeQuery("SELECT PrecioVenta FROM productos WHERE Id_Producto = '" + producto + "'");
             while(resultSet.next()){
-                precio = resultSet.getFloat("Precio");
+                precio = resultSet.getFloat("PrecioVenta");
             }
 
         } catch (SQLException throwables) {

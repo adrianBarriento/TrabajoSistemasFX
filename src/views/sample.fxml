@@ -191,16 +191,16 @@
             <Button layoutX="251.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#ventanaTablaComercio" prefHeight="25.0" prefWidth="80.0" text="SIGUIENTE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="d_tablaProductos" layoutX="13.0" layoutY="88.0" prefHeight="429.0" prefWidth="566.0">
+      <AnchorPane fx:id="d_tablaProductos" layoutX="13.0" layoutY="88.0" prefHeight="429.0" prefWidth="566.0" visible="false">
          <children>
             <ScrollPane prefHeight="318.0" prefWidth="566.0">
                <content>
                   <TableView fx:id="id_tablaProducto" prefHeight="318.0" prefWidth="555.0" />
                </content>
             </ScrollPane>
-            <Button layoutX="489.0" layoutY="390.0" mnemonicParsing="false" text="Modificar" />
-            <Button layoutX="424.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Eliminar" />
-            <Button layoutX="424.0" layoutY="390.0" mnemonicParsing="false" text="Crear" />
+            <Button fx:id="btnModificarProducto" layoutX="489.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#modificarProducto" text="Modificar" />
+            <Button fx:id="btnEliminarProducto" layoutX="424.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#borrarProducto" prefHeight="25.0" prefWidth="59.0" text="Eliminar" />
+            <Button fx:id="btnCrearProducto" layoutX="424.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#crearProducto" text="Crear" />
             <Label layoutX="489.0" layoutY="337.0" text="Nuevo" />
             <RadioButton fx:id="idRdioNuevo" layoutX="530.0" layoutY="337.0" mnemonicParsing="false" />
             <Label layoutX="10.0" layoutY="337.0" text="Tipo" />
@@ -210,11 +210,11 @@
             <Label layoutX="220.0" layoutY="365.0" text="Precio compra" />
             <Label layoutX="221.0" layoutY="394.0" text="Precio venta" />
             <ComboBox fx:id="id_cmbProductoTipo" layoutX="49.0" layoutY="333.0" prefWidth="150.0" />
-            <TextField layoutX="50.0" layoutY="390.0" />
-            <TextField layoutX="314.0" layoutY="333.0" />
-            <TextField layoutX="50.0" layoutY="361.0" />
-            <TextField layoutX="314.0" layoutY="361.0" prefHeight="25.0" prefWidth="80.0" />
-            <TextField layoutX="314.0" layoutY="390.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="txtMarca" layoutX="50.0" layoutY="390.0" />
+            <TextField fx:id="txtModelo" layoutX="314.0" layoutY="333.0" />
+            <TextField fx:id="txtStock" layoutX="50.0" layoutY="361.0" />
+            <TextField fx:id="txtPrecioCompra" layoutX="314.0" layoutY="361.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="txtPrecioVenta" layoutX="314.0" layoutY="390.0" prefHeight="25.0" prefWidth="80.0" />
          </children>
       </AnchorPane>
    </children>

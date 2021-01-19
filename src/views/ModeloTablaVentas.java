@@ -33,8 +33,8 @@ public class ModeloTablaVentas {
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
         this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));
-        this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
-        this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
+        this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
 
 
@@ -50,7 +50,7 @@ public class ModeloTablaVentas {
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO encargos(id_cliente, id_producto, id_personal, cantidad) VALUES (?,?,?,?)");
+            query = conexion.prepareStatement("INSERT INTO ventas(id_cliente, id_producto, id_personal, cantidad) VALUES (?,?,?,?)");
 
             query.setInt(1, Integer.parseInt(idCliente.getText()));
             query.setInt(2, Integer.parseInt(idProducto.getText()));

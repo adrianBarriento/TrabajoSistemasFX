@@ -68,7 +68,7 @@ public class ModeloTablaProductos {
         }
     }
 
-    public void modificarProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void newProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
 
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
@@ -91,7 +91,7 @@ public class ModeloTablaProductos {
             new Common().vtnAlertaError();
         }
     }
-    public void newProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void modificarProducto(TableView<Productos> id_tablaProductos, Boolean nuevo, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
 
         Productos productosModificar = id_tablaProductos.getSelectionModel().getSelectedItem();
         int id =0;
@@ -115,6 +115,7 @@ public class ModeloTablaProductos {
                 new Common().vtnMensajeExitoInsercion();
             } catch (SQLException e) {
                 new Common().vtnAlertaError();
+                e.printStackTrace();
             }
         } else {
             new Common().vtnAlertaError();

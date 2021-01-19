@@ -43,6 +43,13 @@ public class Controller {
     public TextField id_añadirPoblacion;
     public TextField id_añadirProvincia;
 
+    //textFields de productos
+
+    public TextField txtStock;
+    public TextField txtModelo;
+    public TextField txtMarca;
+    public TextField txtPrecioCompra;
+    public TextField txtPrecioVenta;
 
     //AnchorPanes
     public AnchorPane id_Gestion;
@@ -90,7 +97,7 @@ public class Controller {
 
     private ObservableList<String> rellenarComboBoxComercio = FXCollections.observableArrayList("Ventas", "Compras");
 
-    private ObservableList<String> getRellenarComboBoxProductoTipo = FXCollections.observableArrayList("Movil", "Ordenador", "Componente");
+    private ObservableList<String> rellenarComboBoxProductoTipo = FXCollections.observableArrayList("Movil", "Ordenador", "Componente");
 
     public void onExitButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
@@ -164,7 +171,7 @@ public class Controller {
                 ObservableList<String> codigosPostales = FXCollections.observableArrayList();
                 ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
                 for(Poblacion p:poblaciones){
-                    codigosPostales.add(p.getPoblacion());
+                    codigosPostales.add(p.getPoblacion()+" "+p.getCod_postal());
                 }
                 id_cmbCodigosPostales.setItems(codigosPostales);
                 break;
@@ -176,6 +183,7 @@ public class Controller {
             case "Productos":
                 d_tablaProductos.setVisible(true);
                 modeloTablaProductos.llenarTabla(id_tablaProducto);
+                id_cmbProductoTipo.setItems(rellenarComboBoxProductoTipo);
                 break;
         }
 
@@ -240,11 +248,24 @@ public class Controller {
         new ModeloTablaProveedores().newProveedor(id_tablaProveedores, id_nombreProveedor);
     }
 
-    public void crearEmpleado(MouseEvent mouseEvent){
+    public void crearProducto(MouseEvent mouseEvent){
         if(idRdioNuevo.isSelected()){
-            new ModeloTablaProductos().newProducto(id_tablaProducto, true, id_cmbProductoTipo, );
+            new ModeloTablaProductos().newProducto(id_tablaProducto, true, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
+        }else{
+            new ModeloTablaProductos().newProducto(id_tablaProducto, false, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
         }
-
-
     }
+
+    public void borrarProducto(MouseEvent mouseEvent){
+        new ModeloTablaProductos().borrarProductos(id_tablaProducto);
+    }
+
+    public void modificarProducto(MouseEvent mouseEvent){
+        if(idRdioNuevo.isSelected()){
+            new ModeloTablaProductos().modificarProducto(id_tablaProducto, true, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
+        }else{
+            new ModeloTablaProductos().modificarProducto(id_tablaProducto, false, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
+        }
+    }
+
 }

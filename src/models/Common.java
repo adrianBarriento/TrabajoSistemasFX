@@ -54,13 +54,14 @@ public class Common {
             query = connection.prepareStatement("SELECT * FROM personal");
             datos = query.executeQuery();
             while(datos.next()){
+                int id = datos.getInt(1);
                 String nombre = datos.getString(2);
                 String apellidos = datos.getString(3);
                 long numSS = datos.getLong(4);
                 int sueldo = datos.getInt(5);
                 String dni = datos.getString(6);
 
-                Employe empleado = new Employe(nombre, apellidos, numSS, sueldo, dni);
+                Employe empleado = new Employe(id, nombre, apellidos, numSS, sueldo, dni);
 
                 listaEmpleados.add(empleado);
             }
@@ -80,12 +81,13 @@ public class Common {
             query = connection.prepareStatement("SELECT * FROM clientes");
             datos = query.executeQuery();
             while(datos.next()){
+                int idCliente = datos.getInt(1);
                 String nombre = datos.getString(2);
                 String apellidos = datos.getString(3);
                 String email = datos.getString(4);
                 int poblacion = datos.getInt(5);
 
-                Clientes clientes = new Clientes(nombre, apellidos, poblacion, email);
+                Clientes clientes = new Clientes(idCliente,nombre, apellidos, poblacion, email);
                 listaClientes.add(clientes);
             }
         } catch (SQLException e) {
@@ -121,19 +123,41 @@ public class Common {
     //Metodo para recorrer ventas
     public ObservableList<Ventas> obtenerVentas(){
         ObservableList<Ventas> listaVentas = FXCollections.observableArrayList();
+        ObservableList<Productos> listaProductos = obtenerProductos();
+        ObservableList<Clientes> listaClientes = obtenerClientes();
+        ObservableList<Employe> listaVendedores = obtenerEmpleados();
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos;
         try {
-            query = connection.prepareStatement("SELECT * FROM encargos");
+            query = connection.prepareStatement("SELECT * FROM ventas");
             datos = query.executeQuery();
             while(datos.next()){
+                String producto="", cliente="", vendedor="";
                 int id_cliente = datos.getInt(2);
                 int id_producto = datos.getInt(3);
                 int id_personal = datos.getInt(4);
                 int cantidad = datos.getInt(5);
+                for (Productos p:listaProductos) {
+                    if(p.getIdProducto()==id_producto){
+                        producto = p.getMarca()+" "+p.getModelo();
+                        System.out.println(producto);
+                    }
+                }
+                for (Clientes c:listaClientes) {
+                    if(c.getIdCliente()==id_cliente){
+                        cliente = c.getNombre()+" "+c.getApellidos();
+                        System.out.println(cliente);
+                    }
+                }
+                for (Employe e:listaVendedores) {
+                    if(e.getIdEmpleado() == id_personal){
+                        vendedor = e.getNombre()+" "+e.getApellido();
+                        System.out.println(vendedor);
+                    }
+                }
 
-                Ventas ventas = new Ventas(id_producto, id_cliente, id_personal, cantidad);
+                Ventas ventas = new Ventas(producto, cliente, vendedor, id_producto, id_cliente, id_personal, cantidad);
                 listaVentas.add(ventas);
             }
         } catch (SQLException e) {

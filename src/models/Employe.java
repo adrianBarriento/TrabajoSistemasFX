@@ -1,6 +1,15 @@
 package models;
 
 public class Employe {
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    private int idEmpleado;
     private String nombre;
     private String apellido;
     private long numSegSocial;
@@ -8,7 +17,8 @@ public class Employe {
     private String dni;
 
 
-    public Employe(String nombre, String apellido, long numSegSocial, int sueldo, String dni) {
+    public Employe(int idEmpleado, String nombre, String apellido, long numSegSocial, int sueldo, String dni) {
+        this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.numSegSocial = numSegSocial;
