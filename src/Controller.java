@@ -86,7 +86,15 @@ public class Controller {
     public TextField id_nombreProveedor;
     public AnchorPane id_TablaProveedores;
 
-    public RadioButton idRdioNuevo;
+    //compras
+    public TextField id_CantidadCompras;
+    public TextField txt_ComprasProducto;
+    public ComboBox cmb_ComprasProveedor;
+    public TableView id_TablaCompras;
+    public AnchorPane id_tablaCompras;
+    public ComboBox cmb_ComprasProducto;
+    public TextField txt_ComprasProveedor;
+
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
@@ -94,6 +102,7 @@ public class Controller {
     ModeloTablaPoblaciones modeloTablaPoblaciones = new ModeloTablaPoblaciones();
     ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
     ModeloTablaProveedores modeloTablaProveedores = new ModeloTablaProveedores();
+    ModeloTablaCompras modeloTablaCompras = new ModeloTablaCompras();
 
     private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList( "Proveedores", "Clientes","Productos", "Poblaciones");
 
@@ -116,6 +125,7 @@ public class Controller {
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
+        modeloTablaCompras.crearTablaCompras(id_TablaCompras);
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -128,6 +138,8 @@ public class Controller {
         id_tablaVentas.setVisible(false);
         id_TablaProveedores.setVisible(false);
         d_tablaProductos.setVisible(false);
+        id_segundoCombo.setVisible(false);
+        id_tablaCompras.setVisible(false);
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
@@ -139,10 +151,11 @@ public class Controller {
         id_tablaGestion.setVisible(false);
         id_TablaProveedores.setVisible(false);
         d_tablaProductos.setVisible(false);
+        id_segundoCombo.setVisible(false);
+        id_tablaCompras.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
-
     }
 
     public void ventanaComercio(MouseEvent mouseEvent){
@@ -154,6 +167,7 @@ public class Controller {
         id_tablaGestion.setVisible(false);
         id_TablaProveedores.setVisible(false);
         d_tablaProductos.setVisible(false);
+        id_tablaCompras.setVisible(false);
         if (null != id_cmbComercio){
             id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
@@ -197,9 +211,43 @@ public class Controller {
             case "Ventas":
                 id_tablaVentas.setVisible(true);
                 modeloTablaVentas.llenarTabla(id_TablaVentas);
+                ObservableList<String> productosVenta = FXCollections.observableArrayList();
+                ObservableList<Productos> listProductosVenta = new Common().obtenerProductos();
+                for(Productos p:listProductosVenta){
+                    productosVenta.add(p.getMarca()+" "+p.getModelo());
+                }
+                cmb_VentasProducto.setItems(productosVenta);
+
+                ObservableList<String> clientes = FXCollections.observableArrayList();
+                ObservableList<Clientes> listClientes = new Common().obtenerClientes();
+                for(Clientes c:listClientes){
+                    clientes.add(c.getNombre()+" "+c.getApellidos());
+                }
+                cmb_VentasCliente.setItems(clientes);
+
+                ObservableList<String> vendedores = FXCollections.observableArrayList();
+                ObservableList<Employe> litsVendedores = new Common().obtenerEmpleados();
+                for(Employe p:litsVendedores){
+                    vendedores.add(p.getNombre()+" "+ p.getApellido());
+                }
+                cmb_VentasVendedor.setItems(vendedores);
                 break;
             case "Compras":
+                id_tablaCompras.setVisible(true);
+                modeloTablaCompras.llenarTabla(id_TablaCompras);
+                ObservableList<String> productosCompra = FXCollections.observableArrayList();
+                ObservableList<Productos> listProductosCompra = new Common().obtenerProductos();
+                for(Productos p:listProductosCompra){
+                    productosCompra.add(p.getMarca()+" "+p.getModelo());
+                }
+                cmb_ComprasProducto.setItems(productosCompra);
 
+                ObservableList<String> proveedores = FXCollections.observableArrayList();
+                ObservableList<Proveedores> listProveedores = new Common().obtenerProveedores();
+                for(Proveedores c:listProveedores){
+                    proveedores.add(c.getNombre());
+                }
+                cmb_ComprasProveedor.setItems(proveedores);
                 break;
         }
 
@@ -235,7 +283,11 @@ public class Controller {
         new ModeloTablaPoblaciones().modificarPoblacion(id_TablaPoblaciones, id_añadirCodPostal, id_añadirPoblacion, id_añadirProvincia);
     }
     public void crearVenta(MouseEvent mouseEvent){
-        new ModeloTablaVentas().newVenta(id_TablaVentas ,id_ClienteVentas, id_ProductoVentas, id_VendedorVentas, id_CantidadVentas);
+        new ModeloTablaVentas().newVenta(id_TablaVentas ,cmb_VentasCliente, cmb_VentasProducto, cmb_VentasVendedor, id_CantidadVentas);
+    }
+
+    public void crearCompra(MouseEvent mouseEvent){
+        new ModeloTablaCompras().newCompra(id_TablaCompras ,cmb_ComprasProveedor, txt_ComprasProveedor, cmb_ComprasProducto, id_CantidadCompras);
     }
 
     public void borrarProveedor(MouseEvent mouseEvent){
@@ -251,11 +303,7 @@ public class Controller {
     }
 
     public void crearProducto(MouseEvent mouseEvent){
-        if(idRdioNuevo.isSelected()){
-            new ModeloTablaProductos().newProducto(id_tablaProducto, true, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
-        }else{
-            new ModeloTablaProductos().newProducto(id_tablaProducto, false, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
-        }
+        new ModeloTablaProductos().newProducto(id_tablaProducto, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
     }
 
     public void borrarProducto(MouseEvent mouseEvent){
@@ -263,11 +311,7 @@ public class Controller {
     }
 
     public void modificarProducto(MouseEvent mouseEvent){
-        if(idRdioNuevo.isSelected()){
-            new ModeloTablaProductos().modificarProducto(id_tablaProducto, true, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
-        }else{
-            new ModeloTablaProductos().modificarProducto(id_tablaProducto, false, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
-        }
+        new ModeloTablaProductos().modificarProducto(id_tablaProducto, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
     }
 
 }

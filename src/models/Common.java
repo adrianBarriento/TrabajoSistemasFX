@@ -22,6 +22,14 @@ public class Common {
         dialogoAlerta.initStyle(StageStyle.UTILITY);
         dialogoAlerta.showAndWait();
     }
+    public void vtnAlertaStock(int stock){
+        Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+        dialogoAlerta.setTitle("NO HAY STOCK");
+        dialogoAlerta.setHeaderText(null);
+        dialogoAlerta.setContentText("El stock en tienda es: "+stock);
+        dialogoAlerta.initStyle(StageStyle.UTILITY);
+        dialogoAlerta.showAndWait();
+    }
     public void vtnMensajeExitoInsercion(){
         Alert dialogoAlerta = new Alert(Alert.AlertType.INFORMATION);
         dialogoAlerta.setTitle("ÉXITO");
@@ -134,6 +142,7 @@ public class Common {
             datos = query.executeQuery();
             while(datos.next()){
                 String producto="", cliente="", vendedor="";
+                float precioUnitario = 0;
                 int id_cliente = datos.getInt(2);
                 int id_producto = datos.getInt(3);
                 int id_personal = datos.getInt(4);
@@ -141,6 +150,7 @@ public class Common {
                 for (Productos p:listaProductos) {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
+                        precioUnitario = p.getPrecioVenta();
                         System.out.println(producto);
                     }
                 }
@@ -157,13 +167,54 @@ public class Common {
                     }
                 }
 
-                Ventas ventas = new Ventas(producto, cliente, vendedor, id_producto, id_cliente, id_personal, cantidad);
+                Ventas ventas = new Ventas(precioUnitario, producto, cliente, vendedor, id_producto, cantidad);
                 listaVentas.add(ventas);
             }
         } catch (SQLException e) {
             vtnAlertaError();
         }
         return listaVentas;
+    }
+
+    //Metodo para recorrer compras
+    public ObservableList<Compras> obtenerCompras(){
+        ObservableList<Compras> listaCompras = FXCollections.observableArrayList();
+        ObservableList<Productos> listaProductos = obtenerProductos();
+        ObservableList<Proveedores> listaProveedores = obtenerProveedores();
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        try {
+            query = connection.prepareStatement("SELECT * FROM compras");
+            datos = query.executeQuery();
+            while(datos.next()){
+                String producto="", proveedor="";
+                float precioUnitario = 0;
+                int id_producto = datos.getInt(2);
+                int id_proveedor = datos.getInt(3);
+                int cantidad = datos.getInt(4);
+                for (Productos p:listaProductos) {
+                    if(p.getIdProducto()==id_producto){
+                        producto = p.getMarca()+" "+p.getModelo();
+                        precioUnitario = p.getPrecioCompra();
+                        System.out.println(producto);
+                    }
+                }
+                for (Proveedores c:listaProveedores) {
+                    if(c.getId()==id_proveedor){
+                        proveedor = c.getNombre();
+                        System.out.println(proveedor);
+                    }
+                }
+
+
+                Compras compra = new Compras(precioUnitario, producto, proveedor, id_producto, cantidad);
+                listaCompras.add(compra);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaCompras;
     }
 
     public ObservableList<Poblacion> obtenerPoblaciones() {
@@ -200,22 +251,13 @@ public class Common {
             datos = query.executeQuery();
             while(datos.next()){
                 int id = datos.getInt(1);
-                Boolean isNuevo = datos.getBoolean(2);
-                String tipoProducto = datos.getString(3);
-                int stock = datos.getInt(4);
-                String marca = datos.getString(5);
-                String modelo = datos.getString(6);
-                float precioCompra = datos.getInt(7);
-                float precioVenta = datos.getInt(8);
-
-                if(isNuevo){
-                    nuevo="Sí";
-                }else{
-                    nuevo="No";
-                }
-
-                Productos newProducto = new Productos(id, nuevo, tipoProducto, stock, marca, modelo, precioCompra, precioVenta);
-
+                String tipoProducto = datos.getString(2);
+                int stock = datos.getInt(3);
+                String marca = datos.getString(4);
+                String modelo = datos.getString(5);
+                float precioCompra = datos.getInt(6);
+                float precioVenta = datos.getInt(7);
+                Productos newProducto = new Productos(id, tipoProducto, stock, marca, modelo, precioCompra, precioVenta);
                 listaProductos.add(newProducto);
             }
         } catch (SQLException e) {

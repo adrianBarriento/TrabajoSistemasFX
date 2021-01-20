@@ -24,6 +24,7 @@ public class ModeloTablaProveedores {
 
     public void crearTablaProveedores(TableView<Proveedores> id_tablaProveedores){
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.columnaNombre.setPrefWidth(id_tablaProveedores.getWidth());
 
         id_tablaProveedores.getColumns().addAll(columnaNombre);
 

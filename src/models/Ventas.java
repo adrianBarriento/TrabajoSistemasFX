@@ -9,9 +9,11 @@ public class Ventas {
     Common common = new Common();
     private int cantidad;
     private float precio;
+    private float precioUnitario;
     private String productoString, clienteString, vendedorString;
 
-    public Ventas(String productoString, String clienteString, String vendedorString, int producto, int cliente, int vendedor, int cantidad) {
+    public Ventas(float precioUnitario, String productoString, String clienteString, String vendedorString, int producto, int cantidad) {
+        this.precioUnitario = precioUnitario;
         this.productoString = productoString;
         this.clienteString = clienteString;
         this.vendedorString = vendedorString;
@@ -21,6 +23,13 @@ public class Ventas {
 
     public Ventas(){}
 
+    public float getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(float precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
     public int getCantidad() {
         return cantidad;
     }
@@ -61,7 +70,7 @@ public class Ventas {
         this.vendedorString = vendedorString;
     }
 
-    public float obtenerPrecio(int producto, int cantidad){
+    private float obtenerPrecio(int producto, int cantidad){
         Common common = new Common();
         Connection connection = common.getConexion();
         Statement statement;
@@ -80,7 +89,7 @@ public class Ventas {
         return precio*cantidad;
     }
 
-    public String obtenerCliente(int cliente){
+    private String obtenerCliente(int cliente){
         String nombre = null, apellidos = null;
         Connection connection = common.getConexion();
         Statement statement;
@@ -100,7 +109,7 @@ public class Ventas {
         return nombre + " " + apellidos;
     }
 
-    public String obtenerProducto(int producto){
+    private String obtenerProducto(int producto){
         Connection connection = common.getConexion();
         Statement statement;
         ResultSet resultSet;
@@ -118,7 +127,7 @@ public class Ventas {
         return productoString;
     }
 
-    public String obtenerVendedor(int vendedor){
+    private String obtenerVendedor(int vendedor){
         String nombre = null, apellidos = null;
         Connection connection = common.getConexion();
         Statement statement;

@@ -2,7 +2,6 @@ package models;
 
 public class Productos {
     private int idProducto;
-    private String nuevo;
     private String tipoProducto;
     private int stock;
     private String marca;
@@ -10,9 +9,8 @@ public class Productos {
     private float precioCompra;
     private float precioVenta;
 
-    public Productos(int idProducto, String nuevo, String tipoProducto, int stock, String marca, String modelo, float precioCompra, float precioVenta) {
+    public Productos(int idProducto, String tipoProducto, int stock, String marca, String modelo, float precioCompra, float precioVenta) {
         this.idProducto = idProducto;
-        this.nuevo = nuevo;
         this.tipoProducto = tipoProducto;
         this.stock = stock;
         this.marca = marca;
@@ -29,14 +27,6 @@ public class Productos {
 
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public String getNuevo() {
-        return nuevo;
-    }
-
-    public void setNuevo(String nuevo) {
-        this.nuevo = nuevo;
     }
 
     public String getTipoProducto() {
