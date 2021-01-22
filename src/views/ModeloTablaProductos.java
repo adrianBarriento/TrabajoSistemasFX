@@ -67,20 +67,17 @@ public class ModeloTablaProductos {
         }
     }
 
-    public void newProducto(TableView<Productos> id_tablaProductos, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void newProducto(TableView<Productos> id_tablaProductos, ComboBox tipoProducto, TextField marca, TextField modelo){
 
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO productos(TipoProducto, Stock, Marca, Modelo, PrecioCompra, PrecioVenta) VALUES (?, ?, ?, ?, ?, ?)" );
+            query = conexion.prepareStatement("INSERT INTO productos(TipoProducto, Marca, Modelo) VALUES ( ?, ?, ?)" );
 
 
             query.setString(1, String.valueOf(tipoProducto.getValue()));
-            query.setInt(2, Integer.parseInt(stock.getText()));
-            query.setString(3, marca.getText());
-            query.setString(4, modelo.getText());
-            query.setFloat(5, Float.parseFloat(precioCompra.getText()));
-            query.setFloat(6, Float.parseFloat(precioVenta.getText()));
+            query.setString(2, marca.getText());
+            query.setString(3, modelo.getText());
 
             query.execute();
             ObservableList<Productos> data = c.obtenerProductos();
@@ -90,7 +87,7 @@ public class ModeloTablaProductos {
             new Common().vtnAlertaError();
         }
     }
-    public void modificarProducto(TableView<Productos> id_tablaProductos, ComboBox tipoProducto, TextField stock, TextField marca, TextField modelo, TextField precioCompra, TextField precioVenta){
+    public void modificarProducto(TableView<Productos> id_tablaProductos, ComboBox tipoProducto, TextField marca, TextField modelo){
 
         Productos productosModificar = id_tablaProductos.getSelectionModel().getSelectedItem();
         int id =0;
@@ -98,13 +95,10 @@ public class ModeloTablaProductos {
             Connection conexion=new Common().getConexion();
             PreparedStatement query;
             try {
-                query = conexion.prepareStatement("UPDATE productos SET TipoProducto = ?, Stock = ?, Marca = ?, Modelo = ?, PrecioCompra = ?, PrecioVenta = ? WHERE Id_Producto = " + productosModificar.getIdProducto());
+                query = conexion.prepareStatement("UPDATE productos SET TipoProducto = ?, Marca = ?, Modelo = ? WHERE Id_Producto = " + productosModificar.getIdProducto());
                 query.setString(1, String.valueOf(tipoProducto.getValue()));
-                query.setInt(2, Integer.parseInt(stock.getText()));
-                query.setString(3, marca.getText());
-                query.setString(4, modelo.getText());
-                query.setFloat(5, Float.parseFloat(precioCompra.getText()));
-                query.setFloat(6, Float.parseFloat(precioVenta.getText()));
+                query.setString(2, marca.getText());
+                query.setString(3, modelo.getText());
 
                 query.execute();
                 ObservableList<Productos> data = c.obtenerProductos();

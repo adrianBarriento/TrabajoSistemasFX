@@ -42,7 +42,7 @@ public class ModeloTablaCompras {
         ObservableList<Compras> data = c.obtenerCompras();
         id_tablaCompras.setItems(data);
     }
-    public void newCompra(TableView id_tablaCompras, ComboBox cmb_proveedor, TextField txtProveedor, ComboBox cmbProducto , TextField cantidad){
+    public void newCompra(TableView id_tablaCompras, ComboBox cmb_proveedor, TextField txtProveedor, ComboBox cmbProducto , TextField cantidad, TextField precioCompra,TextField precioVenta){
         Connection conexion=new Common().getConexion();
         String proveedor = String.valueOf(cmb_proveedor.getValue());
         String producto = String.valueOf(cmbProducto.getValue());
@@ -72,16 +72,21 @@ public class ModeloTablaCompras {
             }
         }
         PreparedStatement query;
-
         stock = stock+(Integer.parseInt(cantidad.getText()));
-        try {
-            query = conexion.prepareStatement("UPDATE `productos` SET `Stock` = ? WHERE `Id_Producto` = " +idProducto);
-            query.setInt(1, stock);
-            query.execute();
-        } catch (SQLException e) {
-            new Common().vtnAlertaError();
-            e.printStackTrace();
+
+        if((!((precioCompra.getText()).equalsIgnoreCase("")))&&(!((precioVenta.getText()).equalsIgnoreCase("")))){
+            try {
+                query = conexion.prepareStatement("UPDATE `productos` SET `Stock` = ?, `PrecioCompra` = ?, `PrecioVenta` = ? WHERE `Id_Producto` = " +idProducto);
+                query.setInt(1, stock);
+                query.setInt(2, Integer.parseInt(precioCompra.getText()));
+                query.setInt(3, Integer.parseInt(precioVenta.getText()));
+                query.execute();
+            } catch (SQLException e) {
+                new Common().vtnAlertaError();
+                e.printStackTrace();
+            }
         }
+
 
         int idProveedor=0;
         ObservableList<Proveedores> listProveedores = new Common().obtenerProveedores();

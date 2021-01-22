@@ -151,19 +151,16 @@ public class Common {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
                         precioUnitario = p.getPrecioVenta();
-                        System.out.println(producto);
                     }
                 }
                 for (Clientes c:listaClientes) {
                     if(c.getIdCliente()==id_cliente){
                         cliente = c.getNombre()+" "+c.getApellidos();
-                        System.out.println(cliente);
                     }
                 }
                 for (Employe e:listaVendedores) {
                     if(e.getIdEmpleado() == id_personal){
                         vendedor = e.getNombre()+" "+e.getApellido();
-                        System.out.println(vendedor);
                     }
                 }
 
@@ -197,13 +194,11 @@ public class Common {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
                         precioUnitario = p.getPrecioCompra();
-                        System.out.println(producto);
                     }
                 }
                 for (Proveedores c:listaProveedores) {
                     if(c.getId()==id_proveedor){
                         proveedor = c.getNombre();
-                        System.out.println(proveedor);
                     }
                 }
 

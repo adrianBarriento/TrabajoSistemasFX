@@ -44,12 +44,9 @@ public class Controller {
     public TextField id_añadirProvincia;
 
     //textFields de productos
-
-    public TextField txtStock;
     public TextField txtModelo;
     public TextField txtMarca;
-    public TextField txtPrecioCompra;
-    public TextField txtPrecioVenta;
+
 
     //AnchorPanes
     public AnchorPane id_Gestion;
@@ -94,6 +91,8 @@ public class Controller {
     public AnchorPane id_tablaCompras;
     public ComboBox cmb_ComprasProducto;
     public TextField txt_ComprasProveedor;
+    public TextField id_PrecioCompra;
+    public TextField id_PrecioVenta;
 
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
@@ -287,7 +286,7 @@ public class Controller {
     }
 
     public void crearCompra(MouseEvent mouseEvent){
-        new ModeloTablaCompras().newCompra(id_TablaCompras ,cmb_ComprasProveedor, txt_ComprasProveedor, cmb_ComprasProducto, id_CantidadCompras);
+        new ModeloTablaCompras().newCompra(id_TablaCompras ,cmb_ComprasProveedor, txt_ComprasProveedor, cmb_ComprasProducto,id_CantidadCompras, id_PrecioCompra, id_PrecioVenta);
     }
 
     public void borrarProveedor(MouseEvent mouseEvent){
@@ -303,7 +302,7 @@ public class Controller {
     }
 
     public void crearProducto(MouseEvent mouseEvent){
-        new ModeloTablaProductos().newProducto(id_tablaProducto, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
+        new ModeloTablaProductos().newProducto(id_tablaProducto, id_cmbProductoTipo, txtMarca , txtModelo);
     }
 
     public void borrarProducto(MouseEvent mouseEvent){
@@ -311,7 +310,7 @@ public class Controller {
     }
 
     public void modificarProducto(MouseEvent mouseEvent){
-        new ModeloTablaProductos().modificarProducto(id_tablaProducto, id_cmbProductoTipo, txtStock, txtMarca , txtModelo, txtPrecioCompra, txtPrecioVenta);
+        new ModeloTablaProductos().modificarProducto(id_tablaProducto, id_cmbProductoTipo, txtMarca , txtModelo);
     }
 
 }
