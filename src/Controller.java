@@ -47,6 +47,11 @@ public class Controller {
     public TextField txtModelo;
     public TextField txtMarca;
 
+    //Textfields de compras
+    public TextField id_CantidadCompras;
+    public TextField txt_ComprasProveedor;
+    public TextField id_PrecioCompra;
+    public TextField id_PrecioVenta;
 
     //AnchorPanes
     public AnchorPane id_Gestion;
@@ -56,6 +61,7 @@ public class Controller {
     public AnchorPane id_poblaciones;
     public AnchorPane id_segundoCombo;
     public AnchorPane d_tablaProductos;
+    public AnchorPane id_tablaCompras;
 
     //Image Views
     public ImageView id_icUsuarios;
@@ -72,6 +78,8 @@ public class Controller {
     public ComboBox cmb_VentasProducto;
     public ComboBox cmb_VentasCliente;
     public ComboBox cmb_VentasVendedor;
+    public ComboBox cmb_ComprasProducto;
+    public ComboBox cmb_ComprasProveedor;
 
     //Tabla
     public TableView<Employe> id_tabla;
@@ -82,17 +90,7 @@ public class Controller {
     public TableView<Productos> id_tablaProducto;
     public TextField id_nombreProveedor;
     public AnchorPane id_TablaProveedores;
-
-    //compras
-    public TextField id_CantidadCompras;
-    public TextField txt_ComprasProducto;
-    public ComboBox cmb_ComprasProveedor;
     public TableView id_TablaCompras;
-    public AnchorPane id_tablaCompras;
-    public ComboBox cmb_ComprasProducto;
-    public TextField txt_ComprasProveedor;
-    public TextField id_PrecioCompra;
-    public TextField id_PrecioVenta;
 
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
