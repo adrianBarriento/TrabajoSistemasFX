@@ -92,6 +92,26 @@ public class Controller {
     public AnchorPane id_TablaProveedores;
     public TableView id_TablaCompras;
 
+    //ESCANDALLOS
+    public ComboBox cmb_componente_1;
+    public ComboBox cmb_componente_2;
+    public ComboBox cmb_componente_3;
+    public ComboBox cmb_componente_4;
+    public ComboBox cmb_componente_5;
+    public ComboBox cmb_componente_6;
+    public ComboBox cmb_componente_7;
+    public ComboBox cmb_componente_8;
+    public ComboBox cmb_componente_9;
+    public ComboBox cmb_componente_10;
+    public ComboBox cmb_componente_11;
+    public ComboBox cmb_componente_12;
+    public ComboBox cmb_componente_13;
+    public ComboBox cmb_componente_14;
+    public ComboBox cmb_componente_15;
+    public ComboBox cmb_componente_16;
+    public ComboBox cmbOrdenador;
+    public AnchorPane id_Escandallo;
+
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
     ModeloTablaVentas modeloTablaVentas = new ModeloTablaVentas();
