@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -241,6 +242,30 @@
             <Label layoutX="255.0" layoutY="402.0" text="Precio Compra" />
 
             </children>
+      </AnchorPane>
+      <AnchorPane fx:id="id_Escandallo" layoutX="16.0" layoutY="84.0" prefHeight="467.0" prefWidth="566.0" visible="false">
+         <children>
+            <ComboBox fx:id="cmbOrdenador" layoutX="208.0" layoutY="21.0" prefWidth="150.0" promptText="Ordenador" />
+            <Button layoutX="381.0" layoutY="21.0" mnemonicParsing="false" text="Visualizar" />
+            <ComboBox fx:id="cmb_componente_1" layoutX="58.0" layoutY="72.0" prefWidth="150.0" AnchorPane.topAnchor="80.0" />
+            <ComboBox fx:id="cmb_componente_2" layoutX="358.0" layoutY="72.0" prefWidth="150.0" AnchorPane.topAnchor="80.0" />
+            <ComboBox fx:id="cmb_componente_3" layoutX="58.0" layoutY="125.0" prefWidth="150.0" AnchorPane.topAnchor="120.0" />
+            <ComboBox fx:id="cmb_componente_4" layoutX="358.0" layoutY="120.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_5" layoutX="58.0" layoutY="170.0" prefWidth="150.0" AnchorPane.topAnchor="160.0" />
+            <ComboBox fx:id="cmb_componente_6" layoutX="358.0" layoutY="160.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_7" layoutX="58.0" layoutY="209.0" prefWidth="150.0" AnchorPane.topAnchor="200.0" />
+            <ComboBox fx:id="cmb_componente_8" layoutX="358.0" layoutY="200.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_9" layoutX="58.0" layoutY="254.0" prefWidth="150.0" AnchorPane.topAnchor="240.0" />
+            <ComboBox fx:id="cmb_componente_10" layoutX="358.0" layoutY="240.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_11" layoutX="58.0" layoutY="288.0" prefWidth="150.0" AnchorPane.topAnchor="280.0" />
+            <ComboBox fx:id="cmb_componente_12" layoutX="358.0" layoutY="280.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_13" layoutX="58.0" layoutY="324.0" prefWidth="150.0" AnchorPane.topAnchor="320.0" />
+            <ComboBox fx:id="cmb_componente_14" layoutX="358.0" layoutY="320.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_componente_15" layoutX="58.0" layoutY="366.0" prefWidth="150.0" AnchorPane.topAnchor="360.0" />
+            <ComboBox fx:id="cmb_componente_16" layoutX="358.0" layoutY="360.0" prefWidth="150.0" />
+            <Button layoutX="261.0" layoutY="398.0" mnemonicParsing="false" text="Crear" AnchorPane.topAnchor="400.0" />
+            <Separator layoutX="59.0" layoutY="59.0" prefHeight="12.0" prefWidth="449.0" />
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>
