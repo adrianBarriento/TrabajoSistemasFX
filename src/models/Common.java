@@ -117,7 +117,6 @@ public class Common {
                 int id = datos.getInt(1);
                 String nombre = datos.getString(2);
 
-
                 Proveedores proveedores = new Proveedores(id, nombre);
                 listaProveedores.add(proveedores);
             }
@@ -201,7 +200,6 @@ public class Common {
                         proveedor = c.getNombre();
                     }
                 }
-
 
                 Compras compra = new Compras(precioUnitario, producto, proveedor, id_producto, cantidad);
                 listaCompras.add(compra);
