@@ -12,6 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import models.*;
 import views.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
     //TextField del login
     public TextField id_txtLogin;
@@ -93,6 +96,7 @@ public class Controller {
     public TableView id_TablaCompras;
 
     //ESCANDALLOS
+    List<ComboBox> listaCmb = new ArrayList<>();
     public ComboBox cmb_componente_1;
     public ComboBox cmb_componente_2;
     public ComboBox cmb_componente_3;
@@ -111,6 +115,8 @@ public class Controller {
     public ComboBox cmb_componente_16;
     public ComboBox cmbOrdenador;
     public AnchorPane id_Escandallo;
+    public ImageView id_icEscandallo;
+
 
 
     ModeloTablaProductos modeloTablaProductos = new ModeloTablaProductos();
@@ -120,6 +126,25 @@ public class Controller {
     ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
     ModeloTablaProveedores modeloTablaProveedores = new ModeloTablaProveedores();
     ModeloTablaCompras modeloTablaCompras = new ModeloTablaCompras();
+    private List<ComboBox> llenarCmb(){
+        listaCmb.add(cmb_componente_1);
+        listaCmb.add(cmb_componente_2);
+        listaCmb.add(cmb_componente_3);
+        listaCmb.add(cmb_componente_4);
+        listaCmb.add(cmb_componente_5);
+        listaCmb.add(cmb_componente_6);
+        listaCmb.add(cmb_componente_7);
+        listaCmb.add(cmb_componente_8);
+        listaCmb.add(cmb_componente_9);
+        listaCmb.add(cmb_componente_10);
+        listaCmb.add(cmb_componente_11);
+        listaCmb.add(cmb_componente_12);
+        listaCmb.add(cmb_componente_13);
+        listaCmb.add(cmb_componente_14);
+        listaCmb.add(cmb_componente_15);
+        listaCmb.add(cmb_componente_16);
+        return listaCmb;
+    }
 
     private ObservableList<String> rellenarComboBoxGestion = FXCollections.observableArrayList( "Proveedores", "Clientes","Productos", "Poblaciones");
 
@@ -157,6 +182,26 @@ public class Controller {
         d_tablaProductos.setVisible(false);
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
+        id_Escandallo.setVisible(false);
+    }
+    public void ventanaEscandallo(MouseEvent mouseEvent){
+        id_Escandallo.setVisible(true);
+        id_Gestion.setVisible(false);
+        id_tablaGestion.setVisible(false);
+        id_poblaciones.setVisible(false);
+        id_TablaClientes.setVisible(false);
+        id_Gestion.setVisible(false);
+        id_tablaVentas.setVisible(false);
+        id_TablaProveedores.setVisible(false);
+        d_tablaProductos.setVisible(false);
+        id_segundoCombo.setVisible(false);
+        id_tablaCompras.setVisible(false);
+
+        listaCmb = llenarCmb();
+        listaCmb.forEach(combo ->{
+            combo.setItems(new ElegirEscandallo().obtenerProductos());
+        });
+        new ElegirEscandallo().crearEscandallo(listaCmb);
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
@@ -170,6 +215,7 @@ public class Controller {
         d_tablaProductos.setVisible(false);
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
+        id_Escandallo.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
@@ -185,6 +231,7 @@ public class Controller {
         id_TablaProveedores.setVisible(false);
         d_tablaProductos.setVisible(false);
         id_tablaCompras.setVisible(false);
+        id_Escandallo.setVisible(false);
         if (null != id_cmbComercio){
             id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
