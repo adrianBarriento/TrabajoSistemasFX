@@ -129,9 +129,23 @@ public class ElegirEscandallo {
         ObservableList<Ordenador> listaOrdenadores = new Common().obtenerOrdenadores();
         ObservableList<String> listaNombres = FXCollections.observableArrayList();
 
-
+        listaOrdenadores.forEach(o->{
+            listaNombres.add(o.getNombre());
+        });
         return listaNombres;
     }
+
+    public ObservableList<Productos> ordenadoresTabla(){
+        ObservableList<Productos> listaOrdenadores = new Common().obtenerProductos();
+        ObservableList<Productos> listaOrdenadoresFinal = FXCollections.observableArrayList();
+
+        listaOrdenadores.forEach(o->{
+
+        });
+        return listaOrdenadoresFinal;
+    }
+
+
 
 
 

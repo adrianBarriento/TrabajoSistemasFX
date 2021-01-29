@@ -201,6 +201,8 @@ public class Controller {
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
 
+        cmbOrdenador.setItems(new ElegirEscandallo().cogerNombres());
+
         listaCmb = llenarCmb();
         for(int i =0; i<listaCmb.size(); i++){
             listaCmb.get(i).setItems(new ElegirEscandallo().obtenerProductos());

@@ -266,7 +266,7 @@ public class Common {
         PreparedStatement query;
         ResultSet datos;
         try {
-            query = connection.prepareStatement("SELECT * FROM escandallo");
+            query = connection.prepareStatement("SELECT * FROM escandallo GROUP  BY id_escandallo");
             datos = query.executeQuery();
             while(datos.next()){
                 String producto="", proveedor="";
