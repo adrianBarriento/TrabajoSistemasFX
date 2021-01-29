@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import bbdd_manager.Usuarios;
@@ -12,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import models.*;
 import views.*;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -198,10 +202,21 @@ public class Controller {
         id_tablaCompras.setVisible(false);
 
         listaCmb = llenarCmb();
-        listaCmb.forEach(combo ->{
-            combo.setItems(new ElegirEscandallo().obtenerProductos());
-        });
-        new ElegirEscandallo().crearEscandallo(listaCmb);
+        for(int i =0; i<listaCmb.size(); i++){
+            listaCmb.get(i).setItems(new ElegirEscandallo().obtenerProductos());
+            int finalI = i;
+            listaCmb.get(i).valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observableValue, Object o, Object t1) {
+                    if(listaCmb.get(finalI).getValue()==null){
+                        listaCmb.get(finalI+1).setDisable(true);
+                    }else{
+                        listaCmb.get(finalI+1).setDisable(false);
+                    }
+                }
+            });
+        }
+
     }
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
@@ -378,4 +393,7 @@ public class Controller {
         new ModeloTablaProductos().modificarProducto(id_tablaProducto, id_cmbProductoTipo, txtMarca , txtModelo);
     }
 
+    public void insertarEscandallo(MouseEvent mouseEvent){
+        new ElegirEscandallo().insertarEscandallo(listaCmb);
+    }
 }

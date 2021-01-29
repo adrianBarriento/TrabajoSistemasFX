@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #AED6F1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;" visible="false">
+      <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #FFFF;">
          <children>
             <Label layoutX="210.0" layoutY="26.0" text="ACCESO USUARIO">
                <font>
@@ -32,7 +32,7 @@
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;">
+      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" visible="false">
           <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
@@ -243,7 +243,7 @@
 
             </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_Escandallo" layoutX="16.0" layoutY="84.0" prefHeight="467.0" prefWidth="566.0">
+      <AnchorPane fx:id="id_Escandallo" layoutX="16.0" layoutY="84.0" prefHeight="467.0" prefWidth="566.0" visible="false">
          <children>
             <ComboBox fx:id="cmbOrdenador" layoutX="208.0" layoutY="21.0" prefWidth="150.0" promptText="Ordenador" />
             <Button layoutX="381.0" layoutY="21.0" mnemonicParsing="false" text="Visualizar" />
@@ -263,19 +263,8 @@
             <ComboBox fx:id="cmb_componente_14" disable="true" layoutX="358.0" layoutY="320.0" prefWidth="150.0" />
             <ComboBox fx:id="cmb_componente_15" disable="true" layoutX="58.0" layoutY="366.0" prefWidth="150.0" AnchorPane.topAnchor="360.0" />
             <ComboBox fx:id="cmb_componente_16" disable="true" layoutX="358.0" layoutY="360.0" prefWidth="150.0" />
-            <Button layoutX="392.0" layoutY="412.0" mnemonicParsing="false" text="Crear" AnchorPane.topAnchor="412.0" />
+            <Button layoutX="261.0" layoutY="398.0" mnemonicParsing="false" text="Crear" AnchorPane.topAnchor="400.0" />
             <Separator layoutX="59.0" layoutY="59.0" prefHeight="12.0" prefWidth="449.0" />
-            <TextField layoutX="209.0" layoutY="412.0" promptText="Nombre" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="16.0" layoutY="82.0" prefHeight="438.0" prefWidth="548.0" visible="false">
-         <children>
-            <TableView layoutX="14.0" layoutY="61.0" prefHeight="372.0" prefWidth="528.0" />
-            <Label layoutX="193.0" layoutY="14.0" text="ORDENADORES">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </children>

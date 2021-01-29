@@ -258,4 +258,29 @@ public class Common {
         }
         return listaProductos;
     }
+
+    public ObservableList<Ordenador> obtenerOrdenadores(){
+        ObservableList<Ordenador> listaOrdenadores = FXCollections.observableArrayList();
+
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        try {
+            query = connection.prepareStatement("SELECT * FROM escandallo");
+            datos = query.executeQuery();
+            while(datos.next()){
+                String producto="", proveedor="";
+
+                int idEscandallo = datos.getInt(1);
+                int idProducto = datos.getInt(2);
+                String nombre = datos.getString(3);
+
+                Ordenador ordenador = new Ordenador(nombre, idProducto, idEscandallo);
+                listaOrdenadores.add(ordenador);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaOrdenadores;
+    }
 }

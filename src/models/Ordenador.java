@@ -1,55 +1,36 @@
 package models;
 
 public class Ordenador {
-    private String placaBase, procesador, memoriaRAM, ventilador, discoDuro;
+    private String nombre;
+    private int idProducto, idEscandallo;
 
-    public Ordenador(String placaBase, String procesador, String memoriaRAM, String ventilador, String discoDuro) {
-        this.placaBase = placaBase;
-        this.procesador = procesador;
-        this.memoriaRAM = memoriaRAM;
-        this.ventilador = ventilador;
-        this.discoDuro = discoDuro;
+    public Ordenador(String nombre, int idProducto, int idEscandallo) {
+        this.nombre = nombre;
+        this.idProducto = idProducto;
+        this.idEscandallo = idEscandallo;
     }
 
-    public Ordenador(){}
-
-    public String getPlacaBase() {
-        return placaBase;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPlacaBase(String placaBase) {
-        this.placaBase = placaBase;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getProcesador() {
-        return procesador;
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public void setProcesador(String procesador) {
-        this.procesador = procesador;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
-    public String getMemoriaRAM() {
-        return memoriaRAM;
+    public int getIdEscandallo() {
+        return idEscandallo;
     }
 
-    public void setMemoriaRAM(String memoriaRAM) {
-        this.memoriaRAM = memoriaRAM;
-    }
-
-    public String getVentilador() {
-        return ventilador;
-    }
-
-    public void setVentilador(String ventilador) {
-        this.ventilador = ventilador;
-    }
-
-    public String getDiscoDuro() {
-        return discoDuro;
-    }
-
-    public void setDiscoDuro(String discoDuro) {
-        this.discoDuro = discoDuro;
+    public void setIdEscandallo(int idEscandallo) {
+        this.idEscandallo = idEscandallo;
     }
 }
