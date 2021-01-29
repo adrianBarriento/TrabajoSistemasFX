@@ -263,8 +263,19 @@
             <ComboBox fx:id="cmb_componente_14" disable="true" layoutX="358.0" layoutY="320.0" prefWidth="150.0" />
             <ComboBox fx:id="cmb_componente_15" disable="true" layoutX="58.0" layoutY="366.0" prefWidth="150.0" AnchorPane.topAnchor="360.0" />
             <ComboBox fx:id="cmb_componente_16" disable="true" layoutX="358.0" layoutY="360.0" prefWidth="150.0" />
-            <Button layoutX="261.0" layoutY="398.0" mnemonicParsing="false" text="Crear" AnchorPane.topAnchor="400.0" />
+            <Button layoutX="392.0" layoutY="412.0" mnemonicParsing="false" text="Crear" AnchorPane.topAnchor="412.0" />
             <Separator layoutX="59.0" layoutY="59.0" prefHeight="12.0" prefWidth="449.0" />
+            <TextField fx:id="id_txtNombrePC" layoutX="209.0" layoutY="412.0" promptText="Nombre" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="id_AnchorPanePC" layoutX="16.0" layoutY="82.0" prefHeight="438.0" prefWidth="548.0" visible="false">
+         <children>
+            <TableView fx:id="id_tablaPC" layoutX="14.0" layoutY="61.0" prefHeight="372.0" prefWidth="528.0" />
+            <Label layoutX="193.0" layoutY="14.0" text="ORDENADORES">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
