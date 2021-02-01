@@ -146,10 +146,40 @@ public class ElegirEscandallo {
     }
 
 
+    public ObservableList<Productos> procesoEscandallo(ComboBox cmb){
+        Connection connection = new Common().getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        ObservableList<Productos> listaProductos = FXCollections.observableArrayList();
+        List<Integer> idProductos = new ArrayList<>();
+        try {
+            query = connection.prepareStatement("SELECT id_escandallo FROM escandallo WHERE nombre = "+cmb.getValue());
+            datos = query.executeQuery();
+            while(datos.next()){
+                int id = datos.getInt(1);
+                idProductos.add(id);
+            }
 
+            for(int id:idProductos){
+                query = connection.prepareStatement("SELECT * FROM productos WHERE Id_Producto = "+id);
+                datos = query.executeQuery();
+                while(datos.next()){
+                    int idP = datos.getInt(1);
+                    String tipo = datos.getString(2);
+                    int stock = datos.getInt(1);
+                    String marca = datos.getString(3);
+                    String modelo = datos.getString(4);
+                    float precioC = datos.getFloat(5);
+                    float precioV = datos.getFloat(6);
 
+                    Productos producto = new Productos(idP, tipo, stock, marca, modelo, precioC, precioV);
+                    listaProductos.add(producto);
+                }
+            }
 
-
-
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
 }

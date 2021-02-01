@@ -33,7 +33,7 @@ public class ModeloTablaEscandallos {
 
     public void llenarTabla(TableView idTabla){
         ObservableList<Proveedores> data =
-        idTabla.setItems(data);
+        idTabla.setItems();
     }
 
 
