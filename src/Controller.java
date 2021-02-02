@@ -100,6 +100,12 @@ public class Controller {
     public TableView id_tablaPC;
     public TextField id_txtNombrePC;
 
+    //Opciones
+    public ImageView CuartaOpcion;
+    public ImageView TerceraOpcion;
+    public ImageView SegundaOpcion;
+    public ImageView PrimeraOpcion;
+
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
     public ComboBox cmb_componente_1;
@@ -178,6 +184,11 @@ public class Controller {
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
+        PrimeraOpcion.setVisible(true);
+        SegundaOpcion.setVisible(false);
+        TerceraOpcion.setVisible(false);
+        CuartaOpcion.setVisible(false);
+
         modeloTablaEmpleados.llenarTabla(id_tabla);
         id_Gestion.setVisible(false);
         id_tablaGestion.setVisible(true);
@@ -209,6 +220,11 @@ public class Controller {
         id_AnchorPanePC.setVisible(true);
     }
     public void ventanaCrearEscandallo(MouseEvent mouseEvent){
+        PrimeraOpcion.setVisible(false);
+        SegundaOpcion.setVisible(false);
+        TerceraOpcion.setVisible(false);
+        CuartaOpcion.setVisible(true);
+
         id_Escandallo.setVisible(true);
         id_Gestion.setVisible(false);
         id_tablaGestion.setVisible(false);
@@ -244,6 +260,11 @@ public class Controller {
     public void insertarEmpleado(MouseEvent mouseEvent){new Usuarios().newEmploye( id_tabla ,id_crearEmpleadoNombre, id_crearEmpleadoApellido, id_crearEmpleadoNumSS, id_crearEmpleadoSueldo, id_crearEmpleadoDNI);}
 
     public void ventanaGestion(MouseEvent mouseEvent){
+        PrimeraOpcion.setVisible(false);
+        SegundaOpcion.setVisible(true);
+        TerceraOpcion.setVisible(false);
+        CuartaOpcion.setVisible(false);
+
         id_poblaciones.setVisible(false);
         id_TablaClientes.setVisible(false);
         id_Gestion.setVisible(true);
@@ -261,6 +282,11 @@ public class Controller {
     }
 
     public void ventanaComercio(MouseEvent mouseEvent){
+        PrimeraOpcion.setVisible(false);
+        SegundaOpcion.setVisible(false);
+        TerceraOpcion.setVisible(true);
+        CuartaOpcion.setVisible(false);
+
         id_poblaciones.setVisible(false);
         id_TablaClientes.setVisible(false);
         id_Gestion.setVisible(false);
