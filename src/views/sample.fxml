@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #17202A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="588.0" style="-fx-background-color: #17202A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <AnchorPane fx:id="id_paneLogin" layoutX="21.0" layoutY="144.0" prefHeight="300.0" prefWidth="548.0" style="-fx-background-color: #154360#154360;">
          <children>
@@ -32,7 +32,7 @@
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #212F3D;" stylesheets="@style.css" visible="false">
+      <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #212F3D;" visible="false">
           <children>
             <HBox layoutY="5.0" prefHeight="65.0" prefWidth="559.0">
                <children>
