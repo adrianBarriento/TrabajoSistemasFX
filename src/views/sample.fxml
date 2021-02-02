@@ -29,7 +29,7 @@
                </font>
             </Label>
             <TextField fx:id="id_txtLogin" layoutX="274.0" layoutY="128.0" />
-            <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
+            <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false"  onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="id_base" layoutY="-1.0" prefHeight="74.0" prefWidth="588.0" style="-fx-background-color: #EBF5FB;" stylesheets="@style.css" visible="false">
@@ -263,7 +263,7 @@
             <ComboBox fx:id="cmb_componente_14" disable="true" layoutX="358.0" layoutY="320.0" prefWidth="150.0" />
             <ComboBox fx:id="cmb_componente_15" disable="true" layoutX="58.0" layoutY="366.0" prefWidth="150.0" AnchorPane.topAnchor="360.0" />
             <ComboBox fx:id="cmb_componente_16" disable="true" layoutX="358.0" layoutY="360.0" prefWidth="150.0" />
-            <Button layoutX="392.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#insertarEscandallo"  text="Crear" AnchorPane.topAnchor="412.0" />
+            <Button layoutX="392.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#insertarEscandallo" text="Crear" AnchorPane.topAnchor="412.0" />
             <Separator layoutX="59.0" layoutY="59.0" prefHeight="12.0" prefWidth="449.0" />
             <TextField fx:id="id_txtNombrePC" layoutX="209.0" layoutY="412.0" promptText="Nombre" />
          </children>
