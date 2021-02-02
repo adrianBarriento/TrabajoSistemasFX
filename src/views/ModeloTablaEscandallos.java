@@ -2,6 +2,7 @@ package views;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,18 +23,21 @@ public class ModeloTablaEscandallos {
     @FXML
     private TableColumn<Productos, Float> columnaPrecio= new TableColumn<>("Precio");
 
-    Common c =new Common();
+    private Common c =new Common();
+    private ComboBox cmb;
 
-    public void crearTablaProveedores(TableView<Productos> idTablaOrdenadores){
+
+
+    public void crearTabla(TableView<Productos> idTablaOrdenadores){
         this.columnaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         this.columnaModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
         idTablaOrdenadores.getColumns().addAll(columnaMarca, columnaModelo, columnaPrecio);
     }
 
-    public void llenarTabla(TableView idTabla){
-        ObservableList<Proveedores> data =
-        idTabla.setItems();
+    public void llenarTabla(TableView idTabla, ComboBox cmb){
+        ObservableList<Productos> data = new ElegirEscandallo().procesoEscandallo(cmb);
+        idTabla.setItems(data);
     }
 
 

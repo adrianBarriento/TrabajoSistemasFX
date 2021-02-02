@@ -4,6 +4,7 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import models.*;
 
 
@@ -86,14 +87,15 @@ public class ElegirEscandallo {
     }
 
 
-    public void query(int idP, int idE){
+    public void query(int idP, int idE, String nombre){
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO escandallo(id_producto, id_escandallo) VALUES (?, ?)");
+            query = conexion.prepareStatement("INSERT INTO escandallo(id_producto, id_escandallo, nombre) VALUES (?, ?, ?)");
 
             query.setInt(1, idP);
             query.setInt(2, idE);
+            query.setString(3, nombre);
             query.execute();
 
         } catch (SQLException e) {
@@ -102,7 +104,7 @@ public class ElegirEscandallo {
         }
     }
 
-    public void insertarEscandallo(List<ComboBox> cmbs){
+    public void insertarEscandallo(List<ComboBox> cmbs, TextField nombre){
         int idE=getIdEscandallo();
         cmbsActivos = new ArrayList<>();
 
@@ -117,7 +119,7 @@ public class ElegirEscandallo {
                 if(cmbsActivos.get(i).getValue().equals(p.getMarca()+" "+p.getModelo())){
                     System.out.println(cmbsActivos.get(i).getValue());
                     System.out.println(p.getIdProducto());
-                    query(p.getIdProducto(), idE);
+                    query(p.getIdProducto(), idE, nombre.getText());
                 }
             }
         }
@@ -153,12 +155,13 @@ public class ElegirEscandallo {
         ObservableList<Productos> listaProductos = FXCollections.observableArrayList();
         List<Integer> idProductos = new ArrayList<>();
         try {
-            query = connection.prepareStatement("SELECT id_escandallo FROM escandallo WHERE nombre = "+cmb.getValue());
+            query = connection.prepareStatement("SELECT id_producto FROM escandallo WHERE nombre ='"+cmb.getValue()+"'");
             datos = query.executeQuery();
             while(datos.next()){
                 int id = datos.getInt(1);
                 idProductos.add(id);
             }
+            System.out.println(idProductos.size());
 
             for(int id:idProductos){
                 query = connection.prepareStatement("SELECT * FROM productos WHERE Id_Producto = "+id);
@@ -166,11 +169,11 @@ public class ElegirEscandallo {
                 while(datos.next()){
                     int idP = datos.getInt(1);
                     String tipo = datos.getString(2);
-                    int stock = datos.getInt(1);
-                    String marca = datos.getString(3);
-                    String modelo = datos.getString(4);
-                    float precioC = datos.getFloat(5);
-                    float precioV = datos.getFloat(6);
+                    int stock = datos.getInt(3);
+                    String marca = datos.getString(4);
+                    String modelo = datos.getString(5);
+                    int precioC = datos.getInt(6);
+                    int precioV = datos.getInt(7);
 
                     Productos producto = new Productos(idP, tipo, stock, marca, modelo, precioC, precioV);
                     listaProductos.add(producto);

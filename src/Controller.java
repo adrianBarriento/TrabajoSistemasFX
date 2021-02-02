@@ -98,6 +98,9 @@ public class Controller {
     public TextField id_nombreProveedor;
     public AnchorPane id_TablaProveedores;
     public TableView id_TablaCompras;
+    public AnchorPane id_AnchorPanePC;
+    public TableView id_tablaPC;
+    public TextField id_txtNombrePC;
 
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
@@ -130,6 +133,7 @@ public class Controller {
     ModeloTablaEmpleados modeloTablaEmpleados = new ModeloTablaEmpleados();
     ModeloTablaProveedores modeloTablaProveedores = new ModeloTablaProveedores();
     ModeloTablaCompras modeloTablaCompras = new ModeloTablaCompras();
+    ModeloTablaEscandallos modeloTablaEscandallos = new ModeloTablaEscandallos();
     private List<ComboBox> llenarCmb(){
         listaCmb.add(cmb_componente_1);
         listaCmb.add(cmb_componente_2);
@@ -172,6 +176,7 @@ public class Controller {
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras);
+        modeloTablaEscandallos.crearTabla(id_tablaPC);
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -187,8 +192,25 @@ public class Controller {
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
+        id_AnchorPanePC.setVisible(false);
     }
-    public void ventanaEscandallo(MouseEvent mouseEvent){
+
+    public void ventanaEscandallos(MouseEvent mouseEvent){
+        modeloTablaEscandallos.llenarTabla(id_tablaPC, cmbOrdenador);
+        id_Escandallo.setVisible(false);
+        id_Gestion.setVisible(false);
+        id_tablaGestion.setVisible(false);
+        id_poblaciones.setVisible(false);
+        id_TablaClientes.setVisible(false);
+        id_Gestion.setVisible(false);
+        id_tablaVentas.setVisible(false);
+        id_TablaProveedores.setVisible(false);
+        d_tablaProductos.setVisible(false);
+        id_segundoCombo.setVisible(false);
+        id_tablaCompras.setVisible(false);
+        id_AnchorPanePC.setVisible(true);
+    }
+    public void ventanaCrearEscandallo(MouseEvent mouseEvent){
         id_Escandallo.setVisible(true);
         id_Gestion.setVisible(false);
         id_tablaGestion.setVisible(false);
@@ -200,6 +222,7 @@ public class Controller {
         d_tablaProductos.setVisible(false);
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
+        id_AnchorPanePC.setVisible(false);
 
         cmbOrdenador.setItems(new ElegirEscandallo().cogerNombres());
 
@@ -233,6 +256,7 @@ public class Controller {
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
+        id_AnchorPanePC.setVisible(false);
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
@@ -249,6 +273,7 @@ public class Controller {
         d_tablaProductos.setVisible(false);
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
+        id_AnchorPanePC.setVisible(false);
         if (null != id_cmbComercio){
             id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
@@ -396,6 +421,6 @@ public class Controller {
     }
 
     public void insertarEscandallo(MouseEvent mouseEvent){
-        new ElegirEscandallo().insertarEscandallo(listaCmb);
+        new ElegirEscandallo().insertarEscandallo(listaCmb, id_txtNombrePC);
     }
 }
