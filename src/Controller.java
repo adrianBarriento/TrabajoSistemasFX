@@ -182,6 +182,20 @@ public class Controller {
         modeloTablaCompras.crearTablaCompras(id_TablaCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
     }
+    public void comprobarEmpleadoEnter(KeyEvent mouseEvent){
+        new Usuarios().loginEnter(id_txtLogin, id_paneLogin, id_base);
+
+        //llenar toddas las tablas (no estan los metodos hechos)
+
+        modeloTablaVentas.crearTablaVentas(id_TablaVentas);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes);
+        modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
+        modeloTablaEmpleados.crearTabla(id_tabla);
+        modeloTablaProductos.crearTablaProductos(id_tablaProducto);
+        modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
+        modeloTablaCompras.crearTablaCompras(id_TablaCompras);
+        modeloTablaEscandallos.crearTabla(id_tablaPC);
+    }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
         PrimeraOpcion.setVisible(true);

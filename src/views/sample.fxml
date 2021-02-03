@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="id_txtLogin" layoutX="274.0" layoutY="128.0" />
+            <TextField fx:id="id_txtLogin" layoutX="274.0" layoutY="128.0" onKeyPressed="#comprobarEmpleadoEnter" />
             <Button fx:id="id_btnLogin" layoutX="241.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#comprobarEmpleado" text="ACCEDER" />
          </children>
       </AnchorPane>
