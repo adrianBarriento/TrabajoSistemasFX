@@ -22,16 +22,21 @@ public class ModeloTablaEmpleados {
     @FXML
     private TableColumn<Employe, Integer> columnaSueldo = new TableColumn<>("Sueldo");
     @FXML
-    private TableColumn<Employe, String> columnaDni = new TableColumn<>("dni");
+    private TableColumn<Employe, String> columnaDni = new TableColumn<>("DNI");
 
     Common c =new Common();
     public void crearTabla(TableView id_tabla){
-
+        System.out.println("empleados:  "+id_tabla.getWidth());
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        this.columnaNombre.setPrefWidth(109.2);
         this.columnaApellido.setCellValueFactory(new PropertyValueFactory<>("Apellido"));
+        this.columnaApellido.setPrefWidth(109.2);
         this.columnaNumSS.setCellValueFactory(new PropertyValueFactory<>("NumSegSocial"));
+        this.columnaNumSS.setPrefWidth(139.2);
         this.columnaSueldo.setCellValueFactory(new PropertyValueFactory<>("Sueldo"));
+        this.columnaSueldo.setPrefWidth(79.2);
         this.columnaDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+        this.columnaDni.setPrefWidth(109.2);
 
         id_tabla.getColumns().addAll(columnaNombre, columnaApellido, columnaNumSS, columnaSueldo, columnaDni);
 

@@ -28,6 +28,7 @@ public class ModeloTablaProveedores {
 
         id_tablaProveedores.getColumns().add(columnaNombre);
 
+        System.out.println(id_tablaProveedores.getWidth());
     }
 
     public void llenarTabla(TableView id_tablaProveedores){

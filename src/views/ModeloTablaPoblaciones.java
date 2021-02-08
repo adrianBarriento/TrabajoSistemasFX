@@ -23,9 +23,13 @@ public class ModeloTablaPoblaciones {
     Common c =new Common();
 
     public void crearTablaPoblaciones(TableView id_tablaPoblaciones){
+        System.out.println("poblaciones:  "+id_tablaPoblaciones.getWidth());
         this.columnaCodPostal.setCellValueFactory(new PropertyValueFactory<>("cod_postal"));
+        this.columnaCodPostal.setPrefWidth(175.00);
         this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("poblacion"));
+        this.columnaPoblacion.setPrefWidth(178.00);
         this.columnaProvincia.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+        this.columnaProvincia.setPrefWidth(178.00);
 
         id_tablaPoblaciones.getColumns().addAll(columnaCodPostal, columnaPoblacion, columnaProvincia);
     }

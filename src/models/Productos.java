@@ -4,11 +4,25 @@ public class Productos {
     private int idProducto;
     private String tipoProducto;
     private int stock;
+
+
+
+    private int cantidad;
     private String marca;
     private String modelo;
     private float precioCompra;
     private float precioVenta;
 
+    public Productos(int idProducto, String tipoProducto, int stock, String marca, String modelo, float precioCompra, float precioVenta, int cantidad) {
+        this.idProducto = idProducto;
+        this.tipoProducto = tipoProducto;
+        this.stock = stock;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.cantidad = cantidad;
+    }
     public Productos(int idProducto, String tipoProducto, int stock, String marca, String modelo, float precioCompra, float precioVenta) {
         this.idProducto = idProducto;
         this.tipoProducto = tipoProducto;
@@ -21,6 +35,14 @@ public class Productos {
 
     public Productos(){}
 
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
     public int getIdProducto() {
         return idProducto;
     }

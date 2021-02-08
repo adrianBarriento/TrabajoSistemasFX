@@ -2,13 +2,25 @@ package models;
 
 public class Ordenador {
     private String nombre;
-    private int idProducto, idEscandallo;
+    private int idProducto;
+    private int idEscandallo;
+
+
+    private int cantidad;
 
     public Ordenador(String nombre, int idProducto, int idEscandallo) {
         this.nombre = nombre;
         this.idProducto = idProducto;
         this.idEscandallo = idEscandallo;
     }
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
 
     public String getNombre() {
         return nombre;

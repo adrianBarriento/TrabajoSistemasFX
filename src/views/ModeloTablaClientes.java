@@ -27,9 +27,13 @@ public class ModeloTablaClientes {
     public void crearTablaClientes(TableView<Clientes> id_tablaClientes){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        this.columnaNombre.setPrefWidth(125.00);
         this.columnaApellidos.setCellValueFactory(new PropertyValueFactory<>("Apellidos"));
+        this.columnaApellidos.setPrefWidth(136.75);
         this.columnaEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        this.columnaEmail.setPrefWidth(166.75);
         this.columnaPoblacion.setCellValueFactory(new PropertyValueFactory<>("cod_postal"));
+        this.columnaPoblacion.setPrefWidth(104.75);
 
         id_tablaClientes.getColumns().addAll(columnaNombre, columnaApellidos, columnaEmail, columnaPoblacion);
 

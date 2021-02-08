@@ -53,7 +53,7 @@ public class ElegirEscandallo {
                 listaProductos.add(marca + " "+ modelo);
             }
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
         return listaProductos;
     }
@@ -81,49 +81,61 @@ public class ElegirEscandallo {
                 listaProductos.add(p);
             }
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
         return listaProductos;
     }
 
 
-    public void query(int idP, int idE, String nombre){
+    public void query(int idP, int idE, String nombre, int cantidad){
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {
-            query = conexion.prepareStatement("INSERT INTO escandallo(id_producto, id_escandallo, nombre) VALUES (?, ?, ?)");
+            query = conexion.prepareStatement("INSERT INTO escandallo(id_producto, id_escandallo, nombre, cantidad) VALUES (?, ?, ?, ?)");
 
             query.setInt(1, idP);
             query.setInt(2, idE);
             query.setString(3, nombre);
+            query.setInt(4, cantidad);
             query.execute();
 
         } catch (SQLException e) {
-            new Common().vtnAlertaError();
-            e.printStackTrace();
+
         }
     }
 
-    public void insertarEscandallo(List<ComboBox> cmbs, TextField nombre){
+    public void insertarEscandallo(List<ComboBox> cmbs, TextField nombre, ComboBox cmbV){
         int idE=getIdEscandallo();
         cmbsActivos = new ArrayList<>();
-
         cmbs.forEach(cmb->{
             if(!cmb.isDisabled()){
                 cmbsActivos.add(cmb);
             }
         });
+        int cantidad=1;
         List<Productos> listaP = obtenerProductosO();
         for(int i =0; i<cmbsActivos.size()-1; i++){
             for(Productos p:listaP){
                 if(cmbsActivos.get(i).getValue().equals(p.getMarca()+" "+p.getModelo())){
-                    System.out.println(cmbsActivos.get(i).getValue());
-                    System.out.println(p.getIdProducto());
-                    query(p.getIdProducto(), idE, nombre.getText());
+                    String valorCmb=String.valueOf(cmbsActivos.get(i).getValue());
+                    cantidad=1;
+                    for(int j =i+1; j<cmbsActivos.size()-1; j++){
+                        if(valorCmb.equals(String.valueOf(cmbsActivos.get(j).getValue()))){
+                            cantidad++;
+                        }
+                    }
+                    query(p.getIdProducto(), idE, nombre.getText(), cantidad);
                 }
             }
         }
         new Common().vtnMensajeExitoInsercion();
+        cmbV.setItems(cogerNombres());
+        for(int o =0; o<cmbs.size(); o++){
+            cmbs.get(o).setValue(null);
+            if(o>0){
+                cmbs.get(o).setDisable(true);
+            }
+        }
     }
 
 
@@ -137,34 +149,27 @@ public class ElegirEscandallo {
         return listaNombres;
     }
 
-    public ObservableList<Productos> ordenadoresTabla(){
-        ObservableList<Productos> listaOrdenadores = new Common().obtenerProductos();
-        ObservableList<Productos> listaOrdenadoresFinal = FXCollections.observableArrayList();
-
-        listaOrdenadores.forEach(o->{
-
-        });
-        return listaOrdenadoresFinal;
-    }
-
-
     public ObservableList<Productos> procesoEscandallo(ComboBox cmb){
         Connection connection = new Common().getConexion();
         PreparedStatement query;
         ResultSet datos;
         ObservableList<Productos> listaProductos = FXCollections.observableArrayList();
         List<Integer> idProductos = new ArrayList<>();
+        List<Integer> cantidades = new ArrayList<>();
+        int cantidad=0;
         try {
-            query = connection.prepareStatement("SELECT id_producto FROM escandallo WHERE nombre ='"+cmb.getValue()+"'");
+            query = connection.prepareStatement("SELECT id_producto, cantidad FROM escandallo WHERE nombre ='"+cmb.getValue()+"'");
             datos = query.executeQuery();
             while(datos.next()){
                 int id = datos.getInt(1);
+                cantidad = datos.getInt(2);
                 idProductos.add(id);
+                cantidades.add(cantidad);
             }
             System.out.println(idProductos.size());
 
-            for(int id:idProductos){
-                query = connection.prepareStatement("SELECT * FROM productos WHERE Id_Producto = "+id);
+            for(int i = 0; i <idProductos.size(); i++){
+                query = connection.prepareStatement("SELECT * FROM productos WHERE Id_Producto = "+idProductos.get(i));
                 datos = query.executeQuery();
                 while(datos.next()){
                     int idP = datos.getInt(1);
@@ -175,7 +180,7 @@ public class ElegirEscandallo {
                     int precioC = datos.getInt(6);
                     int precioV = datos.getInt(7);
 
-                    Productos producto = new Productos(idP, tipo, stock, marca, modelo, precioC, precioV);
+                    Productos producto = new Productos(idP, tipo, stock, marca, modelo, precioC, precioV, cantidades.get(i));
                     listaProductos.add(producto);
                 }
             }

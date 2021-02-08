@@ -29,10 +29,13 @@ public class ModeloTablaCompras {
 
     public void crearTablaCompras(TableView<Compras> id_tablaCompras){
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
+        this.columnaProducto.setPrefWidth(129.4);
         this.columnaProveedor.setCellValueFactory(new PropertyValueFactory<>("proveedorString"));
-
+        this.columnaProveedor.setPrefWidth(142.4);
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        this.columnaCantidad.setPrefWidth(89.4);
         this.columnaPrecioUnitario.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
+        this.columnaPrecioUnitario.setPrefWidth(89.4);
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
         id_tablaCompras.getColumns().addAll(columnaProducto, columnaProveedor,  columnaCantidad, columnaPrecioUnitario, columnaPrecio);

@@ -22,6 +22,8 @@ public class ModeloTablaEscandallos {
     private TableColumn<Productos, String> columnaModelo= new TableColumn<>("Modelo");
     @FXML
     private TableColumn<Productos, Float> columnaPrecio= new TableColumn<>("Precio");
+    @FXML
+    private TableColumn<Productos, Integer> columnaCantidad= new TableColumn<>("Cantidad");
 
     private Common c =new Common();
     private ComboBox cmb;
@@ -29,10 +31,12 @@ public class ModeloTablaEscandallos {
 
 
     public void crearTabla(TableView<Productos> idTablaOrdenadores){
+        System.out.println("escanda:  "+idTablaOrdenadores.getWidth());
         this.columnaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         this.columnaModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
-        idTablaOrdenadores.getColumns().addAll(columnaMarca, columnaModelo, columnaPrecio);
+        this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        idTablaOrdenadores.getColumns().addAll(columnaMarca, columnaModelo, columnaPrecio, columnaCantidad);
     }
 
     public void llenarTabla(TableView idTabla, ComboBox cmb){

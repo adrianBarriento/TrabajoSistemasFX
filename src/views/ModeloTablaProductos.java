@@ -31,13 +31,19 @@ public class ModeloTablaProductos {
 
     public void crearTablaProductos(TableView<Productos> id_tablaProductos){
 
-
+        System.out.println("productos:  "+id_tablaProductos.getWidth());
         this.columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("TipoProducto"));
+        this.columnaTipoProducto.setPrefWidth(92.56);
         this.columnaStock.setCellValueFactory(new PropertyValueFactory<>("Stock"));
+        this.columnaStock.setPrefWidth(62.00);
         this.columnaMarca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
+        this.columnaMarca.setPrefWidth(92.56);
         this.columnaModelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
+        this.columnaModelo.setPrefWidth(92.56);
         this.columnaPrecioCompra.setCellValueFactory(new PropertyValueFactory<>("PrecioCompra"));
+        this.columnaPrecioCompra.setPrefWidth(112.56);
         this.columnaPrecioVenta.setCellValueFactory(new PropertyValueFactory<>("PrecioVenta"));
+        this.columnaPrecioVenta.setPrefWidth(102.56);
 
         id_tablaProductos.getColumns().addAll(columnaTipoProducto, columnaStock, columnaMarca, columnaModelo, columnaPrecioCompra, columnaPrecioVenta);
 

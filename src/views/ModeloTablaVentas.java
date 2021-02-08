@@ -33,6 +33,7 @@ public class ModeloTablaVentas {
     Common c =new Common();
 
     public void crearTablaVentas(TableView<Ventas> id_tablaVentas){
+        System.out.println("ventas:  "+id_tablaVentas.getWidth());
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
         this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));

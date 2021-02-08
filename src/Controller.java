@@ -459,6 +459,6 @@ public class Controller {
     }
 
     public void insertarEscandallo(MouseEvent mouseEvent){
-        new ElegirEscandallo().insertarEscandallo(listaCmb, id_txtNombrePC);
+        new ElegirEscandallo().insertarEscandallo(listaCmb, id_txtNombrePC, cmbOrdenador);
     }
 }
