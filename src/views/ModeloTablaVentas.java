@@ -35,11 +35,17 @@ public class ModeloTablaVentas {
     public void crearTablaVentas(TableView<Ventas> id_tablaVentas){
         System.out.println("ventas:  "+id_tablaVentas.getWidth());
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
+        this.columnaProducto.setPrefWidth(101.00);
         this.columnaCliente.setCellValueFactory(new PropertyValueFactory<>("clienteString"));
+        this.columnaCliente.setPrefWidth(101.00);
         this.columnaVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedorString"));
+        this.columnaVendedor.setPrefWidth(101.00);
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        this.columnaCantidad.setPrefWidth(75.00);
         this.columnaPrecioUnitario.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
+        this.columnaPrecioUnitario.setPrefWidth(91.00);
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        this.columnaPrecio.setPrefWidth(70.00);
 
         id_tablaVentas.getColumns().addAll(columnaProducto, columnaCliente, columnaVendedor,  columnaCantidad, columnaPrecioUnitario, columnaPrecio);
     }
