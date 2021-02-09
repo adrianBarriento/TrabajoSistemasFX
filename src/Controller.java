@@ -106,6 +106,7 @@ public class Controller {
     public ImageView SegundaOpcion;
     public ImageView PrimeraOpcion;
 
+
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
     public ComboBox cmb_componente_1;
@@ -127,6 +128,11 @@ public class Controller {
     public ComboBox cmbOrdenador;
     public AnchorPane id_Escandallo;
     public ImageView id_icEscandallo;
+
+    //ventanaemeregentefacturaCliemte
+    public AnchorPane idVentanaFacturaCliente;
+    public ComboBox cmbFechaFacturaCliente;
+    public ImageView idDescargarFacturaCliente;
 
 
 
@@ -174,7 +180,7 @@ public class Controller {
         //llenar toddas las tablas (no estan los metodos hechos)
 
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
-        modeloTablaClientes.crearTablaClientes(id_tablaClientes);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
@@ -190,7 +196,7 @@ public class Controller {
         //llenar toddas las tablas (no estan los metodos hechos)
 
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
-        modeloTablaClientes.crearTablaClientes(id_tablaClientes);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);

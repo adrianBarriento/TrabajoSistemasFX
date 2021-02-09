@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import models.Clientes;
 import models.Common;
 import models.Poblacion;
@@ -27,7 +28,7 @@ public class ModeloTablaClientes {
 
     Common c =new Common();
 
-    public void crearTablaClientes(TableView<Clientes> id_tablaClientes){
+    public void crearTablaClientes(TableView<Clientes> id_tablaClientes, AnchorPane vntEmergente){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         this.columnaNombre.setPrefWidth(125.00);
@@ -47,6 +48,8 @@ public class ModeloTablaClientes {
                     java.util.Date d = new java.util.Date();
                     java.sql.Date date2 = new java.sql.Date(d.getTime());
                     System.out.println(date2);
+
+                    vntEmergente.setVisible(true);
                 }
             }
         });
