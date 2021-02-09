@@ -181,6 +181,8 @@ public class Controller {
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
+
+
     }
     public void comprobarEmpleadoEnter(KeyEvent mouseEvent){
         new Usuarios().loginEnter(id_txtLogin, id_paneLogin, id_base);
@@ -195,6 +197,7 @@ public class Controller {
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
+        listaCmb = llenarCmb();
     }
 
     public void ventanaCrearEmpleado(MouseEvent mouseEvent){
@@ -254,7 +257,8 @@ public class Controller {
 
         cmbOrdenador.setItems(new ElegirEscandallo().cogerNombres());
 
-        listaCmb = llenarCmb();
+
+
         for(int i =0; i<listaCmb.size(); i++){
             listaCmb.get(i).setItems(new ElegirEscandallo().obtenerProductos());
             int finalI = i;

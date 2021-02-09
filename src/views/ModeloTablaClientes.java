@@ -1,16 +1,19 @@
 package views;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import models.Clientes;
 import models.Common;
 import models.Poblacion;
 
 import java.sql.*;
+import java.util.Date;
 
 public class ModeloTablaClientes {
     @FXML
@@ -36,6 +39,17 @@ public class ModeloTablaClientes {
         this.columnaPoblacion.setPrefWidth(104.75);
 
         id_tablaClientes.getColumns().addAll(columnaNombre, columnaApellidos, columnaEmail, columnaPoblacion);
+
+        id_tablaClientes.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getClickCount() == 2){
+                    java.util.Date d = new java.util.Date();
+                    java.sql.Date date2 = new java.sql.Date(d.getTime());
+                    System.out.println(date2);
+                }
+            }
+        });
 
     }
 

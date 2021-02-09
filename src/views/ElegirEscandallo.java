@@ -136,6 +136,7 @@ public class ElegirEscandallo {
                 cmbs.get(o).setDisable(true);
             }
         }
+       // cmbsActivos = new ArrayList<>();
     }
 
 
