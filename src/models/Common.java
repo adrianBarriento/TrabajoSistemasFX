@@ -269,7 +269,6 @@ public class Common {
             query = connection.prepareStatement("SELECT * FROM escandallo GROUP  BY id_escandallo");
             datos = query.executeQuery();
             while(datos.next()){
-                String producto="", proveedor="";
 
                 int idEscandallo = datos.getInt(1);
                 int idProducto = datos.getInt(2);
@@ -282,5 +281,25 @@ public class Common {
             vtnAlertaError();
         }
         return listaOrdenadores;
+    }
+
+    public ObservableList<Date> obtenerVentasXfecha(Clientes cliente){
+        ObservableList<Date> listaVentas = FXCollections.observableArrayList();
+
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        try {
+            query = connection.prepareStatement("SELECT fecha FROM `ventas` WHERE id_cliente = " + cliente.getIdCliente() +" GROUP BY fecha");
+            datos = query.executeQuery();
+            while(datos.next()){
+                Date fecha = datos.getDate(1);
+
+                listaVentas.add(fecha);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaVentas;
     }
 }

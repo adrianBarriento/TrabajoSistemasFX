@@ -28,7 +28,7 @@ public class ModeloTablaClientes {
 
     Common c =new Common();
 
-    public void crearTablaClientes(TableView<Clientes> id_tablaClientes, AnchorPane vntEmergente){
+    public void crearTablaClientes(TableView<Clientes> id_tablaClientes, AnchorPane vntEmergente, ComboBox cmbFactura, AnchorPane id_base){
 
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         this.columnaNombre.setPrefWidth(125.00);
@@ -50,6 +50,11 @@ public class ModeloTablaClientes {
                     System.out.println(date2);
 
                     vntEmergente.setVisible(true);
+                    ObservableList<java.sql.Date> cmbList = new Common().obtenerVentasXfecha(id_tablaClientes.getSelectionModel().getSelectedItem());
+
+                    cmbFactura.setItems(cmbList);
+                    cmbFactura.setPromptText("Fecha");
+                    id_base.setDisable(true);
                 }
             }
         });

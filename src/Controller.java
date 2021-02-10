@@ -105,6 +105,7 @@ public class Controller {
     public ImageView TerceraOpcion;
     public ImageView SegundaOpcion;
     public ImageView PrimeraOpcion;
+    public ImageView id_iconoExitFactura;
 
 
     //ESCANDALLOS
@@ -180,7 +181,7 @@ public class Controller {
         //llenar toddas las tablas (no estan los metodos hechos)
 
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
-        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
@@ -196,7 +197,7 @@ public class Controller {
         //llenar toddas las tablas (no estan los metodos hechos)
 
         modeloTablaVentas.crearTablaVentas(id_TablaVentas);
-        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente);
+        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
@@ -470,5 +471,10 @@ public class Controller {
 
     public void insertarEscandallo(MouseEvent mouseEvent){
         new ElegirEscandallo().insertarEscandallo(listaCmb, id_txtNombrePC, cmbOrdenador);
+    }
+
+    public void salirFacturas(MouseEvent mouseEvent){
+        idVentanaFacturaCliente.setVisible(false);
+        id_base.setDisable(false);
     }
 }
