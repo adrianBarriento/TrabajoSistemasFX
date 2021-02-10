@@ -314,6 +314,11 @@
       </AnchorPane>
       <AnchorPane fx:id="idVentanaFacturaCliente" layoutX="109.0" layoutY="236.0" prefHeight="86.0" prefWidth="379.0" style="-fx-background-color: #212F3D;" visible="false">
          <children>
+            <ImageView fx:id="id_iconoExitFactura" fitHeight="36.0" fitWidth="33.0" layoutX="346.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="342.0">
+               <image>
+                  <Image url="@../images/icons8-cerrar-ventana-48.png" />
+               </image>
+            </ImageView>
             <ComboBox fx:id="cmbFechaFacturaCliente" layoutX="90.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha" />
             <ImageView fx:id="idDescargarFacturaCliente" fitHeight="25.0" fitWidth="21.0" layoutX="268.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
