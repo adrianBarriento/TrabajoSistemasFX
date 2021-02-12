@@ -121,13 +121,17 @@ public class ModeloTablaClientes {
     public void newCliente(TableView id_tablaClientes, TextField nombreCliente, TextField apellidoCliente, ComboBox poblacionCliente, TextField emailCliente){
 
         String poblacion = String.valueOf(poblacionCliente.getValue());
+        String tokens[] = poblacion.split(" ");
+        poblacion = tokens[1];
+        int pobla  = Integer.parseInt(poblacion);
         int codigoPostal=0;
         ObservableList<Poblacion> poblaciones = new Common().obtenerPoblaciones();
         for(Poblacion p:poblaciones){
-            if(poblacion.equalsIgnoreCase(p.getPoblacion())){
+            if(pobla==(p.getCod_postal())){
                 codigoPostal=p.getCod_postal();
             }
         }
+
         Connection conexion=new Common().getConexion();
         PreparedStatement query;
         try {

@@ -225,6 +225,7 @@ public class Common {
 
                 Poblacion newPoblacion = new Poblacion(cod_postal, poblacion,provincia);
 
+
                 listaPoblaciones.add(newPoblacion);
             }
         } catch (SQLException e) {
