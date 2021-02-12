@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2021 a las 18:55:38
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 12-02-2021 a las 19:14:54
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,14 +35,6 @@ CREATE TABLE `clientes` (
   `cod_postal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`Id_Cliente`, `Nombre`, `Apellidos`, `Email`, `cod_postal`) VALUES
-(1, 'Paco', 'Gonzalez', 'kajsihdajdoj', 28923),
-(2, 'Oscar', 'Francisco', 'asijduhahndas', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -56,18 +48,6 @@ CREATE TABLE `compras` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `compras`
---
-
-INSERT INTO `compras` (`idFactura`, `idProducto`, `idProveedor`, `cantidad`) VALUES
-(3, 2, 11, 109),
-(4, 7, 10, 0),
-(5, 7, 12, 100),
-(6, 8, 13, 200),
-(7, 8, 13, 20),
-(8, 9, 10, 100);
-
 -- --------------------------------------------------------
 
 --
@@ -76,18 +56,10 @@ INSERT INTO `compras` (`idFactura`, `idProducto`, `idProveedor`, `cantidad`) VAL
 
 CREATE TABLE `escandallo` (
   `id_producto` int(11) NOT NULL,
-  `id_escandallo` int(11) NOT NULL
+  `id_escandallo` int(11) NOT NULL,
+  `nombre` varchar(40) NOT NULL,
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `escandallo`
---
-
-INSERT INTO `escandallo` (`id_producto`, `id_escandallo`) VALUES
-(1, 1),
-(2, 2),
-(7, 3),
-(7, 4);
 
 -- --------------------------------------------------------
 
@@ -109,8 +81,8 @@ CREATE TABLE `personal` (
 --
 
 INSERT INTO `personal` (`Id_Personal`, `Nombre`, `Apellidos`, `NumSegSocial`, `Sueldo`, `DNI`) VALUES
-(1, 'Adrian', 'Barriento', 1221222, 1200, '48208786G'),
-(2, 'Pepe', 'Martinez', 21231342, 1000, '12345678k');
+(3, 'Oscar', 'Francisco Corraliza', 1234567891213, 8000, '09138804F'),
+(4, 'Adrian', 'Barriento Cebolla', 1234567891213, 8000, '48208786G');
 
 -- --------------------------------------------------------
 
@@ -123,17 +95,6 @@ CREATE TABLE `poblaciones` (
   `poblacion` varchar(50) NOT NULL,
   `provincia` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `poblaciones`
---
-
-INSERT INTO `poblaciones` (`cod_postal`, `poblacion`, `provincia`) VALUES
-(28921, 'Alcorcon', 'Madrid'),
-(28922, 'Alcorcon', 'Madrid'),
-(28923, 'Alcorcon', 'Madrid'),
-(28925, 'Móstoles', 'Madrid'),
-(28928, 'Fuenlabrada', 'Madrid');
 
 -- --------------------------------------------------------
 
@@ -150,17 +111,6 @@ CREATE TABLE `productos` (
   `PrecioCompra` int(11) DEFAULT NULL,
   `PrecioVenta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`Id_Producto`, `TipoProducto`, `Stock`, `Marca`, `Modelo`, `PrecioCompra`, `PrecioVenta`) VALUES
-(2, 'Ordenador', 210, 'HP', 'Pavilion', 400, 700),
-(6, 'Movil', 38, 'Samsung', 'Note 8', 100, 400),
-(7, 'Componente', 190, 'Nvidea', 'GTX 1080', 200, 400),
-(8, 'Movil', 20, 'Xiami', 'Redmi Note 5', 100, 200),
-(9, 'Componente', 100, 'Seagate', 'SDD 2TB', 100, 200);
 
 -- --------------------------------------------------------
 
@@ -199,20 +149,9 @@ CREATE TABLE `ventas` (
   `id_cliente` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_personal` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `ventas`
---
-
-INSERT INTO `ventas` (`idFactura`, `id_cliente`, `id_producto`, `id_personal`, `cantidad`) VALUES
-(1, 1, 2, 1, 2),
-(2, 1, 2, 1, 3),
-(3, 2, 6, 0, 1),
-(4, 2, 6, 1, 2),
-(5, 2, 2, 1, 11),
-(6, 1, 6, 2, 2);
 
 --
 -- Índices para tablas volcadas
@@ -222,13 +161,16 @@ INSERT INTO `ventas` (`idFactura`, `id_cliente`, `id_producto`, `id_personal`, `
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`Id_Cliente`);
+  ADD PRIMARY KEY (`Id_Cliente`),
+  ADD KEY `fk_ClientesCodigoPostal` (`cod_postal`);
 
 --
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD PRIMARY KEY (`idFactura`);
+  ADD PRIMARY KEY (`idFactura`),
+  ADD KEY `fk_ComprasProducto` (`idProducto`),
+  ADD KEY `fk_ComprasProveedor` (`idProveedor`);
 
 --
 -- Indices de la tabla `escandallo`
@@ -264,7 +206,10 @@ ALTER TABLE `proveedores`
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`idFactura`);
+  ADD PRIMARY KEY (`idFactura`),
+  ADD KEY `fk_VentasProducto` (`id_producto`),
+  ADD KEY `fk_VentasCliente` (`id_cliente`),
+  ADD KEY `fk_VentasPersonal` (`id_personal`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -286,7 +231,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -305,6 +250,37 @@ ALTER TABLE `proveedores`
 --
 ALTER TABLE `ventas`
   MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `fk_ClientesCodigoPostal` FOREIGN KEY (`cod_postal`) REFERENCES `poblaciones` (`cod_postal`);
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `fk_ComprasProducto` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`Id_Producto`),
+  ADD CONSTRAINT `fk_ComprasProveedor` FOREIGN KEY (`idProveedor`) REFERENCES `proveedores` (`Id_Proveedor`);
+
+--
+-- Filtros para la tabla `escandallo`
+--
+ALTER TABLE `escandallo`
+  ADD CONSTRAINT `fk_EscandalloProducto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`Id_Producto`);
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `fk_VentasCliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`Id_Cliente`),
+  ADD CONSTRAINT `fk_VentasPersonal` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`Id_Personal`),
+  ADD CONSTRAINT `fk_VentasProducto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`Id_Producto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
