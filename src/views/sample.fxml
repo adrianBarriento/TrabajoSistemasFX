@@ -320,7 +320,7 @@
                </image>
             </ImageView>
             <ComboBox fx:id="cmbFechaFacturaCliente" layoutX="90.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha" />
-            <ImageView fx:id="idDescargarFacturaCliente" fitHeight="25.0" fitWidth="21.0" layoutX="268.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="idDescargarFacturaCliente" fitHeight="25.0" fitWidth="21.0" layoutX="268.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#newFactura">
                <image>
                   <Image url="@../images/icons8-descargar-24.png" />
                </image>

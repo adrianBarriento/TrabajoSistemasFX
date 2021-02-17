@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import models.*;
+import reports_manager.Factura;
 import views.*;
 
 import java.util.ArrayList;
@@ -476,5 +477,9 @@ public class Controller {
     public void salirFacturas(MouseEvent mouseEvent){
         idVentanaFacturaCliente.setVisible(false);
         id_base.setDisable(false);
+    }
+
+    public void newFactura(MouseEvent mouseEvent){
+        new Factura(modeloTablaClientes.getFecha(cmbFechaFacturaCliente), modeloTablaClientes.getId(id_tablaClientes)).newFactura();
     }
 }

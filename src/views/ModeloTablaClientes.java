@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import models.Clientes;
 import models.Common;
 import models.Poblacion;
+import reports_manager.Factura;
 
 import java.sql.*;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class ModeloTablaClientes {
     @FXML
     private TableColumn<Clientes, Integer> columnaPoblacion = new TableColumn<>("Codigo Postal");
 
+    private Factura factura;
     Common c =new Common();
 
     public void crearTablaClientes(TableView<Clientes> id_tablaClientes, AnchorPane vntEmergente, ComboBox cmbFactura, AnchorPane id_base){
@@ -48,17 +50,25 @@ public class ModeloTablaClientes {
                     java.util.Date d = new java.util.Date();
                     java.sql.Date date2 = new java.sql.Date(d.getTime());
                     System.out.println(date2);
-
+                    Clientes cliente = id_tablaClientes.getSelectionModel().getSelectedItem();
                     vntEmergente.setVisible(true);
                     ObservableList<java.sql.Date> cmbList = new Common().obtenerVentasXfecha(id_tablaClientes.getSelectionModel().getSelectedItem());
 
                     cmbFactura.setItems(cmbList);
                     cmbFactura.setPromptText("Fecha");
                     id_base.setDisable(true);
+
                 }
             }
         });
 
+    }
+
+    public int getId(TableView<Clientes> id){
+        return id.getSelectionModel().getSelectedItem().getIdCliente();
+    }
+    public Date getFecha(ComboBox<java.sql.Date> cmb){
+        return cmb.getValue();
     }
 
     public void llenarTabla(TableView id_tablaClientes){
