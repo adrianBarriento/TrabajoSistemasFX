@@ -43,11 +43,12 @@ public class Common {
     public Connection getConexion(){
         Connection conexion=null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas?serverTimezone=UTC",
                     "sistemas",
                     "sistemas");
         } catch (SQLException throwables) {
             new Common().vtnAlertaError();
+            throwables.printStackTrace();
             System.out.println("Error en conexion");
         }
         return conexion;
@@ -146,6 +147,7 @@ public class Common {
                 int id_producto = datos.getInt(3);
                 int id_personal = datos.getInt(4);
                 int cantidad = datos.getInt(5);
+                int factura = datos.getInt(7);
                 for (Productos p:listaProductos) {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
@@ -163,7 +165,7 @@ public class Common {
                     }
                 }
 
-                Ventas ventas = new Ventas(precioUnitario, producto, cliente, vendedor, id_producto, cantidad);
+                Ventas ventas = new Ventas(precioUnitario, producto, cliente, vendedor, id_producto, cantidad, factura);
                 listaVentas.add(ventas);
             }
         } catch (SQLException e) {
@@ -302,5 +304,27 @@ public class Common {
             vtnAlertaError();
         }
         return listaVentas;
+    }
+
+    public Ventas getFactura(){
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        Ventas venta = null;
+        try {
+            query = connection.prepareStatement("SELECT * FROM `ventas` order by factura DESC LIMIT 1 ");
+            datos = query.executeQuery();
+            while(datos.next()){
+                int id_cliente = datos.getInt(2);
+
+                Date fecha = datos.getDate(6);
+                int factura = datos.getInt(7);
+
+                venta = new Ventas(id_cliente, fecha, factura);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return  venta;
     }
 }
