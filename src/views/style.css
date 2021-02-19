@@ -20,7 +20,7 @@
 }
 
 .table-view:row-selection .table-row-cell:filled:selected:hover {
-   -fx-background-color: rgba(228, 183, 236, 0.90);
+   -fx-background-color: rgba(228, 183, 236, 0.9);
 }
 
 
