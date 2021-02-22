@@ -239,6 +239,11 @@
             <Label layoutX="261.0" layoutY="370.0" text="Precio Venta" textFill="WHITE" />
             <TextField fx:id="id_PrecioCompra" layoutX="337.0" layoutY="398.0" prefHeight="25.0" prefWidth="178.0" />
             <Label layoutX="255.0" layoutY="402.0" text="Precio Compra" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="539.0" layoutY="436.0" onMouseClicked="#mostrarPaneInformeCompras" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-abrir-documento-24.png" />
+               </image>
+            </ImageView>
 
             </children>
       </AnchorPane>
@@ -320,11 +325,27 @@
                </image>
             </ImageView>
             <ComboBox fx:id="cmbFechaFacturaCliente" layoutX="90.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha" />
-            <ImageView fx:id="idDescargarFacturaCliente" fitHeight="25.0" fitWidth="21.0" layoutX="268.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#newFactura">
+            <ImageView fx:id="idDescargarFacturaCliente" fitHeight="25.0" fitWidth="21.0" layoutX="268.0" layoutY="41.0" onMouseClicked="#newFactura" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-descargar-24.png" />
                </image>
             </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="idVentanaInformeCompra" layoutX="119.0" layoutY="246.0" prefHeight="86.0" prefWidth="379.0" style="-fx-background-color: #212F3D;" visible="false">
+         <children>
+            <ImageView fx:id="id_iconoExitFactura1" fitHeight="36.0" fitWidth="33.0" layoutX="346.0" layoutY="6.0" onMouseClicked="#salirInformeCompras" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="342.0">
+               <image>
+                  <Image url="@../images/icons8-cerrar-ventana-48.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="id_cmbFechaInicioCompras" layoutX="14.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha Inicio" />
+            <ImageView fx:id="idDescargarFacturaCliente1" fitHeight="25.0" fitWidth="21.0" layoutX="348.0" layoutY="41.0" onMouseClicked="#newInformeCompra" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-descargar-24.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="id_cmbFechaFinCompras" layoutX="180.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha FIn" />
          </children>
       </AnchorPane>
    </children>

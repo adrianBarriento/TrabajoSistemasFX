@@ -303,4 +303,24 @@ public class Common {
         }
         return listaVentas;
     }
+
+    public ObservableList<Date> obtenerFechaCompras(){
+        ObservableList<Date> listaCompras = FXCollections.observableArrayList();
+
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        try {
+            query = connection.prepareStatement("SELECT fecha FROM `compras`");
+            datos = query.executeQuery();
+            while(datos.next()){
+                Date fecha = datos.getDate(1);
+
+                listaCompras.add(fecha);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return listaCompras;
+    }
 }
