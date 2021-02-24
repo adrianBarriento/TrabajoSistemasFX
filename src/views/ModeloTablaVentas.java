@@ -109,11 +109,16 @@ public class ModeloTablaVentas {
             Ventas venta = new Common().getFactura();
             String fecha1 = date2.toString();
 
-            if(venta.getFecha().toString().equals(fecha1) && venta.getIdCliente()==idCliente){
-                factura = venta.getFactura();
+            if(venta!=null){
+                if(venta.getFecha().toString().equals(fecha1) && venta.getIdCliente()==idCliente){
+                    factura = venta.getFactura();
+                }else{
+                    factura += venta.getFactura();
+                }
             }else{
-                factura += venta.getFactura();
+                factura =1;
             }
+
 
 
             try {

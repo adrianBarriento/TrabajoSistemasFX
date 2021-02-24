@@ -19,7 +19,7 @@ public class Factura {
     private Date fecha;
     private int idFactura;
     private JasperReport report;
-    public static final String PATH = "src\\reports\\factura.jasper";
+    public static final String PATH = "src\\factura.jasper";
     private Map parametros;
     private Connection connection;
 
