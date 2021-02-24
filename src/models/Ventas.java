@@ -5,31 +5,27 @@ import java.sql.*;
 public class Ventas {
     Common common = new Common();
     private int cantidad;
-
-
-
-    private int factura;
-    private int idCliente;
     private float precio;
     private float precioUnitario;
     private String productoString, clienteString, vendedorString;
+    private int factura;
+    private int idCliente;
     private Date fecha;
 
-    public Ventas(float precioUnitario, String productoString, String clienteString, String vendedorString, int producto, int cantidad, int factura) {
+    public Ventas(float precioUnitario, String productoString, String clienteString, String vendedorString, int producto, int cantidad) {
         this.precioUnitario = precioUnitario;
         this.productoString = productoString;
         this.clienteString = clienteString;
         this.vendedorString = vendedorString;
         this.cantidad = cantidad;
-        this.factura = factura;
         precio = obtenerPrecio(producto, cantidad);
     }
-    public Ventas(int idCliente, Date fecha, int factura) {
-        this.idCliente = idCliente;
+
+    public Ventas (int id_cliente, Date fecha, int factura){
+        this.idCliente = id_cliente;
         this.fecha = fecha;
         this.factura = factura;
     }
-
 
     public Ventas(){}
 

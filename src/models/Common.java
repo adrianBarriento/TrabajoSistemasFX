@@ -323,4 +323,26 @@ public class Common {
         }
         return listaCompras;
     }
+
+    public Ventas getFactura(){
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        Ventas venta = null;
+        try {
+            query = connection.prepareStatement("SELECT * FROM `ventas` order by factura DESC LIMIT 1 ");
+            datos = query.executeQuery();
+            while(datos.next()){
+                int id_cliente = datos.getInt(2);
+
+                Date fecha = datos.getDate(6);
+                int factura = datos.getInt(7);
+
+                venta = new Ventas(id_cliente, fecha, factura);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+        }
+        return  venta;
+    }
 }
