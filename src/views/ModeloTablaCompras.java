@@ -12,6 +12,7 @@ import models.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class ModeloTablaCompras {
     @FXML
@@ -27,7 +28,7 @@ public class ModeloTablaCompras {
 
     Common c =new Common();
 
-    public void crearTablaCompras(TableView<Compras> id_tablaCompras){
+    public void crearTablaCompras(TableView<Compras> id_tablaCompras, ComboBox fechaInico, ComboBox fechaFin){
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaProducto.setPrefWidth(129.4);
         this.columnaProveedor.setCellValueFactory(new PropertyValueFactory<>("proveedorString"));
@@ -39,12 +40,27 @@ public class ModeloTablaCompras {
         this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
         id_tablaCompras.getColumns().addAll(columnaProducto, columnaProveedor,  columnaCantidad, columnaPrecioUnitario, columnaPrecio);
+
+        ObservableList<java.sql.Date> cmbList = new Common().obtenerFechaCompras();
+
+        fechaInico.setItems(cmbList);
+        fechaFin.setItems(cmbList);
     }
 
     public void llenarTabla(TableView id_tablaCompras){
         ObservableList<Compras> data = c.obtenerCompras();
         id_tablaCompras.setItems(data);
     }
+
+    public Date getFechaInicio(ComboBox<java.sql.Date> cmb){
+        return cmb.getValue();
+    }
+
+    public Date getFechaFin(ComboBox<java.sql.Date> cmb){
+        return cmb.getValue();
+    }
+
+
     public void newCompra(TableView id_tablaCompras, ComboBox cmb_proveedor, TextField txtProveedor, ComboBox cmbProducto , TextField cantidad, TextField precioCompra,TextField precioVenta){
         Connection conexion=new Common().getConexion();
         String proveedor = String.valueOf(cmb_proveedor.getValue());

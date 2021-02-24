@@ -43,12 +43,11 @@ public class Common {
     public Connection getConexion(){
         Connection conexion=null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas?serverTimezone=UTC",
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
                     "sistemas",
                     "sistemas");
         } catch (SQLException throwables) {
             new Common().vtnAlertaError();
-            throwables.printStackTrace();
             System.out.println("Error en conexion");
         }
         return conexion;
@@ -147,7 +146,6 @@ public class Common {
                 int id_producto = datos.getInt(3);
                 int id_personal = datos.getInt(4);
                 int cantidad = datos.getInt(5);
-                int factura = datos.getInt(7);
                 for (Productos p:listaProductos) {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
@@ -165,7 +163,7 @@ public class Common {
                     }
                 }
 
-                Ventas ventas = new Ventas(precioUnitario, producto, cliente, vendedor, id_producto, cantidad, factura);
+                Ventas ventas = new Ventas(precioUnitario, producto, cliente, vendedor, id_producto, cantidad);
                 listaVentas.add(ventas);
             }
         } catch (SQLException e) {
@@ -306,25 +304,23 @@ public class Common {
         return listaVentas;
     }
 
-    public Ventas getFactura(){
+    public ObservableList<Date> obtenerFechaCompras(){
+        ObservableList<Date> listaCompras = FXCollections.observableArrayList();
+
         Connection connection = getConexion();
         PreparedStatement query;
         ResultSet datos;
-        Ventas venta = null;
         try {
-            query = connection.prepareStatement("SELECT * FROM `ventas` order by factura DESC LIMIT 1 ");
+            query = connection.prepareStatement("SELECT fecha FROM `compras`");
             datos = query.executeQuery();
             while(datos.next()){
-                int id_cliente = datos.getInt(2);
+                Date fecha = datos.getDate(1);
 
-                Date fecha = datos.getDate(6);
-                int factura = datos.getInt(7);
-
-                venta = new Ventas(id_cliente, fecha, factura);
+                listaCompras.add(fecha);
             }
         } catch (SQLException e) {
             vtnAlertaError();
         }
-        return  venta;
+        return listaCompras;
     }
 }

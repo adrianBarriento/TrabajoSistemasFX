@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import models.*;
 import reports_manager.Factura;
+import reports_manager.InformeCompras;
 import views.*;
 
 import java.sql.Date;
@@ -109,6 +110,11 @@ public class Controller {
     public ImageView PrimeraOpcion;
     public ImageView id_iconoExitFactura;
 
+    //Informe compras
+    public AnchorPane idVentanaInformeCompra;
+    public ComboBox id_cmbFechaInicioCompras;
+    public ComboBox id_cmbFechaFinCompras;
+
 
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
@@ -178,19 +184,6 @@ public class Controller {
     }
 
     public void comprobarEmpleado(MouseEvent mouseEvent){
-        new Usuarios().login(id_txtLogin, id_paneLogin, id_base);
-
-        //llenar toddas las tablas (no estan los metodos hechos)
-
-        modeloTablaVentas.crearTablaVentas(id_TablaVentas);
-        modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
-        modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
-        modeloTablaEmpleados.crearTabla(id_tabla);
-        modeloTablaProductos.crearTablaProductos(id_tablaProducto);
-        modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
-        modeloTablaCompras.crearTablaCompras(id_TablaCompras);
-        modeloTablaEscandallos.crearTabla(id_tablaPC);
-
 
     }
     public void comprobarEmpleadoEnter(KeyEvent mouseEvent){
@@ -204,7 +197,7 @@ public class Controller {
         modeloTablaEmpleados.crearTabla(id_tabla);
         modeloTablaProductos.crearTablaProductos(id_tablaProducto);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
-        modeloTablaCompras.crearTablaCompras(id_TablaCompras);
+        modeloTablaCompras.crearTablaCompras(id_TablaCompras, id_cmbFechaInicioCompras, id_cmbFechaFinCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
         listaCmb = llenarCmb();
     }
@@ -486,5 +479,22 @@ public class Controller {
         int idCliente = modeloTablaClientes.getId(id_tablaClientes);
         System.out.println("......................"+modeloTablaClientes.getFactura(fecha, idCliente));
         new Factura(fecha, idCliente, modeloTablaClientes.getFactura(fecha, idCliente)).newFactura();
+    }
+
+    public void newInformeCompra(MouseEvent mouseEvent){
+        new InformeCompras(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaCompras.getFechaFin(id_cmbFechaFinCompras)).newInformeCompra();
+    }
+
+    public void salirInformeCompras(MouseEvent mouseEvent){
+        idVentanaInformeCompra.setVisible(false);
+        id_base.setDisable(false);
+    }
+
+    public void mostrarPaneInformeCompras(MouseEvent mouseEvent){
+        idVentanaInformeCompra.setVisible(true);
+        id_base.setDisable(true);
+
+        id_cmbFechaInicioCompras.setPromptText("Fecha Inicio");
+        id_cmbFechaFinCompras.setPromptText("Fecha Fin");
     }
 }
