@@ -1,9 +1,6 @@
 package models;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Ventas {
     Common common = new Common();
@@ -11,6 +8,9 @@ public class Ventas {
     private float precio;
     private float precioUnitario;
     private String productoString, clienteString, vendedorString;
+    private int factura;
+    private int idCliente;
+    private Date fecha;
 
     public Ventas(float precioUnitario, String productoString, String clienteString, String vendedorString, int producto, int cantidad) {
         this.precioUnitario = precioUnitario;
@@ -19,6 +19,12 @@ public class Ventas {
         this.vendedorString = vendedorString;
         this.cantidad = cantidad;
         precio = obtenerPrecio(producto, cantidad);
+    }
+
+    public Ventas (int id_cliente, Date fecha, int factura){
+        this.idCliente = id_cliente;
+        this.fecha = fecha;
+        this.factura = factura;
     }
 
     public Ventas(){}
@@ -68,6 +74,30 @@ public class Ventas {
 
     public void setVendedorString(String vendedorString) {
         this.vendedorString = vendedorString;
+    }
+
+    public int getFactura() {
+        return factura;
+    }
+
+    public void setFactura(int factura) {
+        this.factura = factura;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     private float obtenerPrecio(int producto, int cantidad){

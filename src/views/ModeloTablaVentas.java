@@ -72,10 +72,10 @@ public class ModeloTablaVentas {
 
 
         if(Integer.parseInt(cantidad.getText())<stock){
-           Connection conexion=new Common().getConexion();
-           PreparedStatement query;
+            Connection conexion=new Common().getConexion();
+            PreparedStatement query;
 
-           stock = stock-(Integer.parseInt(cantidad.getText()));
+            stock = stock-(Integer.parseInt(cantidad.getText()));
             try {
                 query = conexion.prepareStatement("UPDATE `productos` SET `Stock` = ? WHERE `Id_Producto` = " +idProducto);
                 query.setInt(1, stock);
@@ -84,43 +84,57 @@ public class ModeloTablaVentas {
                 new Common().vtnAlertaError();
                 e.printStackTrace();
             }
-           int idCliente=0;
-           ObservableList<Clientes> listClientes = new Common().obtenerClientes();
-           for(Clientes c:listClientes){
-               String cl = c.getNombre()+" "+c.getApellidos();
-               if(cl.equals(String.valueOf(cliente.getValue()))){
-                   idCliente = c.getIdCliente();
-               }
-           }
+            int idCliente=0;
+            ObservableList<Clientes> listClientes = new Common().obtenerClientes();
+            for(Clientes c:listClientes){
+                String cl = c.getNombre()+" "+c.getApellidos();
+                if(cl.equals(String.valueOf(cliente.getValue()))){
+                    idCliente = c.getIdCliente();
+                }
+            }
 
 
-           int idVendedor=0;
-           ObservableList<Employe> listVendedores = new Common().obtenerEmpleados();
-           for(Employe e:listVendedores){
-               String emp = e.getNombre()+" "+e.getApellido();
-               if(emp.equals(String.valueOf(vendedor.getValue()))){
-                   idVendedor = e.getIdEmpleado();
-               }
-           }
+            int idVendedor=0;
+            ObservableList<Employe> listVendedores = new Common().obtenerEmpleados();
+            for(Employe e:listVendedores){
+                String emp = e.getNombre()+" "+e.getApellido();
+                if(emp.equals(String.valueOf(vendedor.getValue()))){
+                    idVendedor = e.getIdEmpleado();
+                }
+            }
 
-           try {
-               query = conexion.prepareStatement("INSERT INTO ventas(id_cliente, id_producto, id_personal, cantidad) VALUES (?,?,?,?)");
+            java.util.Date d = new java.util.Date();
+            java.sql.Date date2 = new java.sql.Date(d.getTime());
+            int factura=1;
+            Ventas venta = new Common().getFactura();
+            String fecha1 = date2.toString();
 
-               query.setInt(1, idCliente);
-               query.setInt(2, idProducto);
-               query.setInt(3, idVendedor);
-               query.setInt(4, Integer.parseInt(cantidad.getText()));
+            if(venta.getFecha().toString().equals(fecha1) && venta.getIdCliente()==idCliente){
+                factura = venta.getFactura();
+            }else{
+                factura += venta.getFactura();
+            }
 
-               query.execute();
-               ObservableList<Ventas> data = c.obtenerVentas();
 
-               id_tablaVentas.setItems(data);
-               c.vtnMensajeExitoInsercion();
-           } catch (SQLException e) {
-               new Common().vtnAlertaError();
-               e.printStackTrace();
-           }
-       }else{
+            try {
+                query = conexion.prepareStatement("INSERT INTO ventas(id_cliente, id_producto, id_personal, cantidad, fecha, factura) VALUES (?,?,?,?,?,?)");
+
+                query.setInt(1, idCliente);
+                query.setInt(2, idProducto);
+                query.setInt(3, idVendedor);
+                query.setInt(4, Integer.parseInt(cantidad.getText()));
+                query.setDate(5, date2);
+                query.setInt(6, factura);
+                query.execute();
+                ObservableList<Ventas> data = c.obtenerVentas();
+
+                id_tablaVentas.setItems(data);
+                c.vtnMensajeExitoInsercion();
+            } catch (SQLException e) {
+                new Common().vtnAlertaError();
+                e.printStackTrace();
+            }
+        }else{
             new Common().vtnAlertaStock(stock);
         }
     }
