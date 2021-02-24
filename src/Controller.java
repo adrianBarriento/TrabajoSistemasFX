@@ -15,6 +15,7 @@ import models.*;
 import reports_manager.Factura;
 import views.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -480,6 +481,10 @@ public class Controller {
     }
 
     public void newFactura(MouseEvent mouseEvent){
-        new Factura(modeloTablaClientes.getFecha(cmbFechaFacturaCliente), modeloTablaClientes.getId(id_tablaClientes)).newFactura();
+        java.util.Date d = modeloTablaClientes.getFecha(cmbFechaFacturaCliente);
+        java.sql.Date fecha = new java.sql.Date(d.getTime());
+        int idCliente = modeloTablaClientes.getId(id_tablaClientes);
+        System.out.println("......................"+modeloTablaClientes.getFactura(fecha, idCliente));
+        new Factura(fecha, idCliente, modeloTablaClientes.getFactura(fecha, idCliente)).newFactura();
     }
 }

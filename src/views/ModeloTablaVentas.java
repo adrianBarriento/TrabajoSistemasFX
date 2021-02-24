@@ -11,10 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Date;
 
 public class ModeloTablaVentas {
     @FXML
@@ -103,14 +101,28 @@ public class ModeloTablaVentas {
                }
            }
 
-           try {
-               query = conexion.prepareStatement("INSERT INTO ventas(id_cliente, id_producto, id_personal, cantidad) VALUES (?,?,?,?)");
+            java.util.Date d = new java.util.Date();
+            java.sql.Date date2 = new java.sql.Date(d.getTime());
+            int factura=1;
+            Ventas venta = new Common().getFactura();
+            String fecha1 = date2.toString();
+
+            if(venta.getFecha().toString().equals(fecha1) && venta.getIdCliente()==idCliente){
+                factura = venta.getFactura();
+            }else{
+                factura += venta.getFactura();
+            }
+
+
+            try {
+               query = conexion.prepareStatement("INSERT INTO ventas(id_cliente, id_producto, id_personal, cantidad, fecha, factura) VALUES (?,?,?,?,?,?)");
 
                query.setInt(1, idCliente);
                query.setInt(2, idProducto);
                query.setInt(3, idVendedor);
                query.setInt(4, Integer.parseInt(cantidad.getText()));
-
+               query.setDate(5, date2);
+               query.setInt(6, factura);
                query.execute();
                ObservableList<Ventas> data = c.obtenerVentas();
 

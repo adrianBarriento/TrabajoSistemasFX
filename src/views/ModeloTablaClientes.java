@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import models.Clientes;
 import models.Common;
 import models.Poblacion;
+import models.Ventas;
 import reports_manager.Factura;
 
 import java.sql.*;
@@ -69,6 +70,25 @@ public class ModeloTablaClientes {
     }
     public Date getFecha(ComboBox<java.sql.Date> cmb){
         return cmb.getValue();
+    }
+
+    public int getFactura(java.sql.Date fecha, int idCliente){
+        Connection connection = new Common().getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        int factura = -1;
+        try {
+            query = connection.prepareStatement("SELECT factura FROM `ventas` WHERE fecha = '"+fecha+
+                    "' AND id_cliente = "+idCliente+" GROUP BY factura");
+            datos = query.executeQuery();
+            while(datos.next()){
+                factura = datos.getInt(1);
+            }
+        } catch (SQLException e) {
+
+        }
+        System.out.println(factura);
+        return  factura;
     }
 
     public void llenarTabla(TableView id_tablaClientes){

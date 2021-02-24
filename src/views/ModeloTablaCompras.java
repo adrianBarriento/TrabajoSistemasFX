@@ -81,8 +81,8 @@ public class ModeloTablaCompras {
             try {
                 query = conexion.prepareStatement("UPDATE `productos` SET `Stock` = ?, `PrecioCompra` = ?, `PrecioVenta` = ? WHERE `Id_Producto` = " +idProducto);
                 query.setInt(1, stock);
-                query.setInt(2, Integer.parseInt(precioCompra.getText()));
-                query.setInt(3, Integer.parseInt(precioVenta.getText()));
+                query.setFloat(2, Float.parseFloat(precioCompra.getText()));
+                query.setFloat(3, Float.parseFloat(precioVenta.getText()));
                 query.execute();
             } catch (SQLException e) {
                 new Common().vtnAlertaError();

@@ -5,6 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexBBDD"/>
 	<parameter name="idCliente" class="java.lang.String"/>
 	<parameter name="fecha" class="java.sql.Date"/>
+	<parameter name="factura" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT productos.`Marca`,
 	productos.`Modelo`,
@@ -70,6 +71,10 @@ WHERE
 	<variable name="importeFinal" class="java.lang.Integer" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$V{importe}]]></variableExpression>
 	</variable>
+	<variable name="fac" class="java.lang.Integer">
+		<variableExpression><![CDATA[$P{factura}]]></variableExpression>
+		<initialValueExpression><![CDATA[1111]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -100,7 +105,7 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="55" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<textField>
 				<reportElement x="79" y="0" width="100" height="30" uuid="ff7ef32d-6738-4125-b249-fa5c571aebd8"/>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
@@ -113,6 +118,10 @@ WHERE
 				<reportElement x="29" y="0" width="50" height="30" uuid="0cd7d95d-172e-4dc4-8bff-a82e66d48b26"/>
 				<text><![CDATA[Cliente:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="29" y="20" width="100" height="30" uuid="abc6f876-7733-4d1b-bfc7-e62d04b15971"/>
+				<textFieldExpression><![CDATA[$P{factura}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
