@@ -90,8 +90,8 @@ WHERE
 				<reportElement x="10" y="90" width="534" height="1" uuid="6e00a2e7-bd7a-43a7-87b7-c64deac26a13"/>
 			</rectangle>
 			<image>
-				<reportElement x="20" y="0" width="110" height="80" uuid="a3d50b74-e6fc-4c95-ba87-9f7228fa13a9"/>
-				<imageExpression><![CDATA["C:/Users/Master PC/Documents/GitHub/TrabajoSistemasFX/src/images/iconoempresa.JPG"]]></imageExpression>
+				<reportElement x="29" y="0" width="80" height="80" uuid="a3d50b74-e6fc-4c95-ba87-9f7228fa13a9"/>
+				<imageExpression><![CDATA["./images/iconoempresa.JPG"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="470" y="50" width="100" height="30" uuid="6451efd2-d4ad-4509-9e8d-85583a02efb6"/>
