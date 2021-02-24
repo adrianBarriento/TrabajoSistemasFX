@@ -43,7 +43,7 @@ public class Common {
     public Connection getConexion(){
         Connection conexion=null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas",
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_sistemas?serverTimezone=UTC",
                     "sistemas",
                     "sistemas");
         } catch (SQLException throwables) {
@@ -146,6 +146,7 @@ public class Common {
                 int id_producto = datos.getInt(3);
                 int id_personal = datos.getInt(4);
                 int cantidad = datos.getInt(5);
+                int factura = datos.getInt(7);
                 for (Productos p:listaProductos) {
                     if(p.getIdProducto()==id_producto){
                         producto = p.getMarca()+" "+p.getModelo();
