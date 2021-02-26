@@ -17,7 +17,7 @@ import java.util.Map;
 public class InformeCompras {
     private Date fechaInicio, fechaFinal;
     private JasperReport report;
-    public static final String PATH_COMPRAS = "src\\reports\\InformeCompra.jasper";
+    public static final String PATH_COMPRAS = "src\\InformeCompra.jasper";
     private Map parametros;
     private Connection connection;
 

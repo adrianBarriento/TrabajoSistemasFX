@@ -90,7 +90,7 @@ WHERE compras.fecha BETWEEN $P{fechaInicio} AND  $P{fechaFin}]]>
 			</rectangle>
 			<image>
 				<reportElement x="20" y="-10" width="90" height="80" uuid="3bbb8a1a-23d9-4ef6-997a-6297bc216efd"/>
-				<imageExpression><![CDATA["C:/Users/Master PC/Documents/GitHub/TrabajoSistemasFX/src/images/iconoempresa.JPG"]]></imageExpression>
+				<imageExpression><![CDATA["./images/iconoempresa.JPG"]]></imageExpression>
 			</image>
 		</band>
 	</title>
