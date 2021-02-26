@@ -503,7 +503,7 @@ public class Controller {
     }
 
     public void newInformeVentas(MouseEvent mouseEvent){
-        new Informes(modeloTablaVentas.getFechaInicio(id_cmbFechaInicioVentas), modeloTablaCompras.getFechaFin(id_cmbFechaFinVentas)).newInformeCompra();
+        new Informes(modeloTablaVentas.getFechaInicio(id_cmbFechaInicioVentas), modeloTablaCompras.getFechaFin(id_cmbFechaFinVentas)).newInformeVentas();
     }
 
     public void mostrarPaneInformeVentas(MouseEvent mouseEvent){
