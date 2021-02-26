@@ -62,7 +62,7 @@ WHERE ventas.fecha BETWEEN $P{fechaInicio} AND  $P{fechaFin}]]>
 	<variable name="importeTotal" class="java.lang.Float" calculation="Sum">
 		<variableExpression><![CDATA[$V{total}]]></variableExpression>
 	</variable>
-	<variable name="precioSinIva" class="java.lang.String">
+	<variable name="precioSinIva" class="java.lang.Float">
 		<variableExpression><![CDATA[$F{PrecioVenta}*$F{IVA}]]></variableExpression>
 	</variable>
 	<background>
