@@ -13,10 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import models.*;
 import reports_manager.Factura;
-import reports_manager.InformeCompras;
+import reports_manager.Informes;
 import views.*;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -482,7 +481,7 @@ public class Controller {
     }
 
     public void newInformeCompra(MouseEvent mouseEvent){
-        new InformeCompras(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaCompras.getFechaFin(id_cmbFechaFinCompras)).newInformeCompra();
+        new Informes(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaCompras.getFechaFin(id_cmbFechaFinCompras)).newInformeCompra();
     }
 
     public void salirInformeCompras(MouseEvent mouseEvent){
