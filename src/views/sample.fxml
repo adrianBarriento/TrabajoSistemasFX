@@ -170,6 +170,11 @@
             <ComboBox fx:id="cmb_VentasProducto" layoutX="77.0" layoutY="339.0" prefWidth="150.0" />
             <ComboBox fx:id="cmb_VentasCliente" layoutX="77.0" layoutY="368.0" prefWidth="150.0" />
             <ComboBox fx:id="cmb_VentasVendedor" layoutX="77.0" layoutY="399.0" prefWidth="150.0" />
+            <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="539.0" layoutY="436.0" onMouseClicked="#mostrarPaneInformeVentas" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-abrir-documento-24.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="id_poblaciones" layoutX="16.0" layoutY="89.0" prefHeight="463.0" prefWidth="577.0" visible="false">
@@ -346,6 +351,22 @@
                </image>
             </ImageView>
             <ComboBox fx:id="id_cmbFechaFinCompras" layoutX="180.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha FIn" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="idVentanaInformeVentas" layoutX="119.0" layoutY="227.0" prefHeight="86.0" prefWidth="379.0" style="-fx-background-color: #212F3D;" visible="false">
+         <children>
+            <ImageView fx:id="id_iconoExitFactura11" fitHeight="36.0" fitWidth="33.0" layoutX="346.0" layoutY="6.0" onMouseClicked="#salirInformeVentas" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="342.0">
+               <image>
+                  <Image url="@../images/icons8-cerrar-ventana-48.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="id_cmbFechaInicioVentas" layoutX="14.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha Inicio" />
+            <ImageView fx:id="idDescargarFacturaCliente11" fitHeight="25.0" fitWidth="21.0" layoutX="348.0" layoutY="41.0" onMouseClicked="#newInformeVentas" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-descargar-24.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="id_cmbFechaFinVentas" layoutX="180.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha FIn" />
          </children>
       </AnchorPane>
    </children>

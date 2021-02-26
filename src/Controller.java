@@ -114,6 +114,13 @@ public class Controller {
     public ComboBox id_cmbFechaInicioCompras;
     public ComboBox id_cmbFechaFinCompras;
 
+    //Infome ventas
+    public AnchorPane idVentanaInformeVentas;
+    public ImageView id_iconoExitFactura11;
+    public ComboBox id_cmbFechaInicioVentas;
+    public ImageView idDescargarFacturaCliente11;
+    public ComboBox id_cmbFechaFinVentas;
+
 
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
@@ -182,15 +189,13 @@ public class Controller {
         Platform.exit();
     }
 
-    public void comprobarEmpleado(MouseEvent mouseEvent){
 
-    }
     public void comprobarEmpleadoEnter(KeyEvent mouseEvent){
         new Usuarios().loginEnter(id_txtLogin, id_paneLogin, id_base);
 
         //llenar toddas las tablas (no estan los metodos hechos)
 
-        modeloTablaVentas.crearTablaVentas(id_TablaVentas);
+        modeloTablaVentas.crearTablaVentas(id_TablaVentas, id_cmbFechaInicioVentas, id_cmbFechaFinVentas);
         modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
@@ -481,7 +486,7 @@ public class Controller {
     }
 
     public void newInformeCompra(MouseEvent mouseEvent){
-        new Informes(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaCompras.getFechaFin(id_cmbFechaFinCompras)).newInformeCompra();
+        new Informes(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaVentas.getFechaFin(id_cmbFechaFinCompras)).newInformeVentas();
     }
 
     public void salirInformeCompras(MouseEvent mouseEvent){
@@ -495,5 +500,22 @@ public class Controller {
 
         id_cmbFechaInicioCompras.setPromptText("Fecha Inicio");
         id_cmbFechaFinCompras.setPromptText("Fecha Fin");
+    }
+
+    public void newInformeVentas(MouseEvent mouseEvent){
+        new Informes(modeloTablaVentas.getFechaInicio(id_cmbFechaInicioVentas), modeloTablaCompras.getFechaFin(id_cmbFechaFinVentas)).newInformeCompra();
+    }
+
+    public void mostrarPaneInformeVentas(MouseEvent mouseEvent){
+        idVentanaInformeVentas.setVisible(true);
+        id_base.setDisable(true);
+
+        id_cmbFechaInicioVentas.setPromptText("Fecha Inicio");
+        id_cmbFechaFinVentas.setPromptText("Fecha Fin");
+    }
+
+    public void salirInformeVentas(MouseEvent mouseEvent){
+        idVentanaInformeVentas.setVisible(false);
+        id_base.setDisable(false);
     }
 }

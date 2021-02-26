@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class ModeloTablaVentas {
     @FXML
@@ -32,7 +33,7 @@ public class ModeloTablaVentas {
 
     Common c =new Common();
 
-    public void crearTablaVentas(TableView<Ventas> id_tablaVentas){
+    public void crearTablaVentas(TableView<Ventas> id_tablaVentas, ComboBox fechaInico, ComboBox fechaFin){
         System.out.println("ventas:  "+id_tablaVentas.getWidth());
         this.columnaProducto.setCellValueFactory(new PropertyValueFactory<>("productoString"));
         this.columnaProducto.setPrefWidth(101.00);
@@ -48,6 +49,11 @@ public class ModeloTablaVentas {
         this.columnaPrecio.setPrefWidth(70.00);
 
         id_tablaVentas.getColumns().addAll(columnaProducto, columnaCliente, columnaVendedor,  columnaCantidad, columnaPrecioUnitario, columnaPrecio);
+
+        ObservableList<java.sql.Date> cmbList = new Common().obtenerFechaVentas();
+
+        fechaInico.setItems(cmbList);
+        fechaFin.setItems(cmbList);
     }
 
     public void llenarTabla(TableView id_tablaVentas){
@@ -142,5 +148,12 @@ public class ModeloTablaVentas {
         }else{
             new Common().vtnAlertaStock(stock);
         }
+    }
+    public Date getFechaInicio(ComboBox<java.sql.Date> cmb){
+        return cmb.getValue();
+    }
+
+    public Date getFechaFin(ComboBox<java.sql.Date> cmb){
+        return cmb.getValue();
     }
 }
