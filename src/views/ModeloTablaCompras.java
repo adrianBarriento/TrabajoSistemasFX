@@ -117,11 +117,16 @@ public class ModeloTablaCompras {
         }
 
         try {
-            query = conexion.prepareStatement("INSERT INTO compras(idProducto, idProveedor, cantidad) VALUES (?,?,?)");
+            query = conexion.prepareStatement("INSERT INTO compras(idProducto, idProveedor, cantidad, fecha) VALUES (?,?,?,?)");
 
             query.setInt(1, idProducto);
             query.setInt(2, idProveedor);
             query.setInt(3, Integer.parseInt(cantidad.getText()));
+
+            java.util.Date d = new java.util.Date();
+            java.sql.Date date2 = new java.sql.Date(d.getTime());
+
+            query.setDate(4, date2);
 
             query.execute();
             ObservableList<Compras> data = c.obtenerCompras();
