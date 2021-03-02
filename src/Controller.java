@@ -121,6 +121,10 @@ public class Controller {
     public ImageView idDescargarFacturaCliente11;
     public ComboBox id_cmbFechaFinVentas;
 
+    //informes y tabla de stocks
+    public AnchorPane id_TablaStock;
+    public TableView id_tablaStock;
+
 
     //ESCANDALLOS
     List<ComboBox> listaCmb = new ArrayList<>();
@@ -199,7 +203,7 @@ public class Controller {
         modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
-        modeloTablaProductos.crearTablaProductos(id_tablaProducto);
+        modeloTablaProductos.crearTablaProductos(id_tablaProducto, id_TablaStock);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras, id_cmbFechaInicioCompras, id_cmbFechaFinCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
@@ -486,7 +490,7 @@ public class Controller {
     }
 
     public void newInformeCompra(MouseEvent mouseEvent){
-        new Informes(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaVentas.getFechaFin(id_cmbFechaFinCompras)).newInformeVentas();
+        new Informes(modeloTablaCompras.getFechaInicio(id_cmbFechaInicioCompras), modeloTablaVentas.getFechaFin(id_cmbFechaFinCompras)).newInformeCompra();
     }
 
     public void salirInformeCompras(MouseEvent mouseEvent){
@@ -517,5 +521,11 @@ public class Controller {
     public void salirInformeVentas(MouseEvent mouseEvent){
         idVentanaInformeVentas.setVisible(false);
         id_base.setDisable(false);
+    }
+
+    public void newInformeStock(MouseEvent mouseEvent){
+        int idProducto = modeloTablaProductos.getId(id_tablaProducto);
+        new Informes().newInformeStockPorArticulo(idProducto);
+        System.out.println(idProducto);
     }
 }

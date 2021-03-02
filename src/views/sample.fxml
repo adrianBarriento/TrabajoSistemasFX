@@ -369,5 +369,19 @@
             <ComboBox fx:id="id_cmbFechaFinVentas" layoutX="180.0" layoutY="39.0" prefWidth="150.0" promptText="Fecha FIn" />
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="id_TablaStock" layoutX="11.0" layoutY="90.0" prefHeight="397.0" prefWidth="566.0" visible="false">
+         <children>
+            <ScrollPane layoutX="9.0" layoutY="14.0" prefHeight="300.0" prefWidth="548.0">
+               <content>
+                  <TableView fx:id="id_tablaStock" prefHeight="298.0" prefWidth="547.0" />
+               </content>
+            </ScrollPane>
+            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="269.0" layoutY="345.0" onMouseClicked="#newInformeStock" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-abrir-documento-24.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

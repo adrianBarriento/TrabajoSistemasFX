@@ -19,6 +19,7 @@ public class Informes {
     private JasperReport report;
     public static final String PATH_COMPRAS = "src\\InformeCompra.jasper";
     public static final String PATH_VENTAS = "src\\InformeVentas.jasper";
+    public static final String PATH_STOCK = "src\\stockReport.jasper";
     private Map parametros;
     private Connection connection;
 
@@ -26,6 +27,9 @@ public class Informes {
         connection = new Common().getConexion();
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
+    }
+    public Informes(){
+        connection = new Common().getConexion();
     }
 
     public void newInformeCompra(){
@@ -50,6 +54,22 @@ public class Informes {
             parametros.put("fechaInicio", fechaInicio);
             parametros.put("fechaFin", fechaFinal);
             report = (JasperReport) JRLoader.loadObjectFromFile(PATH_VENTAS);
+            JasperPrint jprint = JasperFillManager.fillReport(report, parametros, connection);
+
+            JasperViewer viewer = new JasperViewer(jprint, false);
+            viewer.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            viewer.setVisible(true);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void newInformeStockPorArticulo(int idProducto){
+        try {
+            parametros = new HashMap();
+            parametros.put("idProducto", idProducto);
+
+            report = (JasperReport) JRLoader.loadObjectFromFile(PATH_STOCK);
             JasperPrint jprint = JasperFillManager.fillReport(report, parametros, connection);
 
             JasperViewer viewer = new JasperViewer(jprint, false);

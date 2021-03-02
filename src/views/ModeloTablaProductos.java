@@ -1,10 +1,14 @@
 package views;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import models.*;
+import reports_manager.Informes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +33,7 @@ public class ModeloTablaProductos {
 
     Common c =new Common();
 
-    public void crearTablaProductos(TableView<Productos> id_tablaProductos){
+    public void crearTablaProductos(TableView<Productos> id_tablaProductos, AnchorPane vtnStock){
 
         System.out.println("productos:  "+id_tablaProductos.getWidth());
         this.columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("TipoProducto"));
@@ -47,11 +51,25 @@ public class ModeloTablaProductos {
 
         id_tablaProductos.getColumns().addAll(columnaTipoProducto, columnaStock, columnaMarca, columnaModelo, columnaPrecioCompra, columnaPrecioVenta);
 
+        id_tablaProductos.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getClickCount() == 2){
+                    Productos producto = id_tablaProductos.getSelectionModel().getSelectedItem();
+                    vtnStock.setVisible(true);
+
+                }
+            }
+        });
     }
 
     public void llenarTabla(TableView id_tablaProductos){
         ObservableList<Productos> data = c.obtenerProductos();
         id_tablaProductos.setItems(data);
+    }
+
+    public int getId(TableView<Productos> id){
+        return id.getSelectionModel().getSelectedItem().getIdProducto();
     }
 
     public void borrarProductos (TableView<Productos> id_tablaProductos){
