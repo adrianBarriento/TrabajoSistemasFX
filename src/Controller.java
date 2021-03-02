@@ -203,7 +203,7 @@ public class Controller {
         modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
-        modeloTablaProductos.crearTablaProductos(id_tablaProducto, id_TablaStock);
+        modeloTablaProductos.crearTablaProductos(id_tablaProducto, id_TablaStock, d_tablaProductos);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras, id_cmbFechaInicioCompras, id_cmbFechaFinCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
@@ -229,6 +229,7 @@ public class Controller {
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
         id_AnchorPanePC.setVisible(false);
+        id_TablaStock.setVisible(false);
     }
 
     public void ventanaEscandallos(MouseEvent mouseEvent){
@@ -245,6 +246,7 @@ public class Controller {
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
         id_AnchorPanePC.setVisible(true);
+        id_TablaStock.setVisible(false);
     }
     public void ventanaCrearEscandallo(MouseEvent mouseEvent){
         PrimeraOpcion.setVisible(false);
@@ -264,6 +266,7 @@ public class Controller {
         id_segundoCombo.setVisible(false);
         id_tablaCompras.setVisible(false);
         id_AnchorPanePC.setVisible(false);
+        id_TablaStock.setVisible(false);
 
         cmbOrdenador.setItems(new ElegirEscandallo().cogerNombres());
 
@@ -304,6 +307,8 @@ public class Controller {
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
         id_AnchorPanePC.setVisible(false);
+        id_TablaStock.setVisible(false);
+
         if (null != id_cmbCat_gestiion){
             id_cmbCat_gestiion.setItems(rellenarComboBoxGestion);
         }
@@ -326,6 +331,7 @@ public class Controller {
         id_tablaCompras.setVisible(false);
         id_Escandallo.setVisible(false);
         id_AnchorPanePC.setVisible(false);
+        id_TablaStock.setVisible(false);
         if (null != id_cmbComercio){
             id_cmbComercio.setItems(rellenarComboBoxComercio);
         }
