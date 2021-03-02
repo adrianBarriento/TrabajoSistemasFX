@@ -61,6 +61,10 @@ WHERE productos.Id_Producto = $P{idProducto}]]>
 			<rectangle>
 				<reportElement x="-10" y="80" width="570" height="1" uuid="2eff7b27-1c8a-4cf3-82c6-3c80aa7c5727"/>
 			</rectangle>
+			<image>
+				<reportElement x="20" y="-10" width="90" height="80" uuid="33cd27ce-422d-485d-b503-52a395b955e4"/>
+				<imageExpression><![CDATA["./images/iconoempresa.JPG"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -114,7 +118,7 @@ WHERE productos.Id_Producto = $P{idProducto}]]>
 		</band>
 		<band height="60">
 			<subreport>
-				<reportElement x="-15" y="2" width="560" height="56" uuid="61778ef6-cccb-49ba-8b2a-80ba81aeb39d"/>
+				<reportElement x="-20" y="2" width="595" height="56" uuid="61778ef6-cccb-49ba-8b2a-80ba81aeb39d"/>
 				<subreportParameter name="idProducto">
 					<subreportParameterExpression><![CDATA[$P{idProducto}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -132,11 +136,11 @@ WHERE productos.Id_Producto = $P{idProducto}]]>
 				<reportElement x="380" y="20" width="164" height="1" uuid="79260120-cc85-4fe4-8b42-61cd045d29fa"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="430" y="0" width="100" height="30" uuid="bd0b99dd-7764-425a-85a7-c148ecd91600"/>
+				<reportElement x="405" y="-2" width="100" height="30" uuid="bd0b99dd-7764-425a-85a7-c148ecd91600"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[Stock total]]></text>
+				<text><![CDATA[Stock restantes]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="450" y="30" width="60" height="30" uuid="7d2ed0ab-2818-40d7-90dd-31b416d94413"/>
