@@ -12,6 +12,7 @@ public class Common {
     //constantes
     static final String MENSAJE_ERROR="Algo no ha funcionado de manera esperada";
     static final String MENSAJE_EXITO_INSERCION="Exito en la operación!!!";
+    static final String MENSAJE_ERROR_LOGIN="DNI incorrecto";
 
     //Ventanas informativas.
     public void vtnAlertaError(){
@@ -22,6 +23,16 @@ public class Common {
         dialogoAlerta.initStyle(StageStyle.UTILITY);
         dialogoAlerta.showAndWait();
     }
+
+    public void vtnAlertaErrorLogin(){
+        Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
+        dialogoAlerta.setTitle("ERROR");
+        dialogoAlerta.setHeaderText(null);
+        dialogoAlerta.setContentText(MENSAJE_ERROR_LOGIN);
+        dialogoAlerta.initStyle(StageStyle.UTILITY);
+        dialogoAlerta.showAndWait();
+    }
+
     public void vtnAlertaStock(int stock){
         Alert dialogoAlerta = new Alert(Alert.AlertType.ERROR);
         dialogoAlerta.setTitle("NO HAY STOCK");
@@ -365,5 +376,46 @@ public class Common {
             vtnAlertaError();
         }
         return  venta;
+    }
+
+    public ObservableList<Stocks> getStocks(int producto) {
+        ObservableList<Stocks> listaStocks = FXCollections.observableArrayList();
+        Connection connection = getConexion();
+        PreparedStatement query;
+        ResultSet datos;
+        Stocks stock;
+        try {
+            query = connection.prepareStatement("SELECT compras.cantidad, productos.marca, productos.Modelo, compras.fecha" +
+                    " FROM productos " +
+                    " INNER JOIN compras ON productos.Id_Producto = compras.idProducto " +
+                    " WHERE productos.Id_Producto ="+producto);
+            datos = query.executeQuery();
+            while(datos.next()){
+                String marca = datos.getString(2);
+                String modelo = datos.getString(3);
+                Date fecha = datos.getDate(4);
+                int movimientos = +(datos.getInt(1));
+                stock = new Stocks(marca, modelo, fecha, movimientos);
+                listaStocks.add(stock);
+            }
+
+
+            query = connection.prepareStatement("SELECT ventas.cantidad, productos.marca, productos.Modelo, ventas.fecha" +
+                    " FROM ventas INNER JOIN productos ON ventas.id_producto = productos.Id_Producto" +
+                    " WHERE productos.Id_Producto = " +producto);
+            datos = query.executeQuery();
+            while(datos.next()){
+                String marca = datos.getString(2);
+                String modelo = datos.getString(3);
+                Date fecha = datos.getDate(4);
+                int movimientos = -(datos.getInt(1));
+                stock = new Stocks(marca, modelo, fecha, movimientos);
+                listaStocks.add(stock);
+            }
+        } catch (SQLException e) {
+            vtnAlertaError();
+            e.printStackTrace();
+        }
+        return listaStocks;
     }
 }

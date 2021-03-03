@@ -163,6 +163,7 @@ public class Controller {
     ModeloTablaProveedores modeloTablaProveedores = new ModeloTablaProveedores();
     ModeloTablaCompras modeloTablaCompras = new ModeloTablaCompras();
     ModeloTablaEscandallos modeloTablaEscandallos = new ModeloTablaEscandallos();
+    ModeloTablaStocks modeloTablaStocks = new ModeloTablaStocks();
     private List<ComboBox> llenarCmb(){
         listaCmb.add(cmb_componente_1);
         listaCmb.add(cmb_componente_2);
@@ -203,10 +204,11 @@ public class Controller {
         modeloTablaClientes.crearTablaClientes(id_tablaClientes, idVentanaFacturaCliente, cmbFechaFacturaCliente, id_base);
         modeloTablaPoblaciones.crearTablaPoblaciones(id_TablaPoblaciones);
         modeloTablaEmpleados.crearTabla(id_tabla);
-        modeloTablaProductos.crearTablaProductos(id_tablaProducto, id_TablaStock, d_tablaProductos);
+        modeloTablaProductos.crearTablaProductos(id_tablaProducto, id_TablaStock, d_tablaProductos, id_tablaStock);
         modeloTablaProveedores.crearTablaProveedores(id_tablaProveedores);
         modeloTablaCompras.crearTablaCompras(id_TablaCompras, id_cmbFechaInicioCompras, id_cmbFechaFinCompras);
         modeloTablaEscandallos.crearTabla(id_tablaPC);
+        modeloTablaStocks.crearTablaStocks(id_tablaStock);
         listaCmb = llenarCmb();
     }
 
@@ -528,6 +530,8 @@ public class Controller {
         idVentanaInformeVentas.setVisible(false);
         id_base.setDisable(false);
     }
+
+
 
     public void newInformeStock(MouseEvent mouseEvent){
         int idProducto = modeloTablaProductos.getId(id_tablaProducto);

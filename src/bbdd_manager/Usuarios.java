@@ -42,6 +42,7 @@ public class Usuarios {
         txtDni.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
+                boolean okAcces = false;
                 if(keyEvent.getCode()== KeyCode.ENTER){
                     Connection conexion=new Common().getConexion();
                     PreparedStatement query;
@@ -50,11 +51,18 @@ public class Usuarios {
                         query = conexion.prepareStatement("SELECT DNI FROM personal");
                         datos = query.executeQuery();
                         while(datos.next()){
-                            if(datos.getString("DNI").compareToIgnoreCase(txtDni.getText()) == 0){
-                                id_paneLogin.setVisible(false);
-                                id_base.setVisible(true);
+                            if(datos.getString("DNI").compareToIgnoreCase(txtDni.getText()) == 0) {
+
+                                okAcces = true;
                             }
                         }
+                        if(okAcces){
+                            id_paneLogin.setVisible(false);
+                            id_base.setVisible(true);
+                        }else{
+                            new Common().vtnAlertaErrorLogin();
+                        }
+
                     } catch (SQLException e) {
                         new Common().vtnAlertaError();
                     }

@@ -33,7 +33,7 @@ public class ModeloTablaProductos {
 
     Common c =new Common();
 
-    public void crearTablaProductos(TableView<Productos> id_tablaProductos, AnchorPane vtnStock, AnchorPane d_tablaProductos){
+    public void crearTablaProductos(TableView<Productos> id_tablaProductos, AnchorPane vtnStock, AnchorPane d_tablaProductos, TableView<Stocks> tablaStocks){
 
         System.out.println("productos:  "+id_tablaProductos.getWidth());
         this.columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("TipoProducto"));
@@ -57,7 +57,7 @@ public class ModeloTablaProductos {
                 if(mouseEvent.getClickCount() == 2){
                     Productos producto = id_tablaProductos.getSelectionModel().getSelectedItem();
                     vtnStock.setVisible(true);
-
+                    new ModeloTablaStocks().llenarTabla(tablaStocks, producto.getIdProducto());
                     d_tablaProductos.setVisible(false);
 
                 }
